@@ -1,0 +1,23 @@
+.btn--success {
+  background: #00B8D8;
+  color: white;
+}
+.btn--success:active {
+  background: #00a6c4;
+}
+
+.btn--danger {
+  background: #064789;
+  color: white;
+}
+.btn--danger:active {
+  background: #06396d;
+}
+
+.nav__link--active:before {
+  visibility: visible;
+  -webkit-transform: scaleX(1);
+  transform: scaleX(1);
+}
+
+/*# sourceMappingURL=modifier.css.map */
