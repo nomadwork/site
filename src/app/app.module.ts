@@ -11,6 +11,7 @@ import { HeaderComponent } from './header/header.component';
 import { AppLayoutComponent } from './app-layout.component';
 import { MaterialModule } from './material.module';
 import { FormsModule } from '@angular/forms';
+import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
 
 @NgModule({
   declarations: [
@@ -20,6 +21,7 @@ import { FormsModule } from '@angular/forms';
     AppLayoutComponent
   ],
   imports: [
+    BrowserAnimationsModule,
     FormsModule,
     MaterialModule,
     BrowserModule,

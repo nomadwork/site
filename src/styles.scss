@@ -1,6 +1,6 @@
 @import "./assets/styles/reset.scss";
 @import "./assets/styles/style.scss";
-
+@import "~@angular/material/prebuilt-themes/indigo-pink.css";
 // .si-float-wrapper{
 //     background:blue!important;
 //     border:2px solid blue!important;
@@ -9,32 +9,34 @@
 //     background:blue!important;
 //     border:2px solid blue!important;
 //   }
-
 .si-content-wrapper {
-  background: $color-primary !important;
-  padding: 30px 10px !important;
-  border: 2px solid $color-base !important;
-  border-radius: 15px!important;
+    background: $color-primary !important;
+    padding: 30px 10px !important;
+    border: 2px solid $color-base !important;
+    border-radius: 15px!important;
 }
-.si-shadow-wrapper-top{
+
+.si-shadow-wrapper-top {
     display: none!important;
 }
-.si-close-button{
- color: white!important;
- opacity: .7!important;
-  &:hover{
-    opacity: 1!important;
-  }
+
+.si-close-button {
+    color: white!important;
+    opacity: .7!important;
+    &:hover {
+        opacity: 1!important;
+    }
 }
 
 .si-pointer-border-top {
-  border-top-color: $color-base !important;
+    border-top-color: $color-base !important;
 }
-.si-pointer-bg-top{
+
+.si-pointer-bg-top {
     border-top-color: $color-primary!important
 }
+
 .si-content {
-  background: $color-primary;
-  color: $color-base;
-    
+    background: $color-primary;
+    color: $color-base;
 }
