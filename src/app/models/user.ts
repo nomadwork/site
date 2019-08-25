@@ -3,6 +3,6 @@ export default class User {
     password: string;
     email: string;
     birthdate: Date;
-    sex: string;
+    gender: string;
     name: string;
 }

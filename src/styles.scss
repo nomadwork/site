@@ -1,2 +1,40 @@
-@import './assets/resetCSS.scss';
-@import './assets/styles/style.css';
+@import "./assets/styles/reset.scss";
+@import "./assets/styles/style.scss";
+
+// .si-float-wrapper{
+//     background:blue!important;
+//     border:2px solid blue!important;
+//   }
+//   .si-wrapper-top{
+//     background:blue!important;
+//     border:2px solid blue!important;
+//   }
+
+.si-content-wrapper {
+  background: $color-primary !important;
+  padding: 30px 10px !important;
+  border: 2px solid $color-base !important;
+  border-radius: 15px!important;
+}
+.si-shadow-wrapper-top{
+    display: none!important;
+}
+.si-close-button{
+ color: white!important;
+ opacity: .7!important;
+  &:hover{
+    opacity: 1!important;
+  }
+}
+
+.si-pointer-border-top {
+  border-top-color: $color-base !important;
+}
+.si-pointer-bg-top{
+    border-top-color: $color-primary!important
+}
+.si-content {
+  background: $color-primary;
+  color: $color-base;
+    
+}

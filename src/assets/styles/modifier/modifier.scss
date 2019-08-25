@@ -1,25 +1,25 @@
-.btn{
-    @at-root #{&}--success {
-        background: #00B8D8;
-        color:white;
-        &:active{
-            background:rgb(0, 166, 196);
-        }
+.btn {
+  @at-root #{&}--success {
+    background: #064789;
+    color: white;
+    &:active {
+      background: #06396d;
     }
-    @at-root #{&}--danger {
-        background: #064789;
-        color:white;
-        &:active{
-            background: #06396d;
-        }
+  }
+  @at-root #{&}--danger {
+    background: #00b8d8;
+    color: white;
+    &:active {
+      background: rgb(0, 166, 196);
     }
+  }
 }
-.nav__link{
-    @at-root #{&}--active {
-        &:before{
-            visibility: visible;
-            -webkit-transform: scaleX(1);
-            transform: scaleX(1);
-        }
-    } 
+.nav__link {
+  @at-root #{&}--active {
+    &:before {
+      visibility: visible;
+      -webkit-transform: scaleX(1);
+      transform: scaleX(1);
+    }
+  }
 }

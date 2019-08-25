@@ -3,6 +3,7 @@
         margin: 0px 5px;
         padding: 16px 5px;
         position: relative;
+        cursor: pointer;
         &:before {
             content: "";
             position: absolute;
@@ -10,7 +11,7 @@
             height: 2px;
             bottom: 2px;
             left: 0;
-            background-color:#00B8D8;
+            background-color:#064789;
             visibility: hidden;
             -webkit-transform: scaleX(0);
             transform: scaleX(0);
@@ -27,4 +28,10 @@
         background: #064789;
         color:white;
     }
+}
+
+.link.link__click{
+    margin-top: 2rem;
+    padding:10px;
+    cursor: pointer;
 }

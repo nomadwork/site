@@ -1,136 +1,140 @@
 <div class="align father">
 
-    <div class="grid">
-  
-      <div class="register">
-  
-        <h2>Nomad Work</h2>
-  
-        <form class="form">
-  
-          <div *ngIf="step1">
-            <div class="form__field">
-                <input class="input" type="text" [(ngModel)]="email" name="email-login" 
-                value="">
-              <div class="camp-validate row" *ngIf="formValidateText">
-                <div class="col-2">
-                  <mat-icon class="mat-validate">warning</mat-icon>
-                </div>
-                <div class="col-10 text-left">
-                  <span>
-                    {{ formValidateText }}
-                  </span>
-                </div>
-              </div>
-            </div>
-            <div class="form__field div-button-login">
-              <button class="btn btn--success" (click)="validateEmail()" (keyup.enter)="validateEmail()">Próximo</button>
-              
-            </div>
-  
-            <span (click)="newUser()" class="pointer color-base-green">Criar conta?</span>
-  
+  <div class="grid">
+    <h2 class="title">Nomad Work</h2>
+
+    <div class="register">
+
+      <form class="form">
+        <div class="login" *ngIf="step1">
+          <div class="font-left">
+            <h2>E-mail:</h2>
           </div>
-  
-          <div *ngIf="step2">
-            <div class="form__field" (click)="goStepOne()">
-              <input disabled="true" class="input-blocked pointer" type="email" placeholder="E-mail" [(ngModel)]="email"
-                name="email-login" [class.form-validate]="formValidateText">
-            </div>
-            <div class="form__field" *ngIf="step2">
-              <input type="password" placeholder="Senha" name="password-login" [(ngModel)]="password">
-            </div>
-            <div class="camp-validate row" *ngIf="formValidateText">
-              <div class="col-2">
-                <mat-icon class="mat-validate">warning</mat-icon>
-              </div>
-              <div class="col-10 text-left">
-                <span>
-                  {{ formValidateText }}
-                </span>
-              </div>
-            </div>
-  
-            <div class="form__field div-button-login">
-              <input (click)="login()" (keyup.enter)="login()" class="formInput pointer" value="Entrar">
-            </div>
-  
-            <span (click)="forgetPassword()" class="pointer color-base-green ">Esqueceu a senha?</span>
-  
+          <input class="input" type="text" [(ngModel)]="email" name="email-login" value="">
+          <div class="camp-validate" *ngIf="formValidateText">
+
+            <mat-icon class="mat-validate">warning</mat-icon>
+            <span>
+              {{ formValidateText }}
+            </span>
+
           </div>
-  
-        </form>
-  
-        <div *ngIf="formNewUser">
-  
-          <form class="form" #userForm="ngForm">
-  
-            <div class="form__field">
-              <input type="text" placeholder="Nome e sobrenome" minlength="6" name="name" #name="ngModel"
-                [(ngModel)]="usuario.name" required>
-            </div>
-            <small class="color-validate d-block mb-2" *ngIf="name.errors?.required && name.touched">
-              O nome é obrigatório.
-            </small>
-            <div class="form__field">
-              <input type="email" placeholder="E-mail" name="email" [(ngModel)]="user.email" #email="ngModel" required>
-            </div>
-            <small class="color-validate d-block mb-2" *ngIf="email.errors?.required && email.touched">
-              O email é obrigatório.
-            </small>
-  
-            <div class="form__field">
-              <input type="password" placeholder="Senha" name="password" [(ngModel)]="passwordOne" #password="ngModel"
-                required minlength="6">
-            </div>
-            <small class="color-validate d-block mb-2" *ngIf="password.touched && password.errors?.required">
-              A senha é obrigatório.
-            </small>
-            <small class="color-validate d-block mb-2" *ngIf="password.touched && password.errors?.minlength">
-              O campo deve ter no mínimo 6 caracteres.
-            </small>
-  
-            <div class="form__field">
-              <input type="password" placeholder="Confirmar" name="password-repeat" [(ngModel)]="passwordTwo">
-            </div>
-            <small class="color-validate d-block mb-2" *ngIf="verifyPassword()">
-              As senhas não conferem.
-            </small>
-  
-            <div class="form__field">
-              <input type="date" name="birthdate" [(ngModel)]="user.birthdate" required #date="ngModel">
-            </div>
-            <small class="color-validate d-block mb-2" *ngIf="date.errors?.required && date.touched">
-              A data é obrigatória.
-            </small>
-  
-            <div class="form__field">
-              <mat-radio-group aria-label="Sexo" [(ngModel)]="user.sex" name="sex" required>
-                <mat-radio-button value="Masculino" class="mr-4">Masculino</mat-radio-button>
-                <mat-radio-button value="Feminino">Feminino</mat-radio-button>
-              </mat-radio-group>
-            </div>
-  
-            <div class="form__field div-button-login">
-  
-              <button [class.invalid-button]="!userForm.form.valid" [disabled]="!userForm.form.valid && !verifyPassword()"
-                [class.button-create]="userForm.form.valid" (click)="register()" (keyup.enter)="register()">
-                Cadastrar
-              </button>
-            </div>
-  
-          </form>
-  
-          <div class="mt-2">
-            <span (click)="goLogin()" class="pointer color-base-green ">Entrar</span>
-          </div>
-  
+          <button class="btn btn--success" (click)="validateEmail()" (keyup.enter)="validateEmail()">Próximo</button>
+          <span (click)="newUser()" class="link__bottom">Não possui uma conta? Clique aqui</span>
+
         </div>
-  
-  
-  
+
+        <div class="login" *ngIf="step2">
+          <div class="form__field" (click)="goStepOne()">
+            <mat-icon class="mat-validate">remove_circle_outline</mat-icon>
+            <input disabled="true" class="input" type="email" placeholder="E-mail" [(ngModel)]="email"
+              name="email-login" [class.form-validate]="formValidateText">
+          </div>
+
+          <div class="font-left">
+            <h2>Senha:</h2>
+          </div>
+          <input class="input" type="password" name="password-login" [(ngModel)]="password">
+
+          <div class="camp-validate" *ngIf="formValidateText">
+            <mat-icon class="mat-validate">warning</mat-icon>
+            <span>
+              {{ formValidateText }}
+            </span>
+          </div>
+          <input (click)="login()" (keyup.enter)="login()" class="btn btn--success" type="submit" value="Entrar">
+
+          <span (click)="forgetPassword()" class="link__bottom">Esqueceu a senha?</span>
+
+        </div>
+
+      </form>
+
+      <div *ngIf="formNewUser">
+
+        <form class="formRegister" #userForm="ngForm">
+
+          <div class="font-left">
+            <h2>Nome e Sobrenome:</h2>
+          </div>
+          <input class="input" type="text" minlength="6" name="name" #name="ngModel" [(ngModel)]="usuario.name"
+            required>
+          <small class="color-validate d-block mb-2" *ngIf="name.errors?.required && name.touched">
+            O nome é obrigatório.
+          </small>
+          <div class="font-left">
+            <h2>E-mail:</h2>
+          </div>
+          <input class="input" type="email" name="email" [(ngModel)]="user.email" #email="ngModel" required>
+          <small class="color-validate d-block mb-2" *ngIf="email.errors?.required && email.touched">
+            O email é obrigatório.
+          </small>
+          <div class="font-left">
+            <h2>Senha:</h2>
+          </div>
+          <input class="input" type="password" name="password" [(ngModel)]="passwordOne" #password="ngModel" required
+            minlength="6">
+          <small class="color-validate d-block mb-2" *ngIf="password.touched && password.errors?.required">
+            A senha é obrigatório.
+          </small>
+          <small class="color-validate d-block mb-2" *ngIf="password.touched && password.errors?.minlength">
+            O campo deve ter no mínimo 6 caracteres.
+          </small>
+          <div class="font-left">
+            <h2>Confirmar Senha:</h2>
+          </div>
+          <input class="input" type="password" name="password-repeat" [(ngModel)]="passwordTwo">
+          <small class="color-validate d-block mb-2" *ngIf="verifyPassword()">
+            As senhas não conferem.
+          </small>
+
+          <div class="font-left">
+            <h2>Data de Nascimento:</h2>
+            <input type="date" name="birthdate" [(ngModel)]="user.birthdate" required #date="ngModel">
+          </div>
+          <small class="color-validate d-block mb-2" *ngIf="date.errors?.required && date.touched">
+            A data é obrigatória.
+          </small>
+
+          <div class="radios">
+            <!-- <mat-radio-group aria-label="Sexo" [(ngModel)]="user.sex" name="sex" required>
+              <mat-radio-button value="Masculino" class="mr-4">Masculino</mat-radio-button>
+              <mat-radio-button value="Feminino">Feminino</mat-radio-button>
+            </mat-radio-group> -->
+
+            <label class="container">Masculino
+              <input type="radio" name="radio" value="male" [(ngModel)]="user.gender">
+              <span class="checkmark"></span>
+            </label>
+            <label class="container">Feminino
+              <input type="radio" checked="checked" name="radio" value="female" [(ngModel)]="user.gender">
+              <span class="checkmark"></span>
+            </label>
+            <label class="container">Outro
+              <input type="radio" name="radio" value="other" [(ngModel)]="user.gender">
+              <span class="checkmark"></span>
+            </label>
+          </div>
+
+          <button class="btn btn--success" [class.invalid-button]="!userForm.form.valid"
+            [disabled]="!userForm.form.valid && !verifyPassword()" [class.button-create]="userForm.form.valid"
+            (click)="register()" (keyup.enter)="register()">
+            Cadastrar
+          </button>
+
+
+        </form>
+
+        <div class="link-entrar">
+          <span (click)="goLogin()" class="link__bottom">Entrar</span>
+        </div>
+
       </div>
-  
+
+
+
     </div>
-  
+
   </div>
+
+</div>
