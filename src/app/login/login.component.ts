@@ -5,16 +5,28 @@ import { LoginService } from '../services/login.service';
 import { AlertService } from 'ngx-alerts';
 import { FormGroup, FormBuilder, Validators } from '@angular/forms';
 import { MustMatch } from '../utils/must-match';
+import { trigger, state, style, animate, transition } from '@angular/animations';
 
 @Component({
   selector: 'app-login',
   templateUrl: './login.component.html',
-  styleUrls: ['./login.component.scss']
+  styleUrls: ['./login.component.scss'],
+  animations: [
+    trigger('dash', [
+      state('hide', style({
+        transform: 'translatex(-375px)',
+      })),
+      state('show', style({
+        transform: 'translatex(0px)',
+      })),
+      transition('hide <=> show', animate('500ms cubic-bezier(0.165, 0.84, 0.44, 1)')),
+    ])
+  ]
 })
 export class LoginComponent implements OnInit {
 
-  step1 = true;
-  step2 = false;
+  show = true;
+  step = true;
   formNewUser = false;
   email = '';
   confirmPassword = false;
@@ -46,6 +58,14 @@ export class LoginComponent implements OnInit {
 
   }
 
+  // metodo para animação
+  get stateStep() {
+    return this.show ? 'show' : 'hide';
+  }
+  toggle(){
+    this.show = !this.show;
+  }
+
   validateEmail() {
 
     if (this.regexEmail.test(this.email)) {
@@ -71,6 +91,7 @@ export class LoginComponent implements OnInit {
   }
 
   verifyEmailSubmit() {
+
     return this.email.length === 0;
   }
 
@@ -79,24 +100,20 @@ export class LoginComponent implements OnInit {
   }
 
   goToStepTwo() {
-    this.step1 = false;
-    this.step2 = true;
+    this.show = false;
   }
 
   goStepOne() {
-    this.step1 = true;
-    this.step2 = false;
+   this.show = true;
   }
 
   newUser() {
-    this.step1 = false;
-    this.step2 = false;
+    this.step = false;
     this.formNewUser = true;
   }
 
   goLogin() {
-    this.step1 = true;
-    this.step2 = false;
+    this.step = true;
     this.formNewUser = false;
   }
 
@@ -108,6 +125,7 @@ export class LoginComponent implements OnInit {
     //  Implementar esqueci a senha
   }
 
+  // metodo ao clicar no botão registrar
   registerSubmit() {
 
     const { value } = this.formRegister;
@@ -117,8 +135,8 @@ export class LoginComponent implements OnInit {
     this.loginService.register(value)
       .subscribe(d => {
         this.formRegister.reset();
-        this.step1 = false;
-        this.step2 = true;
+        this.show = false;
+        this.step = true;
         this.formNewUser = false;
         this.email = value.email
         this.alertService.success("Cadastro realizado com sucesso");
