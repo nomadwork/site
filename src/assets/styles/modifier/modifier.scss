@@ -9,10 +9,10 @@ $color-base: #064789;
 
 .btn {
   @at-root #{&}--success {
-    background: $color-primary;
+    background: $color-base;
     color: white;
     &:active {
-      background: $color-primary;
+      background: $color-base;
     }
   }
   @at-root #{&}--danger {
