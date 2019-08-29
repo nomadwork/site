@@ -145,8 +145,8 @@
               >Masculino
               <input
                 type="radio"
-                checked="checked"
                 formControlName="gender"
+                checked="checked"
                 value="male"
               />
               <span class="checkmark"></span>
@@ -163,7 +163,7 @@
             </label>
           </div>
 
-          <button class="btn btn--success" type="submit">
+          <button class="btn btn--success" [disabled]="!formRegister.valid" type="submit">
             Cadastrar
           </button>
         </form>
