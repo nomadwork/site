@@ -7,10 +7,20 @@ import { Observable, of } from 'rxjs';
 })
 export class UserService {
 
+  private userIsLogged: User;
+
   constructor() { }
-  
+
   register(user: User): Observable<boolean> {
     return of(true);
+  }
+
+  get user(): User {
+    return this.userIsLogged;
+  }
+
+  set user(user: User) {
+    this.userIsLogged = user;
   }
 
 }

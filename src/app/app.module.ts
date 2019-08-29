@@ -13,6 +13,8 @@ import { MaterialModule } from './material.module';
 import { FormsModule } from '@angular/forms';
 import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
 
+import { AlertModule } from 'ngx-alerts';
+
 @NgModule({
   declarations: [
     AppComponent,
@@ -27,6 +29,7 @@ import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
     BrowserModule,
     AppRoutingModule,
     HttpClientModule,
+    AlertModule.forRoot({maxMessages: 5, timeout: 5000, position: 'right'}),
     AgmCoreModule.forRoot({
       apiKey: 'AIzaSyADVjs3gx7EaQmkR9_sRhoKWPWaVOWHxus'
     })

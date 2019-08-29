@@ -3,6 +3,7 @@ import { UserService } from '../services/user.service';
 import { AuthGuardService } from '../services/auth-guard.service';
 import User from '../models/user';
 import { LoginService } from '../services/login.service';
+import { AlertService } from 'ngx-alerts';
 
 @Component({
   selector: 'app-login',
@@ -14,60 +15,61 @@ export class LoginComponent implements OnInit {
   step1 = true;
   step2 = false;
   formNewUser = false;
-  formValidateText = '';
-  email: string;
+  email = '';
   confirmPassword = false;
-  password;
+  password = '';
   passwordOne: string;
   passwordTwo: string;
+  regexEmail = new RegExp(/^[a-zA-Z0-9.!#$%&'*+/=?^_`{|}~-]+@[a-zA-Z0-9](?:[a-zA-Z0-9-]{0,61}[a-zA-Z0-9])?(?:\.[a-zA-Z0-9](?:[a-zA-Z0-9-]{0,61}[a-zA-Z0-9])?)*$/, 'i');
 
   private user: User = new User();
 
-  constructor(private loginService: LoginService, private userService: UserService) { }
+  constructor(private loginService: LoginService, private userService: UserService, private alertService: AlertService) { }
 
 
   ngOnInit() {
   }
 
   validateEmail() {
-    if (!this.email) {
-      this.formValidateText = "Digite um e-mail";
-    } else {
+
+    if (this.regexEmail.test(this.email)) {
       this.loginService.verifyEmail(this.email)
         .subscribe(() => {
           this.goToStepTwo();
-        }, () => {
-          this.formValidateText = 'E-mail não cadastrado na cohuub';
+        }, (error) => {
+          this.alertService.warning(error.error.msg);
         });
+    } else {
+      this.alertService.danger('E-mail não está no formato adequado.');
     }
   }
 
-
   login() {
 
-    if (!this.password) {
-      this.formValidateText = 'Digite uma senha';
-    } else {
-      this.loginService.login(this.email, this.password)
-        .subscribe(result => {
-          console.log(result);
-        }, () => {
-          this.formValidateText = 'Senha incorreta';
-        });
-    }
+    this.loginService.login(this.email, this.password)
+      .subscribe(result => {
+        console.log(result);
+      }, (error) => {
+        this.alertService.warning(error.error.msg);
+      });
+  }
 
+  verifyEmailSubmit() {
+    return this.email.length === 0;
+  }
+
+  verifyPasswordSubmit() {
+    return this.password.length === 0;
   }
 
   goToStepTwo() {
     this.step1 = false;
     this.step2 = true;
-    this.formValidateText = '';
   }
 
   goStepOne() {
     this.step1 = true;
     this.step2 = false;
-    this.formValidateText = '';
   }
 
   newUser() {

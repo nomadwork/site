@@ -40,3 +40,7 @@
     background: $color-primary;
     color: $color-base;
 }
+
+.btn--success:disabled {
+    background: #4d86be;
+}

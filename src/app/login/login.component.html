@@ -10,15 +10,11 @@
                     <div class="font-left">
                         <h2>E-mail :</h2>
                     </div>
-                    <input class="input" type="text" [(ngModel)]="email" name="email-login" value="">
-                    <div class="camp-validate" *ngIf="formValidateText">
-
-                        <span>
-              {{ formValidateText }}
-            </span>
+                    <input class="input" type="text" [(ngModel)]="email" name="email-login">
+                    <div class="camp-validate">
 
                     </div>
-                    <button class="btn btn--success button-spacing" (click)="validateEmail()" (keyup.enter)="validateEmail()">Próximo</button>
+                    <button class="btn btn--success button-spacing" (click)="validateEmail()" (keyup.enter)="validateEmail()" [disabled]="verifyEmailSubmit()">Próximo</button>
                     <span (click)="newUser()" class="link__bottom">Não possui uma conta? Clique aqui</span>
 
                 </div>
@@ -37,10 +33,10 @@
                     <div class="camp-validate" *ngIf="formValidateText">
                         <mat-icon class="mat-validate">warning</mat-icon>
                         <span>
-              {{ formValidateText }}
-            </span>
+                          {{ formValidateText }}
+                         </span>
                     </div>
-                    <input (click)="login()" (keyup.enter)="login()" class="btn btn--success" type="submit" value="Entrar">
+                    <input (click)="login()" (keyup.enter)="login()" class="btn btn--success button-spacing" type="submit" [disabled]="verifyPasswordSubmit()" value="Entrar">
 
                     <span (click)="forgetPassword()" class="link__bottom">Esqueceu a senha?</span>
 
