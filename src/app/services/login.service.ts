@@ -38,6 +38,11 @@ export class LoginService {
       );
   }
 
+  register(form): Observable<any>{
+    return this.http.post<any>('/api/register', form)
+
+  }
+
   logout() {
     localStorage.removeItem('token');
     this.loggedIn.next(false);

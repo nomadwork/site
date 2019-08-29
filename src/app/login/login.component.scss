@@ -40,7 +40,7 @@ $color-base:#064789;
     margin-bottom: 1em;
 }
 
-.font-left {
+.input-div {
     width: 100%;
     text-align: left
 }
@@ -72,10 +72,7 @@ $color-base:#064789;
     background-image: linear-gradient(200deg, #064789, #0065d8);
     // color: black;
     height: 100vh;
-}
-
-input[type="date"] {
-    margin: 10px 0px;
+    padding:20px 0px;
 }
 
 * {
@@ -87,6 +84,7 @@ input[type="date"] {
     display: flex;
     flex-direction: row;
 }
+
 
 $input-placeholder-color: #7e8ba3;
 $grid-max-width: 25rem;
@@ -115,11 +113,17 @@ h2 {
     flex-direction: column;
     justify-content: center;
     align-items: center;
-    input[type="text"],
-    input[type="password"],
-    input[type="email"] {
-        margin: 0 0 15px 0;
+    & > div{
+      width:100%;
+      margin: 0 0 15px 0;
     }
+}
+
+.error-msg{
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding:5px;
 }
 
 .register {

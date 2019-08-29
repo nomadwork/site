@@ -9,6 +9,7 @@ module.exports = function(app) {
 
     app.post('/api/verify-email/', apiLogin.verifyEmail);
     app.post('/api/login/', apiLogin.login);
+    app.post('/api/register/', apiLogin.register);
 
     app.route('/api/example/')
         .get(apiExample.example);
