@@ -1,9 +1,18 @@
+// $color-base: #ffffff;
+// $color-accent: #00B8D8;
+// $color-primary: #000000;
+
+$color-primary: #f3f3f3;
+$color-accent: #00b8d8;
+$color-base: #064789;
+
+
 .btn {
   @at-root #{&}--success {
-    background: #064789;
+    background: $color-primary;
     color: white;
     &:active {
-      background: #06396d;
+      background: $color-primary;
     }
   }
   @at-root #{&}--danger {

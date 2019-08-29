@@ -1,28 +1,9 @@
-<!-- <nav class="navbar navbar-expand-lg navbar-dark bg-dark" *ngIf="isLoggedIn$ | async">
-    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#conteudoNavbarSuportado" aria-controls="conteudoNavbarSuportado" aria-expanded="false" aria-label="Alterna navegação">
-        <span class="navbar-toggler-icon"></span>
-    </button>
-    <div class="collapse navbar-collapse" id="conteudoNavbarSuportado">
-        <ul class="navbar-nav mr-auto">
-            <li class="nav-item active">
-                <a class="nav-link" [routerLink]="['']">Home</a>
-            </li>
-            <li class="nav-item active">
-                <a class="nav-link" [routerLink]="['new']">New</a>
-            </li>
-        </ul>
-    </div>
-</nav> -->
 <nav class="nav">
     <div>
         <a [routerLink]="['']" class="nav__link" routerLinkActive="nav__link--active" [routerLinkActiveOptions]="{exact: true}">Home</a>
         <a [routerLink]="['/new']" class="nav__link" routerLinkActive="nav__link--active" [routerLinkActiveOptions]="{exact: true}">New</a>
     </div>
 
-
-    <span class="mr-auto">
-        Bem vindo {{ user.name }}
-    </span>
     <a class="nav__link mr-auto" routerLinkActive="nav__link--active" (click)="logout()">
         Sair
     </a>

@@ -3,6 +3,7 @@ import { Observable } from 'rxjs';
 import { LoginService } from '../services/login.service';
 import User from '../models/user';
 import { UserService } from '../services/user.service';
+import { AlertService } from 'ngx-alerts';
 
 @Component({
   selector: 'app-header',
@@ -14,11 +15,12 @@ export class HeaderComponent implements OnInit {
   isLoggedIn$: Observable<boolean>;
   user: User;
 
-  constructor(private loginService: LoginService, private userService: UserService) { }
+  constructor(private loginService: LoginService, private userService: UserService, private alertService: AlertService) { }
 
-  ngOnInit() {
-    this.isLoggedIn$ = this.loginService.isLoggedIn;
-    this.user = this.userService.user;
+  async ngOnInit() {
+    this.isLoggedIn$ = await this.loginService.isLoggedIn;
+    this.user = await this.userService.user;
+    this.alertService.info(`Bem vindo ${this.user.name}`)
   }
 
   logout() {

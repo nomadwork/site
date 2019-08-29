@@ -11,6 +11,7 @@ module.exports = function(app) {
     app.post('/api/login/', apiLogin.login);
     app.post('/api/register/', apiLogin.register);
 
+
     app.route('/api/example/')
         .get(apiExample.example);
 
