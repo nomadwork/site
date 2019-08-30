@@ -1,3 +1,8 @@
+@import "./block/block.scss";
+@import "./element/element.scss";
+@import "./modifier/modifier.scss";
+@import "./infowindow.scss";
+
 h1,
 h2,
 h3 {
@@ -27,7 +32,3 @@ input[type="submit"] {
   margin: 5px;
   cursor: pointer;
 }
-
-@import "./block/block.scss";
-@import "./element/element.scss";
-@import "./modifier/modifier.scss";

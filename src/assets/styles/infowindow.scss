@@ -1,0 +1,41 @@
+$color-base: #ffffff;
+$color-accent: #00B8D8;
+$color-primary: #064789;
+
+
+.si-content-wrapper {
+  background: $color-base !important;
+  padding: 10px !important;
+  // border: 2px solid $color-primary !important;
+  border-radius: 5px!important;
+}
+
+.si-shadow-wrapper-top {
+  // display: none!important;
+}
+
+.si-close-button {
+  display: none;
+  color: $color-primary!important;
+  opacity: .7!important;
+  &:hover {
+      opacity: 1!important;
+  }
+}
+
+.si-pointer-border-top {
+  border-top-color: $color-primary !important;
+}
+
+.si-pointer-bg-top {
+  border-top-color: $color-base!important
+}
+
+.si-content {
+  background: $color-base;
+  color: $color-primary;
+}
+
+.btn--success:disabled {
+  background: #4d86be;
+}

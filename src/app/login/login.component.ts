@@ -25,6 +25,7 @@ import { trigger, state, style, animate, transition } from '@angular/animations'
 })
 export class LoginComponent implements OnInit {
 
+  loading = false;
   show = true;
   step = true;
   formNewUser = false;
@@ -67,6 +68,7 @@ export class LoginComponent implements OnInit {
   }
 
   validateEmail() {
+    this.loading = true;
 
     if (this.regexEmail.test(this.email)) {
       this.loginService.verifyEmail(this.email)
@@ -81,12 +83,14 @@ export class LoginComponent implements OnInit {
   }
 
   login() {
-
+    this.loading = true;
     this.loginService.login(this.email, this.password)
       .subscribe(result => {
         console.log(result);
+        this.loading = false;
       }, (error) => {
         this.alertService.warning(error.error.msg);
+        this.loading = false;
       });
   }
 
@@ -100,6 +104,7 @@ export class LoginComponent implements OnInit {
   }
 
   goToStepTwo() {
+    this.loading = false;
     this.show = false;
   }
 

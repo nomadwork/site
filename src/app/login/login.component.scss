@@ -21,7 +21,7 @@ $color-base: #064789;
   justify-content: space-around;
   align-items: center;
   min-width: 290px;
-  margin: 0 30px 0 0;
+  margin: 0 80px 0 0;
 }
 .form {
   display: flex;
@@ -144,7 +144,15 @@ h2 {
   }
 }
 
-@media (min-width: 320px) {
+
+@media (min-width: 374px) {
+  .login {
+    min-width: 340px;
+    margin: 0 35px 0 0;
+  }
+}
+
+@media (min-width: 376px) {
   .login {
     min-width: 360px;
   }
