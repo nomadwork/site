@@ -3,10 +3,12 @@ $color-accent: #00B8D8;
 $color-primary: #064789;
 
 
+.si-wrapper-top.si-has-border{
+  margin-top: -45px!important;
+}
+
 .si-content-wrapper {
-  background: $color-base !important;
   padding: 10px !important;
-  // border: 2px solid $color-primary !important;
   border-radius: 5px!important;
 }
 
@@ -16,26 +18,17 @@ $color-primary: #064789;
 
 .si-close-button {
   display: none;
-  color: $color-primary!important;
-  opacity: .7!important;
-  &:hover {
-      opacity: 1!important;
-  }
 }
 
+
 .si-pointer-border-top {
-  border-top-color: $color-primary !important;
+  display: none!important;
 }
 
 .si-pointer-bg-top {
-  border-top-color: $color-base!important
+  display: none!important;
 }
 
 .si-content {
-  background: $color-base;
-  color: $color-primary;
-}
-
-.btn--success:disabled {
-  background: #4d86be;
+  font-weight: bold;
 }

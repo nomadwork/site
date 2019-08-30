@@ -1,10 +1,5 @@
-// $color-base: #ffffff;
-// $color-accent: #00B8D8;
-// $color-primary: #000000;
 
-$color-primary: #f3f3f3;
-$color-accent: #00b8d8;
-$color-base: #064789;
+$color-base: #03A9F4;
 
 
 .btn {
@@ -23,6 +18,11 @@ $color-base: #064789;
     }
   }
 }
+
+.btn--success:disabled {
+  background: #63929b;
+}
+
 .nav__link {
   @at-root #{&}--active {
     &:before {

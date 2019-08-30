@@ -11,7 +11,7 @@
             height: 2px;
             bottom: 2px;
             left: 0;
-            background-color:#064789;
+            background-color:#00B8D8;
             visibility: hidden;
             -webkit-transform: scaleX(0);
             transform: scaleX(0);
@@ -25,7 +25,7 @@
           }
     }
     @at-root #{&}__btn {
-        background: #064789;
+        background: #00B8D8;
         color:white;
     }
 }

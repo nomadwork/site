@@ -1,3 +1,4 @@
+<mat-progress-bar *ngIf="loading" mode="indeterminate"></mat-progress-bar>
 <div class="align father">
   <div class="grid">
     <h2 class="title">Nomad Work</h2>
@@ -27,7 +28,6 @@
             <span (click)="newUser()" class="link__bottom"
               >Não possui uma conta? Clique aqui</span
             >
-            <mat-progress-bar *ngIf="loading" mode="indeterminate"></mat-progress-bar>
           </div>
 
           <div class="login">
@@ -72,7 +72,7 @@
             <span (click)="forgetPassword()" class="link__bottom"
               >Esqueceu a senha?</span
             >
-            <mat-progress-bar *ngIf="loading" mode="indeterminate"></mat-progress-bar>
+
           </div>
         </form>
       </div>
