@@ -10,8 +10,8 @@ export class HomeMapComponent implements OnInit {
   lat: number = -8.0631;
   lng: number = -34.8713;
   zoom: number = 15;
-
-  stylMap = [
+  iconUrl: string = 'src/../../../assets/img/my-pin.svg'
+  stylMap: any[] = [
     {
       "featureType": "administrative",
       "elementType": "labels.text.fill",
@@ -91,10 +91,25 @@ export class HomeMapComponent implements OnInit {
       ]
     }
   ]
+  options: any = {
+    enableHighAccuracy: true,
+    timeout: 5000,
+    maximumAge: 0
+  };
+  constructor() {
+  }
 
-  constructor() { }
 
   ngOnInit() {
+
+    if (navigator)
+    {
+      navigator.geolocation.getCurrentPosition( pos => {
+      const { latitude, longitude } = pos.coords;
+          this.lng = longitude;
+          this.lat = latitude;
+        },err => console.error(err), this.options);
+      }
   }
 
 }

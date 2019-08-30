@@ -1,10 +1,12 @@
 <nav class="nav">
     <div>
-        <a [routerLink]="['']" class="nav__link" routerLinkActive="nav__link--active" [routerLinkActiveOptions]="{exact: true}">Home</a>
+        <a [routerLink]="['']" class="nav__link" routerLinkActive="nav__link--active" [routerLinkActiveOptions]="{exact: true}">Mapa</a>
         <a [routerLink]="['/new']" class="nav__link" routerLinkActive="nav__link--active" [routerLinkActiveOptions]="{exact: true}">New</a>
     </div>
 
-    <a class="nav__link mr-auto" routerLinkActive="nav__link--active" (click)="logout()">
-        Sair
-    </a>
+    <div>
+      <a class="nav__link mr-auto" routerLinkActive="nav__link--active" (click)="logout()">
+         Sair
+      </a>
+    </div>
 </nav>
