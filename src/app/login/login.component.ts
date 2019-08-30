@@ -52,7 +52,7 @@ export class LoginComponent implements OnInit {
       password: [null, [Validators.required, Validators.minLength(10), Validators.maxLength(100)]],
       passwordRepeat: [null, [Validators.required]],
       date: [null, Validators.required],
-      gender: [null],
+      gender: ["female"],
     }, {
         validator: MustMatch('password', 'passwordRepeat')
       })
@@ -76,9 +76,11 @@ export class LoginComponent implements OnInit {
           this.goToStepTwo();
         }, (error) => {
           this.alertService.warning(error.error.msg);
+          this.loading = false;
         });
     } else {
       this.alertService.danger('E-mail não está no formato adequado.');
+      this.loading = false;
     }
   }
 
