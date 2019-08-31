@@ -1,0 +1,194 @@
+$color-primary: #f3f3f3;
+$color-accent: #064789;
+$color-base: #03A9F4;
+
+.button-spacing {
+  margin-top: 1em;
+  margin-bottom: 1em;
+}
+
+mat-progress-bar{
+  position: fixed;
+  top:0;
+  left:0;
+
+}
+
+.input-div {
+  width: 100%;
+  text-align: left;
+}
+
+.login {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-around;
+  align-items: center;
+  min-width: 290px;
+  margin: 0 80px 0 0;
+}
+.form {
+  display: flex;
+}
+
+.form__field {
+  display: flex;
+  justify-content: flex-start;
+  align-items: center;
+  align-content: center;
+  color: $color-base;
+  cursor: pointer !important;
+  margin-bottom: 20px !important;
+  padding:8px;
+  border:2px solid $color-base;
+  border-radius: 5px;
+  // background: #e0e0e0;
+  mat-icon {
+    margin-right: 5px;
+  }
+  input {
+    cursor: pointer;
+  }
+}
+
+.father {
+  min-height: 100%;
+  background-color: $color-base;
+  background: url(http://localhost:3000/files/nomadworkbg2.jpg) no-repeat center center fixed;
+  -webkit-background-size: cover;
+  -moz-background-size: cover;
+  -o-background-size: cover;
+  background-size: cover;
+  filter: progid:DXImageTransform.Microsoft.AlphaImageLoader(src='.nomadworkbg.jpg', sizingMethod='scale');
+  -ms-filter: "progid:DXImageTransform.Microsoft.AlphaImageLoader(src='nomadworkbg.jpg', sizingMethod='scale')";
+  padding: 20px 0px;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+.align {
+  align-items: center;
+  display: flex;
+  flex-direction: row;
+}
+
+$input-placeholder-color: #7e8ba3;
+$grid-max-width: 25rem;
+$grid-width: 100%;
+.grid {
+  margin: 0 auto;
+  text-align: center;
+  max-width: $grid-max-width;
+  width: $grid-width;
+}
+
+.title {
+  font-size: 2.75rem;
+  font-weight: 500;
+  box-shadow: 0 -5px 10px rgba(0, 0, 0, 0.78);
+  text-transform: uppercase;
+  z-index: 2;
+  // text-shadow: 0px 0 3px $color-primary;
+  color: $color-primary;
+  background: rgba(3, 168, 244, 0.733);
+  border-radius: 5px;
+  padding:5px 0px;
+  border-bottom-left-radius: 0px;
+  border-bottom-right-radius: 0px;
+  position: relative;
+}
+
+h2 {
+  color: $color-base;
+}
+
+.input:disabled{
+  color:$color-base!important;
+  border-bottom: 0px !important;
+  font-weight: bold!important;
+  font-size: 19px!important;
+}
+
+.formRegister {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  & > div {
+    width: 100%;
+    margin: 0 0 25px 0;
+  }
+}
+
+.animate {
+  width: calc(400px * 2);
+  display: flex;
+  justify-content: space-between;
+}
+
+.error-msg {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 5px;
+}
+
+.register {
+  box-shadow: 0 0px 10px rgba(0, 0, 0, 0.78);
+  text-align: left;
+  position: relative;
+  border-radius: 5px;
+  z-index: 1;
+  border-top-left-radius: 0px;
+  border-top-right-radius: 0px;
+  background: $color-primary;
+  overflow: hidden;
+  padding: 4rem 1rem 0rem 1rem;
+}
+
+.radios {
+  // text-align: center;
+  display: flex;
+  justify-content: space-around;
+  margin: 0 0 15px 0px;
+}
+
+.link-entrar {
+  text-align: center;
+  width: 100%;
+  padding: 10px;
+}
+
+.link__bottom {
+  padding: 10px;
+  cursor: pointer;
+  &:hover {
+    font-weight: 500;
+  }
+}
+
+
+@media (min-width: 374px) {
+  .login {
+    min-width: 340px;
+    margin: 0 35px 0 0;
+  }
+}
+
+@media (min-width: 376px) {
+  .login {
+    min-width: 360px;
+  }
+}
+
+
+@media (min-width: 420px) {
+  .register {
+    padding: 2rem 2rem 0rem 2rem;
+  }
+  .login {
+    min-width: 340px;
+  }
+}

@@ -1,9 +1,13 @@
-<agm-map [latitude]="lat" [longitude]="lng">
-    <agm-marker [latitude]="51.673858" [longitude]="7.815982">
-        <agm-snazzy-info-window [maxWidth]="200" [closeWhenOthersOpen]="true">
-          <ng-template>
-            My first Snazzy Info Window!
-          </ng-template>
-        </agm-snazzy-info-window>
-      </agm-marker>
-  </agm-map>
+<agm-map [latitude]="lat" [longitude]="lng" [zoom]="zoom" [styles]="stylMap">
+  <agm-marker [iconUrl]="iconUrl" [latitude]="lat" [longitude]="lng">
+    <agm-snazzy-info-window
+      [maxWidth]="500"
+      [closeWhenOthersOpen]="true"
+      [isOpen]="true"
+    >
+      <ng-template>
+        Você está aqui
+      </ng-template>
+    </agm-snazzy-info-window>
+  </agm-marker>
+</agm-map>

@@ -1,0 +1,34 @@
+$color-base: #ffffff;
+$color-accent: #00B8D8;
+$color-primary: #064789;
+
+
+.si-wrapper-top.si-has-border{
+  margin-top: -50px!important;
+}
+
+.si-content-wrapper {
+  padding: 10px !important;
+  border-radius: 5px!important;
+}
+
+.si-shadow-wrapper-top {
+  // display: none!important;
+}
+
+.si-close-button {
+  display: none;
+}
+
+
+.si-pointer-border-top {
+  display: none!important;
+}
+
+.si-pointer-bg-top {
+  display: none!important;
+}
+
+.si-content {
+  font-weight: bold;
+}

@@ -1,0 +1,34 @@
+
+$color-base: #03A9F4;
+
+
+.btn {
+  @at-root #{&}--success {
+    background: $color-base;
+    color: white;
+    &:active {
+      background: $color-base;
+    }
+  }
+  @at-root #{&}--danger {
+    background: #00b8d8;
+    color: white;
+    &:active {
+      background: rgb(0, 166, 196);
+    }
+  }
+}
+
+.btn--success:disabled {
+  background: #63929b;
+}
+
+.nav__link {
+  @at-root #{&}--active {
+    &:before {
+      visibility: visible;
+      -webkit-transform: scaleX(1);
+      transform: scaleX(1);
+    }
+  }
+}
