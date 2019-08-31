@@ -41,7 +41,8 @@ export class LoginComponent implements OnInit {
   // Variavel para manipular o form no ngOnInit
   formRegister: FormGroup;
 
-  constructor(private loginService: LoginService, private userService: UserService, private alertService: AlertService, private formBuilder: FormBuilder) { }
+  constructor(private loginService: LoginService, private userService: UserService,
+              private alertService: AlertService, private formBuilder: FormBuilder) { }
 
   ngOnInit() {
 
@@ -52,10 +53,10 @@ export class LoginComponent implements OnInit {
       password: [null, [Validators.required, Validators.minLength(10), Validators.maxLength(100)]],
       passwordRepeat: [null, [Validators.required]],
       date: [null, Validators.required],
-      gender: ["female"],
+      gender: ['female'],
     }, {
         validator: MustMatch('password', 'passwordRepeat')
-      })
+      });
 
   }
 
@@ -63,7 +64,7 @@ export class LoginComponent implements OnInit {
   get stateStep() {
     return this.show ? 'show' : 'hide';
   }
-  toggle(){
+  toggle() {
     this.show = !this.show;
   }
 
@@ -111,7 +112,7 @@ export class LoginComponent implements OnInit {
   }
 
   goStepOne() {
-   this.show = true;
+    this.show = true;
   }
 
   newUser() {
@@ -145,22 +146,8 @@ export class LoginComponent implements OnInit {
         this.show = false;
         this.step = true;
         this.formNewUser = false;
-        this.email = value.email
-        this.alertService.success("Cadastro realizado com sucesso");
-      }, (error: any) => console.log(error))
+        this.email = value.email;
+        this.alertService.success('Cadastro realizado com sucesso');
+      }, (error: any) => console.log(error));
   }
-
-  // register() {
-
-  //   this.userService.register(this.user)
-  //     .subscribe(() => {
-  //       this.loginService.login(this.user.email, this.user.password)
-  //         .subscribe(resultUser => {
-  //           console.log(resultUser);
-  //         }, error => console.log(error));
-  //     }, error => {
-  //       console.log(error);
-  //     });
-  // }
-
 }
