@@ -42,7 +42,7 @@ export class LoginComponent implements OnInit {
   formRegister: FormGroup;
 
   constructor(private loginService: LoginService, private userService: UserService,
-              private alertService: AlertService, private formBuilder: FormBuilder) { }
+    private alertService: AlertService, private formBuilder: FormBuilder) { }
 
   ngOnInit() {
 
@@ -136,18 +136,20 @@ export class LoginComponent implements OnInit {
   // metodo ao clicar no botão registrar
   registerSubmit() {
 
-    const { value } = this.formRegister;
-    const passwordEncode = window.btoa(value.password);
-    value.password = passwordEncode;
+    const value = this.formRegister.value;
+    value.password = window.btoa(value.password);
+    delete value.passwordRepeat;
 
     this.loginService.register(value)
-      .subscribe(d => {
+      .subscribe((resultUser) => {
         this.formRegister.reset();
         this.show = false;
         this.step = true;
         this.formNewUser = false;
-        this.email = value.email;
+        this.email = resultUser.email;
         this.alertService.success('Cadastro realizado com sucesso');
-      }, (error: any) => console.log(error));
+      }, (error: any) => {
+        this.alertService.warning(error.error.msg);
+      });
   }
 }

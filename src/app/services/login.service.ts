@@ -4,6 +4,7 @@ import { BehaviorSubject, Observable, of } from 'rxjs';
 import { map } from 'rxjs/operators';
 import { HttpClient } from '@angular/common/http';
 import { UserService } from './user.service';
+import User from '../models/user';
 
 @Injectable({
   providedIn: 'root'
@@ -38,9 +39,8 @@ export class LoginService {
       );
   }
 
-  register(form): Observable<any>{
-    return this.http.post<any>('/api/register', form)
-
+  register(user: User): Observable<any> {
+    return this.http.post<any>('/api/register', user);
   }
 
   logout() {
