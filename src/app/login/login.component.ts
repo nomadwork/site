@@ -25,6 +25,9 @@ import { trigger, state, style, animate, transition } from '@angular/animations'
 })
 export class LoginComponent implements OnInit {
 
+  defaultImage = 'http://localhost:3000/files/nomadworkbg-lq.jpg';
+  image = 'http://localhost:3000/files/nomadworkbg.jpg';
+
   loading = false;
   show = true;
   step = true;

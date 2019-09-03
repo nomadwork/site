@@ -14,6 +14,7 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 
 import { AlertModule } from 'ngx-alerts';
 import { ErrorMsgComponent } from './utils/error-msg/error-msg.component';
+import { LazyLoadImageModule } from 'ng-lazyload-image'; 
 
 @NgModule({
   declarations: [
@@ -31,6 +32,7 @@ import { ErrorMsgComponent } from './utils/error-msg/error-msg.component';
     AppRoutingModule,
     HttpClientModule,
     FormsModule, ReactiveFormsModule,
+    LazyLoadImageModule,
     AlertModule.forRoot({maxMessages: 5, timeout: 5000, position: 'right'}),
   ],
   providers: [],

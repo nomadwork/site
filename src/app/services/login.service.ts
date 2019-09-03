@@ -18,6 +18,7 @@ export class LoginService {
   get isLoggedIn() {
 
     //Se o usuário tiver logado emit um true aqui;
+    this.loggedIn.next(true);
     if (localStorage.getItem('token')) {
     }
 
