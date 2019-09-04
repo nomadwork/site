@@ -31,6 +31,12 @@ export class HomeMapComponent implements OnInit {
       iconAnchor: [25, 50],
       iconUrl: 'src/../../../assets/img/my-pin.png'
     });
+    const nwsIcon = L.icon({
+      popupAnchor:[-3,-35],
+      iconAnchor: [36, 45],
+      iconUrl: 'src/../../../assets/img/nws-pin.png'
+    });
+  
 
     if (navigator) {
       navigator.geolocation.getCurrentPosition(pos => {
@@ -41,7 +47,7 @@ export class HomeMapComponent implements OnInit {
         this.loginService.markers().subscribe((data)=>{
           data.marker.forEach(marker =>{
 
-         const nws =  L.marker([marker.latitude, marker.longitude]).addTo(map);
+         const nws =  L.marker([marker.latitude, marker.longitude],{icon: nwsIcon}).addTo(map);
          nws.bindPopup(marker.name);
           })
         })
