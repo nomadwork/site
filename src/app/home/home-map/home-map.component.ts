@@ -19,7 +19,7 @@ export class HomeMapComponent implements OnInit {
 
   options = {
     layers: [
-      L.tileLayer('https://api.maptiler.com/maps/voyager/{z}/{x}/{y}.png?key=0F5UrAwo6SzYzOVTaUfW', { maxZoom:18, attribution: 'Nomad Work' })
+      L.tileLayer('https://{s}.tile.openstreetmap.fr/hot/{z}/{x}/{y}.png', { maxZoom:19,  attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors, Tiles style by <a href="https://www.hotosm.org/" target="_blank">Humanitarian OpenStreetMap Team</a> hosted by <a href="https://openstreetmap.fr/" target="_blank">OpenStreetMap France</a>' })
     ],
     zoom: 15,
     center: L.latLng(-8.0631, -34.8713)
@@ -27,8 +27,9 @@ export class HomeMapComponent implements OnInit {
 
   onMapReady(map: L.Map) {
     var myIcon = L.icon({
-      iconAnchor: [40, 24],
-      iconUrl: 'src/../../../assets/img/my-pin.svg'
+      // iconSize:[32,48],
+      iconAnchor: [25, 50],
+      iconUrl: 'src/../../../assets/img/my-pin.png'
     })
     if (navigator) {
       navigator.geolocation.getCurrentPosition(pos => {
@@ -41,13 +42,9 @@ export class HomeMapComponent implements OnInit {
     }
   }
 
-  constructor() {
-  }
+  constructor() { }
 
 
-  ngOnInit() {
-
-
-  }
+  ngOnInit() { }
 
 }
