@@ -19,7 +19,7 @@ export class HomeMapComponent implements OnInit {
 
   options = {
     layers: [
-      L.tileLayer('https://{s}.tile.openstreetmap.fr/hot/{z}/{x}/{y}.png', { maxZoom:19,  attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors, Tiles style by <a href="https://www.hotosm.org/" target="_blank">Humanitarian OpenStreetMap Team</a> hosted by <a href="https://openstreetmap.fr/" target="_blank">OpenStreetMap France</a>' })
+      L.tileLayer('https://{s}.tile.openstreetmap.fr/hot/{z}/{x}/{y}.png', { maxZoom: 19, attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors, Tiles style by <a href="https://www.hotosm.org/" target="_blank">Humanitarian OpenStreetMap Team</a> hosted by <a href="https://openstreetmap.fr/" target="_blank">OpenStreetMap France</a>' })
     ],
     zoom: 15,
     center: L.latLng(-8.0631, -34.8713)
@@ -27,16 +27,21 @@ export class HomeMapComponent implements OnInit {
 
   onMapReady(map: L.Map) {
     const myIcon = L.icon({
-      popupAnchor:[7,-35],
+      popupAnchor: [7, -35],
       iconAnchor: [25, 50],
       iconUrl: 'src/../../../assets/img/my-pin.png'
     });
     const nwsIcon = L.icon({
-      popupAnchor:[-3,-35],
+      popupAnchor: [-3, -35],
       iconAnchor: [36, 45],
       iconUrl: 'src/../../../assets/img/nws-pin.png'
     });
-  
+    const customNwsPopup = {
+      className: 'nws',
+      maxWidth: 500,
+      closeButton: false
+    }
+
 
     if (navigator) {
       navigator.geolocation.getCurrentPosition(pos => {
@@ -44,24 +49,29 @@ export class HomeMapComponent implements OnInit {
 
         map.panTo([latitude, longitude])
 
-        this.loginService.markers().subscribe((data)=>{
-          data.marker.forEach(marker =>{
+        this.loginService.markers().subscribe((data) => {
+          data.marker.forEach(marker => {
 
-         const nws =  L.marker([marker.latitude, marker.longitude],{icon: nwsIcon}).addTo(map);
-         nws.bindPopup(marker.name);
+            const nws = L.marker([marker.latitude, marker.longitude], { icon: nwsIcon }).addTo(map).on('click',mapFly)
+            nws.bindPopup(`<b>${marker.name}</b>`, customNwsPopup);
           })
         })
-        const currentPosition = L.marker([latitude, longitude],{ icon: myIcon }).addTo(map);
+
+       function mapFly(event: any){
+          map.flyTo(event.latlng);
+        }
+        const currentPosition = L.marker([latitude, longitude], { icon: myIcon }).addTo(map).on('click',mapFly)   ;
         currentPosition.bindPopup("Você está aqui").openPopup();
 
       }, err => console.error(err), this.option);
     }
   }
 
+
   constructor(private loginService: LoginService) { }
 
 
-  ngOnInit() { 
+  ngOnInit() {
   }
 
 }

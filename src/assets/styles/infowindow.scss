@@ -3,32 +3,26 @@ $color-accent: #00B8D8;
 $color-primary: #064789;
 
 
-.si-wrapper-top.si-has-border{
-  margin-top: -50px!important;
+.nws .leaflet-popup-tip-container{
+  bottom:-21px;
+  overflow: unset!important;
+}
+.nws .leaflet-popup-tip{
+  width: 12px;
+  height: 12px;
+  border-right:3px solid $color-accent;
+  border-bottom:3px solid $color-accent;
+  border-radius: 4px;
+  box-shadow: unset!important;
+}
+.nws .leaflet-popup-content-wrapper {
+    background: $color-base!important;
+    color: black!important;
+    border:3px solid $color-accent;
+    border-radius: 4px;
 }
 
-.si-content-wrapper {
-  padding: 10px !important;
-  border-radius: 5px!important;
-}
-
-.si-shadow-wrapper-top {
-  // display: none!important;
-}
-
-.si-close-button {
-  display: none;
-}
-
-
-.si-pointer-border-top {
-  display: none!important;
-}
-
-.si-pointer-bg-top {
-  display: none!important;
-}
-
-.si-content {
-  font-weight: bold;
+.nws a.leaflet-popup-close-button{
+  color:black!important;
+  right: 0px;
 }
