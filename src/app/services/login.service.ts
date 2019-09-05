@@ -26,6 +26,10 @@ export class LoginService {
   }
 
 
+  markers() {
+    return this.http.get<any>('/api/markers')
+  }
+
   login(email: string, password: string): Observable<any> {
     const passwordEncode = window.btoa(password);
     return this.http.post<any>('/api/login', { email, passwordEncode })
