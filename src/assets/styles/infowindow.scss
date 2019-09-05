@@ -2,7 +2,9 @@ $color-base: #ffffff;
 $color-accent: #00B8D8;
 $color-primary: #064789;
 
-
+.blink{
+  animation: jump 0.9s ease-in-out !important;
+}
 .nws .leaflet-popup-tip-container{
   bottom:-21px;
   overflow: unset!important;
@@ -25,4 +27,34 @@ $color-primary: #064789;
 .nws a.leaflet-popup-close-button{
   color:black!important;
   right: 0px;
+}
+
+@keyframes jump {
+  0%   {
+    top:-50px;
+  }
+
+  30%{
+    top:0px;
+  }
+
+  50% {
+    top:-20px;
+  }
+
+  70% {
+    top:0px;
+  }
+
+  100%{
+    top:0px;
+  }
+
+  // 85%{
+  //   top:-10px;
+  // }
+
+  // 100% {
+  //   top:0px;
+  // }
 }

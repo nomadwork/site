@@ -26,6 +26,7 @@ export class HomeMapComponent implements OnInit {
   };
 
   onMapReady(map: L.Map) {
+    
     const myIcon = L.icon({
       popupAnchor: [7, -35],
       iconAnchor: [25, 50],
@@ -34,6 +35,7 @@ export class HomeMapComponent implements OnInit {
     const nwsIcon = L.icon({
       popupAnchor: [-3, -35],
       iconAnchor: [36, 45],
+      className:'blink',
       iconUrl: 'src/../../../assets/img/nws-pin.png'
     });
     const customNwsPopup = {
@@ -58,7 +60,9 @@ export class HomeMapComponent implements OnInit {
         })
 
        function mapFly(event: any){
-          map.flyTo(event.latlng);
+
+          map.flyTo(event.latlng,17);
+          
         }
         const currentPosition = L.marker([latitude, longitude], { icon: myIcon }).addTo(map).on('click',mapFly)   ;
         currentPosition.bindPopup("Você está aqui").openPopup();
