@@ -1,19 +1,10 @@
-<!-- <agm-map [latitude]="lat" [longitude]="lng" [zoom]="zoom" [styles]="stylMap">
-  <agm-marker [iconUrl]="iconUrl" [latitude]="lat" [longitude]="lng">
-    <agm-snazzy-info-window
-      [maxWidth]="500"
-      [closeWhenOthersOpen]="true"
-      [isOpen]="true"
-    >
-      <ng-template>
-        Você está aqui
-      </ng-template>
-    </agm-snazzy-info-window>
-  </agm-marker>
-</agm-map> -->
-
-
-<div class="map"
-     leaflet 
-     [leafletOptions]="options"  (leafletMapReady)="onMapReady($event)">
+<div class="map-wrapper">
+  <div class="map" leaflet [leafletOptions]="options" (leafletMapReady)="onMapReady($event)">
+  </div>
+  <div class="button-wrapper">
+    <button class="btn__map" (click)="center()">
+      <i class="material-icons">
+        my_location
+      </i></button>
+  </div>
 </div>
