@@ -37,15 +37,15 @@ export class HomeMapComponent implements OnInit {
 
     // CONFIGURAÇÃO DOS MARCADORES
     const userIcon = L.icon({
-      popupAnchor: [0.5, -30],
-      iconAnchor: [32, 46],
-      iconUrl: 'src/../../../assets/img/my-pin.png'
+      popupAnchor: [0, -35],
+      iconAnchor: [20, 36],
+      iconUrl: 'src/../../../assets/img/my-pin.svg'
     });
     const nwsIcon = L.icon({
-      popupAnchor: [-3, -35],
-      iconAnchor: [36, 45],
+      popupAnchor: [0, -35],
+      iconAnchor: [20, 36],
       className: 'blink',
-      iconUrl: 'src/../../../assets/img/nws-pin.png'
+      iconUrl: 'src/../../../assets/img/nws-pin.svg'
     });
 
     // CONFIGURAÇÃO DOS POPUPS
@@ -53,12 +53,13 @@ export class HomeMapComponent implements OnInit {
       className: 'nws',
       maxWidth: 500,
       closeButton: false
-    }
+    };
+
     const customUserPopup = {
       className: 'nws',
       maxWidth: 500,
       closeButton: false
-    }
+    };
 
     if (navigator) {
       navigator.geolocation.getCurrentPosition(async pos => {
@@ -71,7 +72,7 @@ export class HomeMapComponent implements OnInit {
         const currentPosition = await L.marker([latitude, longitude], { icon: userIcon }).addTo(map).on('click', mapFly);
         currentPosition.bindPopup(`<b>Você está em um raio de ${accuracy}m</b>`, customUserPopup).openPopup();
 
-        L.circle([latitude, longitude], accuracy).addTo(map);
+        L.circle([latitude, longitude], accuracy,{color: '#00B8D8', opacity:1}).addTo(map);
 
         await this.loginService.markers().subscribe((data) => {
 
