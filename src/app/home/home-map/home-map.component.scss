@@ -21,6 +21,7 @@
 }
 
 .btn__map {
+  border: 2px solid #03a9f4;
   box-shadow: 2px 2px 5px rgba(0, 0, 0, 0.616);
   background: white;
   outline: none;
@@ -28,7 +29,6 @@
   display: flex;
   justify-content: center;
   align-items: center;
-  border: 2px solid #03a9f4;
   border-radius: 50%;
   &:active{
     

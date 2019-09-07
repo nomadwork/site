@@ -31,7 +31,12 @@ $color-primary: #064789;
 
 @keyframes jump {
   0%   {
-    top:-50px;
+    opacity: 0;
+    top:-100px;
+  }
+  
+  5%{
+    opacity: 1;
   }
 
   30%{
