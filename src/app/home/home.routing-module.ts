@@ -12,7 +12,7 @@ const homeRoutes: Routes = [
             {
                 path: '',
                 component: HomeMapComponent,
-            },        
+            },
             {
                 path: 'new',
                 component: HomeNewComponent
@@ -24,7 +24,7 @@ const homeRoutes: Routes = [
 
 @NgModule({
     imports: [
-        RouterModule.forChild(homeRoutes),],
+        RouterModule.forChild(homeRoutes)],
     exports: [RouterModule]
 })
 export class HomeRoutingModule { }

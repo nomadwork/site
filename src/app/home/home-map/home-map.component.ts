@@ -1,9 +1,9 @@
 import { Component, OnInit } from '@angular/core';
 import * as L from 'leaflet';
-import { DialogPlaceDetailComponent } from 'src/app/shared/dialog-place-detail/dialog-place-detail.component';
 import { LoginService } from '../../services/login.service';
 import { MapService } from 'src/app/map.service';
 import { MatDialog } from '@angular/material/dialog';
+import { DialogPlaceDetailComponent } from 'src/app/shared/dialog-place-detail/dialog-place-detail.component';
 
 @Component({
   selector: 'app-home-map',

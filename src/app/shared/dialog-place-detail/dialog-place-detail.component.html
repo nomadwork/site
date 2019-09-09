@@ -1,1 +1,53 @@
-<p>dialog-place-detail works!</p>
+<h2 mat-dialog-title>{{ modalData.name }}</h2>
+<mat-dialog-content class="mat-typography">
+
+    <div class="container">
+        <div class="row">
+            <div class="col-md-3">
+                <!-- <mat-icon>wifi</mat-icon> -->
+                <span class="ml-2">
+                    Qualidade da conexão: {{ getQualityConnect(modalData.wifi)}}
+                </span>
+            </div>
+            <div class="col-md-3">
+                <!-- <mat-icon>assistive-listening-systems</mat-icon> -->
+                <span class="ml-2">
+                    Nível de ruído: {{ getQualityNoise(modalData.noise)}}
+                </span>
+            </div>
+            <div class="col-md-3">
+                <!-- <mat-icon>plug</mat-icon> -->
+                <span class="ml-2">
+                    Existe tomada: {{ hasPlugOn(modalData.powerPlug)}}
+                </span>
+            </div>
+            <div class="col-md-3">
+                <span>
+                    Horário de funcionamento: {{ modalData.timeOpen }}PM - {{ modalData.timeClose }}PM
+                </span>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-md-6">
+                <span> Email: {{ modalData.email ? modalData.email : 'Não possui' }}</span>
+            </div>
+            <div class="col-md-6">
+                <span> Telefone: {{ modalData.phone ? modalData.phone : 'Não possui' }}</span>
+            </div>
+        </div>
+    </div>
+
+    <div class="row">
+        <div class="carrousel">
+            <carousel-component [mode]="'horizontal'" [timeToSlide]="300" #topCarousel>
+                <div class="item-carousel" *ngFor="let image of images">
+                    <div [ngStyle]="{'background-image': 'url(' + image + ')'}">
+                    </div>
+                </div>
+        </div>
+    </div>
+
+</mat-dialog-content>
+<mat-dialog-actions align="end">
+    <button mat-button mat-dialog-close>Fechar</button>
+</mat-dialog-actions>

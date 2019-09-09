@@ -11,13 +11,14 @@ import { RegisterPlaceComponent } from './home-map/register-place/register-place
 import { SharedModule } from '../shared.module';
 import { DialogPlaceDetailComponent } from '../shared/dialog-place-detail/dialog-place-detail.component';
 
+
 @NgModule({
     imports: [
         CommonModule, HomeRoutingModule,
         LeafletModule.forRoot(),
         FormsModule,
         ReactiveFormsModule,
-        SharedModule
+        SharedModule,
     ],
     declarations: [HomeComponent, HomeMapComponent, HomeNewComponent, DialogPlaceDetailComponent, RegisterPlaceComponent],
     entryComponents: [RegisterPlaceComponent],
