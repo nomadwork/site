@@ -1,20 +1,20 @@
 <div class="homemap">
-  <div class="ad">
+    <div class="ad">
 
-  </div>
-  <div class="map-wrapper">
-    <div class="map" leaflet [leafletOptions]="options" (leafletMapReady)="onMapReady($event)">
     </div>
-    <div class="button-wrapper">
-      <button class="btn__map" (click)="center()">
+    <div class="map-wrapper">
+        <div class="map" leaflet [leafletOptions]="options" (leafletMapReady)="onMapReady($event)">
+        </div>
+        <div class="button-wrapper">
+            <button class="btn__map" (click)="center()">
         <i class="material-icons">
           my_location
         </i></button>
+        </div>
+        <button class="btn" (click)="show()">Sugerir este Local</button>
     </div>
-    <button class="btn" (click)="show()">Sugerir este Local</button>
-  </div>
 
-  <div class="ad">
+    <div class="ad">
 
-  </div>
+    </div>
 </div>
