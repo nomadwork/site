@@ -18,12 +18,17 @@ export class LoginService {
   get isLoggedIn() {
 
     //Se o usuário tiver logado emit um true aqui;
+    this.loggedIn.next(true);
     if (localStorage.getItem('token')) {
     }
 
     return this.loggedIn.asObservable();
   }
 
+
+  markers() {
+    return this.http.get<any>('/api/markers')
+  }
 
   login(email: string, password: string): Observable<any> {
     const passwordEncode = window.btoa(password);
