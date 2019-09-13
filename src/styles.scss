@@ -2,8 +2,7 @@
 @import "./assets/styles/style.scss";
 @import "~@angular/material/prebuilt-themes/indigo-pink.css";
 @import '~perfect-scrollbar/css/perfect-scrollbar.css';
-
-
-.mat-dialog-container{
+@import '~swiper/dist/css/swiper.min.css';
+.mat-dialog-container {
     padding: 5px 24px!important;
 }

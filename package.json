@@ -29,6 +29,7 @@
         "ng-lazyload-image": "^6.1.0",
         "ngx-alerts": "^3.4.5",
         "ngx-perfect-scrollbar": "^8.0.0",
+        "ngx-swiper-wrapper": "^8.0.2",
         "rxjs": "~6.4.0",
         "snazzy-info-window": "^1.1.0",
         "tslib": "^1.10.0",

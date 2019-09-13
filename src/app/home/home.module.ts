@@ -11,9 +11,19 @@ import { RegisterPlaceComponent } from './home-map/register-place/register-place
 import { SharedModule } from '../shared.module';
 import { DialogPlaceDetailComponent } from '../shared/dialog-place-detail/dialog-place-detail.component';
 
+import { SwiperModule } from 'ngx-swiper-wrapper';
+import { SWIPER_CONFIG } from 'ngx-swiper-wrapper';
+import { SwiperConfigInterface } from 'ngx-swiper-wrapper';
+
+const DEFAULT_SWIPER_CONFIG: SwiperConfigInterface = {
+  direction: 'horizontal',
+  slidesPerView: 'auto'
+};
+
 
 @NgModule({
     imports: [
+        SwiperModule,
         CommonModule, HomeRoutingModule,
         LeafletModule.forRoot(),
         FormsModule,
@@ -21,7 +31,10 @@ import { DialogPlaceDetailComponent } from '../shared/dialog-place-detail/dialog
         SharedModule,
     ],
     declarations: [HomeComponent, HomeMapComponent, HomeNewComponent, DialogPlaceDetailComponent, RegisterPlaceComponent],
-    entryComponents: [RegisterPlaceComponent],
-    providers: []
+    entryComponents: [RegisterPlaceComponent, DialogPlaceDetailComponent],
+    providers: [{
+        provide: SWIPER_CONFIG,
+        useValue: DEFAULT_SWIPER_CONFIG
+      }]
 })
 export class HomeModule { }

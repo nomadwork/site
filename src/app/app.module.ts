@@ -13,7 +13,17 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 
 import { AlertModule } from 'ngx-alerts';
-import { LazyLoadImageModule } from 'ng-lazyload-image'; 
+import { LazyLoadImageModule } from 'ng-lazyload-image';
+
+
+import { SwiperModule } from 'ngx-swiper-wrapper';
+import { SWIPER_CONFIG } from 'ngx-swiper-wrapper';
+import { SwiperConfigInterface } from 'ngx-swiper-wrapper';
+
+const DEFAULT_SWIPER_CONFIG: SwiperConfigInterface = {
+  direction: 'horizontal',
+  slidesPerView: 'auto'
+};
 
 @NgModule({
   declarations: [
@@ -23,6 +33,7 @@ import { LazyLoadImageModule } from 'ng-lazyload-image';
     AppLayoutComponent,
   ],
   imports: [
+    SwiperModule,
     BrowserAnimationsModule,
     FormsModule,
     SharedModule,
@@ -31,9 +42,12 @@ import { LazyLoadImageModule } from 'ng-lazyload-image';
     HttpClientModule,
     FormsModule, ReactiveFormsModule,
     LazyLoadImageModule,
-    AlertModule.forRoot({maxMessages: 5, timeout: 5000, position: 'right'}),
+    AlertModule.forRoot({ maxMessages: 5, timeout: 5000, position: 'right' }),
   ],
-  providers: [],
+  providers: [{
+    provide: SWIPER_CONFIG,
+    useValue: DEFAULT_SWIPER_CONFIG
+  }],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

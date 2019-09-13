@@ -1,5 +1,6 @@
 import { Component, OnInit, Inject } from '@angular/core';
 import { MAT_DIALOG_DATA } from '@angular/material/dialog';
+import { SwiperConfigInterface } from 'ngx-swiper-wrapper';
 
 @Component({
   selector: 'app-dialog-place-detail',
@@ -7,13 +8,21 @@ import { MAT_DIALOG_DATA } from '@angular/material/dialog';
   styleUrls: ['./dialog-place-detail.component.scss']
 })
 export class DialogPlaceDetailComponent implements OnInit {
-
-  images = ['https://upload.wikimedia.org/wikipedia/commons/5/54/Fachada_5%C2%AA_Etapa.jpg',
-    'http://4.bp.blogspot.com/_gO-yLO7RllY/TPnEgoy5jPI/AAAAAAAAAEk/8TUfpLygrTg/s1600/shopping+recife.jpg']
+  
+  modalData;
+  public config: SwiperConfigInterface = {
+    a11y: true,
+    direction: 'horizontal',
+    slidesPerView: 1,
+    keyboard: true,
+    mousewheel: true,
+    scrollbar: false,
+    navigation: true,
+    pagination: false
+  };
 
   constructor(@Inject(MAT_DIALOG_DATA) public data: any) { }
 
-  modalData;
 
   ngOnInit() {
     this.modalData = this.data;

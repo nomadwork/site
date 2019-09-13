@@ -15,7 +15,9 @@ api.getDetails = (req, res) => {
         noise: 'high',
         email: 'shopping.recife@gmail.com',
         phone: 8183416223,
-        photos: []
+        photos: ['https://upload.wikimedia.org/wikipedia/commons/5/54/Fachada_5%C2%AA_Etapa.jpg',
+            'http://4.bp.blogspot.com/_gO-yLO7RllY/TPnEgoy5jPI/AAAAAAAAAEk/8TUfpLygrTg/s1600/shopping+recife.jpg'
+        ]
     });
 
 }
