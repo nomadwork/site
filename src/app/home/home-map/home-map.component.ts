@@ -2,6 +2,8 @@ import { Component, OnInit, AfterViewInit } from '@angular/core';
 import * as L from 'leaflet';
 import { LoginService } from '../../services/login.service'
 import { FormGroup, FormBuilder, Validators } from '@angular/forms';
+import { MatDialog } from '@angular/material/dialog';
+import { RegisterPlaceComponent } from './register-place/register-place.component';
 
 @Component({
   selector: 'app-home-map',
@@ -10,8 +12,9 @@ import { FormGroup, FormBuilder, Validators } from '@angular/forms';
 })
 export class HomeMapComponent implements OnInit {
 
-  constructor(private loginService: LoginService, private formBuilder: FormBuilder) { }
+  constructor(private loginService: LoginService, private formBuilder: FormBuilder, private dialog: MatDialog) { }
 
+  registerPlace = {};
   iconUrl: string = 'src/../../../assets/img/my-pin.svg';
   map;
   geoLocation;
@@ -32,6 +35,25 @@ export class HomeMapComponent implements OnInit {
 
 
   ngOnInit() { }
+
+  show() {
+
+    const data = { name: 'pepe-lindo' };
+
+    const modal = this.dialog.open(RegisterPlaceComponent, {
+      width: '98%',
+      maxWidth: 550,
+      maxHeight: '95vh',
+      data
+    });
+
+    modal.afterClosed()
+      .subscribe(r => {
+        console.log(r);
+        this.registerPlace = r;
+      });
+
+  }
 
   onMapReady(map: L.Map) {
 

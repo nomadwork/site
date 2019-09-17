@@ -1,5 +1,6 @@
 
 $color-base: #03A9F4;
+$color-danger: rgb(95, 95, 95);
 
 
 .btn {
@@ -11,10 +12,10 @@ $color-base: #03A9F4;
     }
   }
   @at-root #{&}--danger {
-    background: #00b8d8;
+    background: $color-danger;
     color: white;
     &:active {
-      background: rgb(0, 166, 196);
+      background: rgb(153, 153, 153);
     }
   }
 }

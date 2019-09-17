@@ -1,5 +1,6 @@
-import { Component, OnInit, Output, EventEmitter, Input } from '@angular/core';
+import { Component, OnInit, Output, EventEmitter, Input, Inject } from '@angular/core';
 import { Validators, FormBuilder, FormGroup } from '@angular/forms';
+import { MAT_DIALOG_DATA, MatDialogRef } from '@angular/material/dialog';
 
 export interface Food {
   value: string;
@@ -13,16 +14,18 @@ export interface Food {
 })
 export class RegisterPlaceComponent implements OnInit {
 
-  constructor(private formBuilder: FormBuilder) { }
+  constructor(private formBuilder: FormBuilder,
+    @Inject(MAT_DIALOG_DATA) public data: any,
+    public dialogRef: MatDialogRef<RegisterPlaceComponent>) { }
 
-  @Output() showModal = new EventEmitter();
-  @Input() show = false;
+  config;
   hours = [];
   minutes = [];
 
   suggestionForm: FormGroup;
 
   ngOnInit() {
+
     this.suggestionForm = this.formBuilder.group({
       name: [null, [Validators.required, Validators.minLength(4), Validators.maxLength(100)]],
       email: [null, [Validators.required, Validators.email, Validators.minLength(4), Validators.maxLength(100)]],
@@ -44,6 +47,10 @@ export class RegisterPlaceComponent implements OnInit {
     console.log(value);
   }
 
+  close() {
+    this.dialogRef.close('Eae pedro');
+  }
+
   getHours() {
     for (var i = 0; i < 24; i++) {
       this.hours.push(i);
@@ -54,11 +61,6 @@ export class RegisterPlaceComponent implements OnInit {
     for (var i = 0; i < 60; i++) {
       this.minutes.push((i < 10 ? '0' : '') + i);
     }
-  }
-
-  closeModal() {
-    this.show = !this.show;
-    this.showModal.emit(false);
   }
 
 }
