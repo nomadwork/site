@@ -1,5 +1,6 @@
 <mat-progress-bar *ngIf="loading" mode="indeterminate"></mat-progress-bar>
-<div class="align father" [defaultImage]="defaultImage" [lazyLoad]="image">
+<perfect-scrollbar class="align father" [defaultImage]="defaultImage" [lazyLoad]="image">
+
   <div class="grid">
     <h2 class="title">Nomad Work</h2>
 
@@ -10,24 +11,13 @@
             <div class="input-div">
               <h2>E-mail :</h2>
             </div>
-            <input
-              class="input"
-              type="text"
-              [(ngModel)]="email"
-              name="email-login"
-            />
+            <input #loginEmail class="input" type="text" [(ngModel)]="email" name="email-login" />
             <div class="camp-validate"></div>
-            <button
-              class="btn btn--success button-spacing"
-              (click)="validateEmail()"
-              (keyup.enter)="validateEmail()"
-              [disabled]="verifyEmailSubmit()"
-            >
+            <button class="btn btn--success button-spacing" (click)="validateEmail()" (keyup.enter)="validateEmail()"
+              [disabled]="verifyEmailSubmit()">
               Próximo
             </button>
-            <span (click)="newUser()" class="link__bottom"
-              >Não possui uma conta? Clique aqui</span
-            >
+            <span (click)="newUser()" class="link__bottom">Não possui uma conta? Clique aqui</span>
           </div>
 
           <div class="login">
@@ -48,12 +38,7 @@
             <div class="input-div">
               <h2>Senha:</h2>
             </div>
-            <input
-              class="input"
-              type="password"
-              name="password-login"
-              [(ngModel)]="password"
-            />
+            <input class="input" type="password" name="password-login" [(ngModel)]="password" />
 
             <div class="camp-validate" *ngIf="formValidateText">
               <mat-icon class="mat-validate">warning</mat-icon>
@@ -61,29 +46,17 @@
                 {{ formValidateText }}
               </span>
             </div>
-            <input
-              (click)="login()"
-              (keyup.enter)="login()"
-              class="btn btn--success button-spacing"
-              type="submit"
-              [disabled]="verifyPasswordSubmit()"
-              value="Entrar"
-            />
+            <input (click)="login()" (keyup.enter)="login()" class="btn btn--success button-spacing" type="submit"
+              [disabled]="verifyPasswordSubmit()" value="Entrar" />
 
-            <span (click)="forgetPassword()" class="link__bottom"
-              >Esqueceu a senha?</span
-            >
+            <span (click)="forgetPassword()" class="link__bottom">Esqueceu a senha?</span>
 
           </div>
         </form>
       </div>
 
       <div *ngIf="formNewUser">
-        <form
-          class="formRegister"
-          [formGroup]="formRegister"
-          (ngSubmit)="registerSubmit()"
-        >
+        <form class="formRegister" [formGroup]="formRegister" (ngSubmit)="registerSubmit()">
           <div>
             <h2>Nome e Sobrenome:</h2>
             <input class="input" type="text" formControlName="name" />
@@ -107,26 +80,16 @@
             <input class="input" type="password" formControlName="password" />
 
             <!-- Componente que valida e mostra a mensagem de erro dinamicamente -->
-            <app-error-msg
-              [control]="formRegister.get('password')"
-              label="Senha"
-            >
+            <app-error-msg [control]="formRegister.get('password')" label="Senha">
             </app-error-msg>
           </div>
           <div>
             <h2>Confirmar Senha:</h2>
 
-            <input
-              class="input"
-              type="password"
-              formControlName="passwordRepeat"
-            />
+            <input class="input" type="password" formControlName="passwordRepeat" />
 
             <!-- Componente que valida e mostra a mensagem de erro dinamicamente -->
-            <app-error-msg
-              [control]="formRegister.get('passwordRepeat')"
-              label="Confirmar Senha"
-            >
+            <app-error-msg [control]="formRegister.get('passwordRepeat')" label="Confirmar Senha">
             </app-error-msg>
           </div>
           <div>
@@ -134,10 +97,7 @@
 
             <mat-form-field>
               <input matInput [matDatepicker]="picker" formControlName="date" />
-              <mat-datepicker-toggle
-                matSuffix
-                [for]="picker"
-              ></mat-datepicker-toggle>
+              <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
               <mat-datepicker #picker></mat-datepicker>
               <!-- Componente que valida e mostra a mensagem de erro dinamicamente -->
               <app-error-msg [control]="formRegister.get('date')" label="Data">
@@ -145,33 +105,25 @@
             </mat-form-field>
           </div>
 
-          <div class="radios">
-            <label class="container"
-              >Masculino
-              <input
-                type="radio"
-                formControlName="gender"
-                value="male"
-              />
-              <span class="checkmark"></span>
-            </label>
-            <label class="container"
-              >Feminino
-              <input type="radio" formControlName="gender" value="female" />
-              <span class="checkmark"></span>
-            </label>
-            <label class="container"
-              >Outro
-              <input type="radio" formControlName="gender" value="other" />
-              <span class="checkmark"></span>
-            </label>
+          <div>
+            <h2>Gênero:</h2>
+            <div class="radios">
+              <label class="container">Masculino
+                <input type="radio" formControlName="gender" value="male" />
+                <span class="checkmark"></span>
+              </label>
+              <label class="container">Feminino
+                <input type="radio" formControlName="gender" value="female" />
+                <span class="checkmark"></span>
+              </label>
+              <label class="container">Outro
+                <input type="radio" formControlName="gender" value="other" />
+                <span class="checkmark"></span>
+              </label>
+            </div>
           </div>
 
-          <button
-            class="btn btn--success"
-            [disabled]="!formRegister.valid"
-            type="submit"
-          >
+          <button class="btn btn--success" [disabled]="!formRegister.valid" type="submit">
             Cadastrar
           </button>
         </form>
@@ -182,4 +134,4 @@
       </div>
     </div>
   </div>
-</div>
+</perfect-scrollbar>

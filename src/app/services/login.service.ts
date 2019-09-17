@@ -25,7 +25,6 @@ export class LoginService {
     return this.loggedIn.asObservable();
   }
 
-
   markers() {
     return this.http.get<any>('/api/markers')
   }

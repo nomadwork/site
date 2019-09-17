@@ -1,6 +1,7 @@
 import { Component, OnInit, AfterViewInit } from '@angular/core';
 import * as L from 'leaflet';
 import { LoginService } from '../../services/login.service'
+import { FormGroup, FormBuilder, Validators } from '@angular/forms';
 
 @Component({
   selector: 'app-home-map',
@@ -9,12 +10,12 @@ import { LoginService } from '../../services/login.service'
 })
 export class HomeMapComponent implements OnInit {
 
-  constructor(private loginService: LoginService) { }
+  constructor(private loginService: LoginService, private formBuilder: FormBuilder) { }
 
   iconUrl: string = 'src/../../../assets/img/my-pin.svg';
   map;
   geoLocation;
-
+  showModal = false;
   config: any = {
     enableHighAccuracy: true,
     timeout: 5000,
@@ -29,9 +30,12 @@ export class HomeMapComponent implements OnInit {
     center: []
   };
 
+
   ngOnInit() { }
 
   onMapReady(map: L.Map) {
+
+    console.log(map);
 
     this.map = map;
 
@@ -70,9 +74,7 @@ export class HomeMapComponent implements OnInit {
         map.setView([latitude, longitude], 15)
 
         const currentPosition = await L.marker([latitude, longitude], { icon: userIcon }).addTo(map).on('click', mapFly);
-        currentPosition.bindPopup(`<b>Você está em um raio de ${accuracy}m</b>`, customUserPopup).openPopup();
-
-        L.circle([latitude, longitude], accuracy,{color: '#00B8D8', opacity:1}).addTo(map);
+        currentPosition.bindPopup(`<b>Você está aqui</b>`, customUserPopup).openPopup();
 
         await this.loginService.markers().subscribe((data) => {
 

@@ -1,5 +1,5 @@
 <div class="map-wrapper">
-  <div class="map" leaflet [leafletOptions]="options"  (leafletMapReady)="onMapReady($event)">
+  <div class="map" leaflet [leafletOptions]="options" (leafletMapReady)="onMapReady($event)">
   </div>
   <div class="button-wrapper">
     <button class="btn__map" (click)="center()">
@@ -7,4 +7,6 @@
         my_location
       </i></button>
   </div>
+  <button class="btn" (click)="showModal = true">Sugerir este Local</button>
+  <app-register-place [show]="showModal" (showModal)="showModal= $event"></app-register-place>
 </div>
