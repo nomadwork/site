@@ -1,0 +1,129 @@
+<perfect-scrollbar class="suggestion-form" *ngIf="show">
+
+  <div class="close-form"><i class="material-icons" (click)="closeModal()">
+      close
+    </i></div>
+  <form class="register" [formGroup]="suggestionForm" (ngSubmit)="suggestionSubmit()">
+
+    <div>
+      <h2><i class="material-icons">
+          business
+        </i>Nome* :</h2>
+      <input class="input" type="text" formControlName="name" />
+
+    </div>
+    <div>
+      <h2>
+        <i class="material-icons">
+          call
+        </i>Telefone:</h2>
+      <input class="input" type="text" formControlName="number" />
+
+    </div>
+
+    <div>
+      <h2><i class="material-icons">
+          email
+        </i>E-mail:</h2>
+      <input class="input" type="text" formControlName="email" />
+
+    </div>
+
+    <div>
+      <h2><i class="material-icons">
+          wifi
+        </i>Wifi* :</h2>
+      <div class="radios">
+        <label class="container">Nenhuma
+          <input type="radio" formControlName="wifi" value="0" />
+          <span class="checkmark"></span>
+        </label>
+        <label class="container">Fraca
+          <input type="radio" formControlName="wifi" value="1" />
+          <span class="checkmark"></span>
+        </label>
+        <label class="container">Forte
+          <input type="radio" formControlName="wifi" value="2" />
+          <span class="checkmark"></span>
+        </label>
+      </div>
+    </div>
+    <div>
+      <h2><i class="material-icons">
+          question_answer
+        </i>Ruído* :</h2>
+      <div class="radios">
+        <label class="container">Calmo
+          <input type="radio" formControlName="noise" value="0" />
+          <span class="checkmark"></span>
+        </label>
+        <label class="container">Agitado
+          <input type="radio" formControlName="noise" value="1" />
+          <span class="checkmark"></span>
+        </label>
+      </div>
+    </div>
+    <div>
+      <h2><i class="material-icons">
+          power
+        </i>Tomadas* :</h2>
+      <div class="radios">
+        <label class="container">Não possui
+          <input type="radio" formControlName="powerPlug" value="0" />
+          <span class="checkmark"></span>
+        </label>
+        <label class="container">Possui
+          <input type="radio" formControlName="powerPlug" value="1" />
+          <span class="checkmark"></span>
+        </label>
+      </div>
+    </div>
+    <div>
+      <h2>Horário de abertura:</h2>
+      <div class="hour-minute">
+        <mat-form-field>
+          <mat-label>Hora</mat-label>
+          <mat-select formControlName="openHour">
+            <mat-option *ngFor="let h of hours" [value]="h">
+              {{h}}:{{suggestionForm.value.openMinute || "00" }}
+            </mat-option>
+          </mat-select>
+        </mat-form-field>
+        <mat-form-field>
+          <mat-label>Minuto</mat-label>
+          <mat-select formControlName="openMinute">
+            <mat-option *ngFor="let m of minutes" [value]="m">
+              {{m}}
+            </mat-option>
+          </mat-select>
+        </mat-form-field>
+      </div>
+    </div>
+    <div>
+      <h2>Horário de fechamento:</h2>
+      <div class="hour-minute">
+        <mat-form-field>
+          <mat-label>Hora</mat-label>
+          <mat-select formControlName="closeHour">
+            <mat-option *ngFor="let h of hours" [value]="h">
+              {{h}}:{{suggestionForm.value.openMinute || "00" }}
+            </mat-option>
+          </mat-select>
+        </mat-form-field>
+        <mat-form-field>
+          <mat-label>Minuto</mat-label>
+          <mat-select formControlName="closeMinute">
+            <mat-option *ngFor="let m of minutes" [value]="m">
+              {{m}}
+            </mat-option>
+          </mat-select>
+        </mat-form-field>
+      </div>
+    </div>
+
+    <div class="submitButton">
+      <button class="btn btn--success" type="submit">Sugerir</button>
+    </div>
+  </form>
+
+</perfect-scrollbar>
