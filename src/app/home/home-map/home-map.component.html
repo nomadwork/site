@@ -8,5 +8,5 @@
       </i></button>
   </div>
   <button class="btn" (click)="showModal = true">Sugerir este Local</button>
-  <app-register-place [show]="showModal" (showModal)="showModal= $event"></app-register-place>
+  <app-register-place [show]="showModal" [geoLocation]="geoLocation" (showModal)="showModal= $event"></app-register-place>
 </div>

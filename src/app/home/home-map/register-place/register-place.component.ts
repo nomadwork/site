@@ -17,6 +17,7 @@ export class RegisterPlaceComponent implements OnInit {
 
   @Output() showModal = new EventEmitter();
   @Input() show = false;
+  @Input() geoLocation;
   hours = [];
   minutes = [];
 
@@ -33,13 +34,15 @@ export class RegisterPlaceComponent implements OnInit {
       openHour: [null, Validators.required],
       openMinute: [null, Validators.required],
       closeHour: [null, Validators.required],
-      closeMinute: [null, Validators.required],
+      closeMinute: [null, Validators.required]
     })
     this.getHours();
     this.getMinutes();
+
   }
 
   suggestionSubmit() {
+    console.log(this.geoLocation);
     const value = this.suggestionForm.value;
     console.log(value);
   }
