@@ -39,6 +39,8 @@ import { PerfectScrollbarModule } from 'ngx-perfect-scrollbar';
 import { PERFECT_SCROLLBAR_CONFIG } from 'ngx-perfect-scrollbar';
 import { PerfectScrollbarConfigInterface } from 'ngx-perfect-scrollbar';
 
+import { ErrorMsgComponent } from './utils/error-msg/error-msg.component';
+
 const DEFAULT_PERFECT_SCROLLBAR_CONFIG: PerfectScrollbarConfigInterface = {
   suppressScrollX: true
 };
@@ -83,11 +85,12 @@ const modules = [CdkTableModule,
   PerfectScrollbarModule];
 
 @NgModule({
+  declarations: [ErrorMsgComponent],
   imports: modules,
-  exports: modules,
+  exports: [modules, ErrorMsgComponent],
   providers: [{
     provide: PERFECT_SCROLLBAR_CONFIG,
     useValue: DEFAULT_PERFECT_SCROLLBAR_CONFIG
   }]
 })
-export class MaterialModule { }
+export class SharedModule { }

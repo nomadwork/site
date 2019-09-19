@@ -127,6 +127,10 @@ $color-primary: #03a9f4;
   padding: 4rem 1rem 0rem 1rem;
 }
 
+.registerPlace {
+  text-align: left;
+}
+
 .radios {
   max-width: 350px;
   width: 98%;
@@ -135,6 +139,28 @@ $color-primary: #03a9f4;
   justify-content: flex-start;
   margin: 0 auto;
   margin-bottom: 15px;
+}
+
+.range {
+  max-width: 450px;
+  width: 98%;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin: 0 auto;
+  margin-bottom: 15px;
+  .slide-range {
+    width: 100%;
+  }
+  i {
+    padding: 5px;
+  }
+  i:nth-child(1) {
+    color: #03a9f4;
+  }
+  i:nth-child(2) {
+    color: #838383;
+  }
 }
 
 .suggestion-form {
@@ -154,7 +180,6 @@ $color-primary: #03a9f4;
 }
 
 .father {
-  
   .ps-content {
     min-height: 100vh;
     display: flex !important;

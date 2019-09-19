@@ -8,7 +8,7 @@ import { HomeNewComponent } from './home-new/home-new.component';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { LeafletModule } from '@asymmetrik/ngx-leaflet';
 import { RegisterPlaceComponent } from './home-map/register-place/register-place.component';
-import { MaterialModule } from '../material.module';
+import { SharedModule } from '../shared.module';
 
 @NgModule({
     imports: [
@@ -16,10 +16,11 @@ import { MaterialModule } from '../material.module';
         LeafletModule.forRoot(),
         FormsModule,
         ReactiveFormsModule,
-        MaterialModule
+        SharedModule
     ],
     declarations: [HomeComponent, HomeMapComponent, HomeNewComponent, RegisterPlaceComponent],
-    providers: []
+    providers: [],
+    entryComponents: [RegisterPlaceComponent]
 
 })
 export class HomeModule { }

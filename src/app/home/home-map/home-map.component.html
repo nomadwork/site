@@ -7,6 +7,5 @@
         my_location
       </i></button>
   </div>
-  <button class="btn" (click)="showModal = true">Sugerir este Local</button>
-  <app-register-place [show]="showModal" [geoLocation]="geoLocation" (showModal)="showModal= $event"></app-register-place>
+  <button class="btn" (click)="show()">Sugerir este Local</button>
 </div>

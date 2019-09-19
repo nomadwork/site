@@ -8,12 +8,11 @@ import { HttpClientModule } from '@angular/common/http';
 import { LoginComponent } from './login/login.component';
 import { HeaderComponent } from './header/header.component';
 import { AppLayoutComponent } from './app-layout.component';
-import { MaterialModule } from './material.module';
+import { SharedModule } from './shared.module';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 
 import { AlertModule } from 'ngx-alerts';
-import { ErrorMsgComponent } from './utils/error-msg/error-msg.component';
 import { LazyLoadImageModule } from 'ng-lazyload-image'; 
 
 @NgModule({
@@ -22,12 +21,11 @@ import { LazyLoadImageModule } from 'ng-lazyload-image';
     LoginComponent,
     HeaderComponent,
     AppLayoutComponent,
-    ErrorMsgComponent
   ],
   imports: [
     BrowserAnimationsModule,
     FormsModule,
-    MaterialModule,
+    SharedModule,
     BrowserModule,
     AppRoutingModule,
     HttpClientModule,
