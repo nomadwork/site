@@ -97,11 +97,7 @@ export class HomeMapComponent implements OnInit {
           const { lat, lng } = map.getCenter();
           await this.getMarkers({ latitude: lat, longitude: lng })
 
-          const nws = L.marker([this.markers.geolocation.latitude, this.markers.geolocation.longitude], { icon: this.nwsIcon }).addTo(this.map).on('click', (e: any) => {
-            console.log(e)
-            this.map.flyTo(e.latlng)
-          })
-          nws.bindPopup(`<b>${this.markers.name}</b>`, this.customNwsPopup);
+
         });
 
 
@@ -130,10 +126,25 @@ export class HomeMapComponent implements OnInit {
   getMarkers(latlng) {
     let i = 0;
     this.mapService.markers(latlng).subscribe(data => {
-      this.markers = null;
-      data.result.forEach(x => {
-        this.markers = x;
-      });
+      // this.markers = null;
+      // data.result.forEach(x => {
+      //   this.markers = x;
+      // });
+
+      const marker = Array.from(new Set(data.result.map(a => a.id)))
+        .map(id => {
+          return data.result.find(a => a.id === id)
+        })
+
+
+      // Jerson deu a ideia de fazer várias funções que não sei eu acho que deveria usar Set ai de baixo
+      marker.forEach(x => {
+        const nws = L.marker([x.geolocation.latitude, x.geolocation.longitude], { icon: this.nwsIcon }).addTo(this.map).on('click', (e: any) => {
+          console.log(e)
+          this.map.flyTo(e.latlng)
+        })
+        nws.bindPopup(`<b>${x.name}</b>`, this.customNwsPopup);
+      })
 
     });
   }
