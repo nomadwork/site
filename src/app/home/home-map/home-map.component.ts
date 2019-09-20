@@ -4,6 +4,7 @@ import { LoginService } from '../../services/login.service'
 import { FormGroup, FormBuilder, Validators } from '@angular/forms';
 import { MatDialog } from '@angular/material/dialog';
 import { RegisterPlaceComponent } from './register-place/register-place.component';
+import { MapService } from '../../services/map.service'
 
 @Component({
   selector: 'app-home-map',
@@ -12,7 +13,7 @@ import { RegisterPlaceComponent } from './register-place/register-place.componen
 })
 export class HomeMapComponent implements OnInit {
 
-  constructor(private loginService: LoginService, private formBuilder: FormBuilder, private dialog: MatDialog) { }
+  constructor(private loginService: LoginService, private formBuilder: FormBuilder, private dialog: MatDialog, private mapService: MapService) { }
 
   registerPlace = {};
   iconUrl: string = 'src/../../../assets/img/my-pin.svg';
@@ -91,7 +92,12 @@ export class HomeMapComponent implements OnInit {
       navigator.geolocation.getCurrentPosition(async pos => {
 
         this.geoLocation = pos;
-        const { latitude, longitude, accuracy } = pos.coords;
+        const { latitude, longitude } = pos.coords;
+
+        this.mapService.markers({
+          latitude: -8.80,
+          longitude: -34.80
+        })
 
         map.setView([latitude, longitude], 15)
 
