@@ -1,6 +1,8 @@
 {
     "/api": {
         "target": "http://nomadwork.herokuapp.com",
-        "secure": false
+        "secure": false,
+        "logLevel": "debug",
+        "changeOrigin": true
     }
 }

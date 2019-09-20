@@ -27,7 +27,7 @@ export class LoginService {
   }
 
   markers() {
-    return this.http.get<any>('/api/markers')
+    return this.http.get<any>('/api/markers');
   }
 
   login(email: string, password: string): Observable<any> {

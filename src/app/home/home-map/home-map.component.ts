@@ -118,10 +118,10 @@ export class HomeMapComponent implements OnInit {
             animate: true,
             duration: .5
           });
-        };
+        }
 
       }, err => console.error(err), this.config);
-    };
+    }
   }
 
   center() {
