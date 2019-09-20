@@ -22,32 +22,36 @@ export class RegisterPlaceComponent implements OnInit {
   config;
   hours = [];
   minutes = [];
+  noise = 'checked';
   fields = [
     {
-      quality: 0,
-      quantity: 0,
+      classification: 0,
+      type: 2,
       service: 0
     },
     {
-      quality: 0,
-      quantity: 0,
+      classification: 0,
+      type: 1,
       service: 1
     },
     {
-      quality: 0,
-      quantity: 0,
+      classification: 0,
+      type: 3,
       service: 2
     }
   ];
   names = [{
     name: 'WiFi',
-    icon: 'wifi'
+    iconOn: 'wifi',
+    iconOff: 'wifi_off'
   }, {
-    name: 'Tomara',
-    icon: 'power'
+    name: 'Tomada',
+    iconOn: 'power',
+    iconOff: 'power_off'
   }, {
     name: 'Ruído',
-    icon: 'question_answer'
+    iconOn: 'voice_over_off',
+    iconOff: 'record_voice_over'
   }]
 
   suggestionForm: FormGroup;
@@ -86,7 +90,8 @@ export class RegisterPlaceComponent implements OnInit {
     delete value.schedule.openMinute;
     delete value.schedule.closeMinute;
 
-    console.log(value);
+    console.log(JSON.stringify(value));
+    console.log(JSON.parse(value));
   }
 
   close() {
@@ -108,14 +113,14 @@ export class RegisterPlaceComponent implements OnInit {
   patch() {
     const control = <FormArray>this.suggestionForm.get('services');
     this.fields.forEach(x => {
-      control.push(this.patchValues(x.quality, x.quantity, x.service))
+      control.push(this.patchValues(x.classification, x.type, x.service))
     })
   }
 
-  patchValues(quality, quantity, service) {
+  patchValues(classification, type, service) {
     return this.formBuilder.group({
-      quality: [quality],
-      quantity: [quantity],
+      classification: [classification],
+      type: [type],
       service: [service]
     })
   }

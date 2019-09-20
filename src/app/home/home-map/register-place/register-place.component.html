@@ -31,74 +31,51 @@
       </div>
     </div>
 
-    <div formArrayName="services" *ngFor="let item of suggestionForm.get('services').controls; let i = index">
+    <div formArrayName="services" *ngFor="let item of fields; let i = index">
       <div [formGroupName]="i">
-
-        <h2><i class="material-icons">
-            {{names[i].icon}}
-          </i>{{names[i].name}}:</h2>
-        <div class="range">
-          <i class="material-icons">
-            thumb_up
-          </i>
-          <mat-slider class="slide-range" min="0" max="3" step="1"  formControlName="quantity"></mat-slider>
-          <i class="material-icons">
-            thumb_down
-          </i>
+        <h2>{{names[i].name}}:</h2>
+        <div *ngIf="item.service === 0">
+          <div class="range">
+            <i class="material-icons">
+              {{names[i].iconOff}}
+            </i>
+            <mat-slider class="slide-range" min="0" max="3" step="1" formControlName="classification">
+            </mat-slider>
+            <i class="material-icons">
+              {{names[i].iconOn}}
+            </i>
+          </div>
         </div>
-      </div>
-    </div>
+        <div *ngIf="item.service === 1">
+          <div class="range">
+            <i class="material-icons">
+              {{names[i].iconOff}}
+            </i>
+            <mat-slider class="slide-range" thumbLabel="true" min="0" max="20" step="1"
+              formControlName="classification">
+            </mat-slider>
+            <i class="material-icons">
+              {{names[i].iconOn}}
+            </i>
+          </div>
+        </div>
+        <div *ngIf="item.service === 2">
+          <div class="range">
+
+            <mat-slide-toggle class="mat-toggle" labelPosition="before" #slide formControlName="classification">
+              <i *ngIf="!slide.checked" style="color:#838383;" class="material-icons">
+                {{names[i].iconOff}}
+              </i>
+              <i *ngIf="slide.checked" style="color:#03a9f4;" class="material-icons">
+                {{names[i].iconOn}}
+              </i>
+            </mat-slide-toggle>
+          </div>
+        </div>
 
 
-    <!-- <div>
-      <h2><i class="material-icons">
-          wifi
-        </i>Wifi* :</h2>
-      <div class="radios">
-        <label class="container">Nenhuma
-          <input type="radio" formControlName="wifi" value="0" />
-          <span class="checkmark"></span>
-        </label>
-        <label class="container">Fraca
-          <input type="radio" formControlName="wifi" value="1" />
-          <span class="checkmark"></span>
-        </label>
-        <label class="container">Forte
-          <input type="radio" formControlName="wifi" value="2" />
-          <span class="checkmark"></span>
-        </label>
       </div>
     </div>
-    <div>
-      <h2><i class="material-icons">
-          question_answer
-        </i>Ruído* :</h2>
-      <div class="radios">
-        <label class="container">Calmo
-          <input type="radio" formControlName="noise" value="0" />
-          <span class="checkmark"></span>
-        </label>
-        <label class="container">Agitado
-          <input type="radio" formControlName="noise" value="1" />
-          <span class="checkmark"></span>
-        </label>
-      </div>
-    </div>
-    <div>
-      <h2><i class="material-icons">
-          power
-        </i>Tomadas* :</h2>
-      <div class="radios">
-        <label class="container">Não possui
-          <input type="radio" formControlName="energy" value="0" />
-          <span class="checkmark"></span>
-        </label>
-        <label class="container">Possui
-          <input type="radio" formControlName="energy" value="1" />
-          <span class="checkmark"></span>
-        </label>
-      </div>
-    </div> -->
 
     <div formGroupName="schedule">
       <div>

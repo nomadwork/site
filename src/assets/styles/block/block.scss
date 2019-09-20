@@ -156,11 +156,11 @@ $color-primary: #03a9f4;
     padding: 5px;
   }
   i:nth-child(1) {
-    color: #03a9f4;
-  }
-  i:nth-child(2) {
     color: #838383;
   }
+  i:nth-child(3) {
+    color: #03a9f4;
+    }
 }
 
 .suggestion-form {
