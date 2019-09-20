@@ -9,7 +9,7 @@ export class MapService {
   constructor(private http: HttpClient) { }
 
   markers(latlng) {
-    return this.http.post<any>('/api/establishmment', latlng).subscribe(data => data);
+    return this.http.post<any>('/api/establishmment', latlng)
   }
 
 }

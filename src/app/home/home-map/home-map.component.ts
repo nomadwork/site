@@ -19,11 +19,36 @@ export class HomeMapComponent implements OnInit {
   iconUrl: string = 'src/../../../assets/img/my-pin.svg';
   map;
   geoLocation;
+  markers;
   showModal = false;
   config: any = {
     enableHighAccuracy: true,
     timeout: 5000,
     maximumAge: 0
+  };
+  userIcon = L.icon({
+    popupAnchor: [0, -35],
+    iconAnchor: [20, 36],
+    iconUrl: 'src/../../../assets/img/my-pin.svg'
+  });
+  nwsIcon = L.icon({
+    popupAnchor: [0, -35],
+    iconAnchor: [20, 36],
+    className: 'blink',
+    iconUrl: 'src/../../../assets/img/nws-pin.svg'
+  });
+
+  // CONFIGURAÇÃO DOS POPUPS
+  customNwsPopup = {
+    className: 'nws',
+    maxWidth: 500,
+    closeButton: false
+  };
+
+  customUserPopup = {
+    className: 'nws',
+    maxWidth: 500,
+    closeButton: false
   };
 
   options = {
@@ -50,7 +75,6 @@ export class HomeMapComponent implements OnInit {
 
     modal.afterClosed()
       .subscribe(r => {
-        console.log(r);
         this.registerPlace = r;
       });
 
@@ -58,74 +82,65 @@ export class HomeMapComponent implements OnInit {
 
   onMapReady(map: L.Map) {
 
-    console.log(map);
 
     this.map = map;
 
     // CONFIGURAÇÃO DOS MARCADORES
-    const userIcon = L.icon({
-      popupAnchor: [0, -35],
-      iconAnchor: [20, 36],
-      iconUrl: 'src/../../../assets/img/my-pin.svg'
-    });
-    const nwsIcon = L.icon({
-      popupAnchor: [0, -35],
-      iconAnchor: [20, 36],
-      className: 'blink',
-      iconUrl: 'src/../../../assets/img/nws-pin.svg'
-    });
 
-    // CONFIGURAÇÃO DOS POPUPS
-    const customNwsPopup = {
-      className: 'nws',
-      maxWidth: 500,
-      closeButton: false
-    };
 
-    const customUserPopup = {
-      className: 'nws',
-      maxWidth: 500,
-      closeButton: false
-    };
 
     if (navigator) {
       navigator.geolocation.getCurrentPosition(async pos => {
 
+
+        await map.on('dragend', async e => {
+          const { lat, lng } = map.getCenter();
+          await this.getMarkers({ latitude: lat, longitude: lng })
+
+          const nws = L.marker([this.markers.geolocation.latitude, this.markers.geolocation.longitude], { icon: this.nwsIcon }).addTo(this.map).on('click', (e: any) => {
+            console.log(e)
+            this.map.flyTo(e.latlng)
+          })
+          nws.bindPopup(`<b>${this.markers.name}</b>`, this.customNwsPopup);
+        });
+
+
         this.geoLocation = pos;
         const { latitude, longitude } = pos.coords;
-
-        this.mapService.markers({
-          latitude: -8.80,
-          longitude: -34.80
-        })
+        this.getMarkers({ latitude, longitude })
 
         map.setView([latitude, longitude], 15)
 
-        const currentPosition = await L.marker([latitude, longitude], { icon: userIcon }).addTo(map).on('click', mapFly);
-        currentPosition.bindPopup(`<b>Você está aqui</b>`, customUserPopup).openPopup();
+        const currentPosition = await L.marker([latitude, longitude], { icon: this.userIcon }).addTo(map).on('click', this.mapFly);
+        currentPosition.bindPopup(`<b>Você está aqui</b>`, this.customUserPopup).openPopup();
 
-        await this.loginService.markers().subscribe((data) => {
 
-          data.marker.forEach(marker => {
-            const nws = L.marker([marker.latitude, marker.longitude], { icon: nwsIcon }).addTo(map).on('click', mapFly)
-            nws.bindPopup(`<b>${marker.name}</b>`, customNwsPopup);
-          })
-
-        });
-
-        function mapFly(event: any) {
-          map.flyTo(event.latlng, 17, {
-            animate: true,
-            duration: .5
-          });
-        }
 
       }, err => console.error(err), this.config);
     }
   }
 
+  mapFly(event: any) {
+    this.map.flyTo(event.latlng, 17, {
+      animate: true,
+      duration: .5
+    });
+  }
+
+  getMarkers(latlng) {
+    let i = 0;
+    this.mapService.markers(latlng).subscribe(data => {
+      this.markers = null;
+      data.result.forEach(x => {
+        this.markers = x;
+      });
+
+    });
+  }
+
   center() {
     const { latitude, longitude } = this.geoLocation.coords;
+    this.getMarkers({ latitude, longitude });
     this.map.flyTo([latitude, longitude], 15, {
       animate: true,
       duration: .5
