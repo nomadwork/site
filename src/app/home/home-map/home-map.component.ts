@@ -1,10 +1,10 @@
 import { Component, OnInit } from '@angular/core';
 import * as L from 'leaflet';
-import { LoginService } from '../../services/login.service';
 import { FormBuilder } from '@angular/forms';
 import { MatDialog } from '@angular/material/dialog';
 import { RegisterPlaceComponent } from './register-place/register-place.component';
 import { MapService } from '../../services/map.service';
+import { DialogPlaceDetailComponent } from 'src/app/shared/dialog-place-detail/dialog-place-detail.component';
 
 @Component({
   selector: 'app-home-map',
@@ -13,8 +13,7 @@ import { MapService } from '../../services/map.service';
 })
 export class HomeMapComponent implements OnInit {
 
-  constructor(private loginService: LoginService, private formBuilder: FormBuilder,
-    private dialog: MatDialog, private mapService: MapService) { }
+  constructor(private dialog: MatDialog, private mapService: MapService) { }
 
   registerPlace = {};
   iconUrl = 'src/../../../assets/img/my-pin.svg';
@@ -65,7 +64,7 @@ export class HomeMapComponent implements OnInit {
   };
 
 
-  ngOnInit() { }
+  ngOnInit() {  }
 
   show() {
 
@@ -135,7 +134,7 @@ export class HomeMapComponent implements OnInit {
             console.log(e);
             this.map.flyTo(e.latlng);
           });
-        nws.bindPopup(`<b>${x.name}</b>`, this.customNwsPopup);
+        nws.bindPopup(`<b '(click)="showThisPlace({{x.id}})' ">${x.name}</b>`, this.customNwsPopup);
       });
 
     });
@@ -150,6 +149,14 @@ export class HomeMapComponent implements OnInit {
     });
   }
 
-
+  showThisPlace(id: number) {
+    this.mapService.detailAboutThisPlace(id)
+      .subscribe(resultDetail => {
+        this.dialog.open(DialogPlaceDetailComponent, {
+          width: '90%',
+          data: resultDetail
+        });
+      }, error => console.log(error));
+  }
 
 }

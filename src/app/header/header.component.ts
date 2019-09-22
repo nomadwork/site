@@ -19,8 +19,8 @@ export class HeaderComponent implements OnInit {
 
   async ngOnInit() {
     this.isLoggedIn$ = await this.loginService.isLoggedIn;
-    this.user = await this.userService.user;
-    this.alertService.info(`Bem vindo ${this.user.name}`)
+    // this.user = await this.userService.user;
+    // this.alertService.info(`Bem vindo ${this.user.name}`);
   }
 
   logout() {

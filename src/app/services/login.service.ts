@@ -13,7 +13,7 @@ export class LoginService {
 
   constructor(private http: HttpClient, private router: Router, private userService: UserService) { }
 
-  private loggedIn = new BehaviorSubject<boolean>(false);
+  private loggedIn = new BehaviorSubject<boolean>(true);
 
   get isLoggedIn() {
 

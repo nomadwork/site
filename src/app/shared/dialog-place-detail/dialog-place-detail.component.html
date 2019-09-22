@@ -1,0 +1,62 @@
+<h1 mat-dialog-title class="title text-center pt-3">{{ modalData.name }}</h1>
+<mat-dialog-content class="mat-typography">
+
+    <div>
+        <div class="row mb-4">
+            <div class="col-4">
+                <mat-icon>wifi</mat-icon>
+                <span>
+                    Qualidade da conexão: {{ getQualityConnect(modalData.services[0].quality)}}
+                </span>
+            </div>
+            <div class="col-4">
+                <mat-icon>hearing</mat-icon>
+                <span>
+                    Nível de ruído: {{ getQualityNoise(modalData.services[2].quality)}}
+                </span>
+            </div>
+            <div class="col-4">
+                <mat-icon>flash_on</mat-icon>
+                <span>
+                    Quantidade tomada: {{ modalData.services[1].quantity }}
+                </span>
+            </div>
+
+        </div>
+        <div class="row">
+            <div class="col-4">
+                <mat-icon>access_time</mat-icon>
+                <span>
+                    Funcionamento: {{ modalData.schedule.open }}PM - {{ modalData.schedule.close }}PM
+                </span>
+            </div>
+            <div class="col-4">
+                <mat-icon>email</mat-icon>
+                <span> Email: {{ modalData.email ? modalData.email : 'Não possui' }}</span>
+            </div>
+            <div class="col-4">
+                <mat-icon>phone</mat-icon>
+                <span> Telefone: {{ modalData.phone ? modalData.phone : 'Não possui' }}</span>
+            </div>
+        </div>
+    </div>
+
+    <div class="row mt-5 mb-3">
+        <swiper class="swiper-container" fxFlex="auto" [config]="config">
+            <div *ngFor="let pic of modalData.urlPhoto" class="swiper-slide">
+
+                <div class="text-center">
+                    <img src="{{ pic }}" class="img-fluid img-flow">
+                </div>
+
+
+                <div fxLayout="column" fxLayoutAlign="center center" fxFlexFill>
+                </div>
+            </div>
+        </swiper>
+    </div>
+
+</mat-dialog-content>
+<mat-dialog-actions align="end">
+    <button class="btn btn--danger" mat-dialog-close>Fechar</button>
+</mat-dialog-actions>
