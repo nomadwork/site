@@ -1,10 +1,10 @@
-import { Component, OnInit, AfterViewInit } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import * as L from 'leaflet';
-import { LoginService } from '../../services/login.service'
-import { FormGroup, FormBuilder, Validators } from '@angular/forms';
+import { LoginService } from '../../services/login.service';
+import { FormBuilder } from '@angular/forms';
 import { MatDialog } from '@angular/material/dialog';
 import { RegisterPlaceComponent } from './register-place/register-place.component';
-import { MapService } from '../../services/map.service'
+import { MapService } from '../../services/map.service';
 
 @Component({
   selector: 'app-home-map',
@@ -13,10 +13,11 @@ import { MapService } from '../../services/map.service'
 })
 export class HomeMapComponent implements OnInit {
 
-  constructor(private loginService: LoginService, private formBuilder: FormBuilder, private dialog: MatDialog, private mapService: MapService) { }
+  constructor(private loginService: LoginService, private formBuilder: FormBuilder,
+    private dialog: MatDialog, private mapService: MapService) { }
 
   registerPlace = {};
-  iconUrl: string = 'src/../../../assets/img/my-pin.svg';
+  iconUrl = 'src/../../../assets/img/my-pin.svg';
   map;
   geoLocation;
   markers;
@@ -53,7 +54,11 @@ export class HomeMapComponent implements OnInit {
 
   options = {
     layers: [
-      L.tileLayer('https://{s}.tile.openstreetmap.fr/hot/{z}/{x}/{y}.png', { maxZoom: 19, attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors, Tiles style by <a href="https://www.hotosm.org/" target="_blank">Humanitarian OpenStreetMap Team</a> hosted by <a href="https://openstreetmap.fr/" target="_blank">OpenStreetMap France</a>' })
+      L.tileLayer('https://{s}.tile.openstreetmap.fr/hot/{z}/{x}/{y}.png',
+        {
+          maxZoom: 19,
+          attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors, Tiles style by <a href="https://www.hotosm.org/" target="_blank">Humanitarian OpenStreetMap Team</a> hosted by <a href="https://openstreetmap.fr/" target="_blank">OpenStreetMap France</a>'
+        })
     ],
     // zoom: 15,
     center: []
@@ -82,35 +87,26 @@ export class HomeMapComponent implements OnInit {
 
   onMapReady(map: L.Map) {
 
-
     this.map = map;
 
     // CONFIGURAÇÃO DOS MARCADORES
 
-
-
     if (navigator) {
       navigator.geolocation.getCurrentPosition(async pos => {
 
-
         await map.on('dragend', async e => {
           const { lat, lng } = map.getCenter();
-          await this.getMarkers({ latitude: lat, longitude: lng })
-
-
+          await this.getMarkers({ latitude: lat, longitude: lng });
         });
-
 
         this.geoLocation = pos;
         const { latitude, longitude } = pos.coords;
-        this.getMarkers({ latitude, longitude })
+        this.getMarkers({ latitude, longitude });
 
-        map.setView([latitude, longitude], 15)
+        map.setView([latitude, longitude], 15);
 
         const currentPosition = await L.marker([latitude, longitude], { icon: this.userIcon }).addTo(map).on('click', this.mapFly);
         currentPosition.bindPopup(`<b>Você está aqui</b>`, this.customUserPopup).openPopup();
-
-
 
       }, err => console.error(err), this.config);
     }
@@ -124,27 +120,23 @@ export class HomeMapComponent implements OnInit {
   }
 
   getMarkers(latlng) {
-    let i = 0;
     this.mapService.markers(latlng).subscribe(data => {
-      // this.markers = null;
-      // data.result.forEach(x => {
-      //   this.markers = x;
-      // });
 
       const marker = Array.from(new Set(data.result.map(a => a.id)))
         .map(id => {
-          return data.result.find(a => a.id === id)
-        })
+          return data.result.find(a => a.id === id);
+        });
 
 
-      // Jerson deu a ideia de fazer várias funções que não sei eu acho que deveria usar Set ai de baixo
+      // TODO Jerson deu a ideia de fazer várias funções que não sei eu acho que deveria usar Set ai de baixo
       marker.forEach(x => {
-        const nws = L.marker([x.geolocation.latitude, x.geolocation.longitude], { icon: this.nwsIcon }).addTo(this.map).on('click', (e: any) => {
-          console.log(e)
-          this.map.flyTo(e.latlng)
-        })
+        const nws = L.marker([x.geolocation.latitude, x.geolocation.longitude],
+          { icon: this.nwsIcon }).addTo(this.map).on('click', (e: any) => {
+            console.log(e);
+            this.map.flyTo(e.latlng);
+          });
         nws.bindPopup(`<b>${x.name}</b>`, this.customNwsPopup);
-      })
+      });
 
     });
   }

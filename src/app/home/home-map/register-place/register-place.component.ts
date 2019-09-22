@@ -1,4 +1,4 @@
-import { Component, OnInit, Output, EventEmitter, Input, Inject } from '@angular/core';
+import { Component, OnInit  , Inject } from '@angular/core';
 import { Validators, FormBuilder, FormGroup, FormArray } from '@angular/forms';
 import { MAT_DIALOG_DATA, MatDialogRef } from '@angular/material/dialog';
 
@@ -15,8 +15,8 @@ export interface Food {
 export class RegisterPlaceComponent implements OnInit {
 
   constructor(private formBuilder: FormBuilder,
-    @Inject(MAT_DIALOG_DATA) public data: any,
-    public dialogRef: MatDialogRef<RegisterPlaceComponent>) {
+              @Inject(MAT_DIALOG_DATA) public data: any,
+              public dialogRef: MatDialogRef<RegisterPlaceComponent>) {
   }
 
   config;
@@ -52,7 +52,7 @@ export class RegisterPlaceComponent implements OnInit {
     name: 'Ruído',
     iconOn: 'voice_over_off',
     iconOff: 'record_voice_over'
-  }]
+  }];
 
   suggestionForm: FormGroup;
 
@@ -76,7 +76,7 @@ export class RegisterPlaceComponent implements OnInit {
         longitude: [this.data.coords.longitude]
       }),
       services: this.formBuilder.array([])
-    })
+    });
     this.getHours();
     this.getMinutes();
     this.patch();
@@ -85,36 +85,35 @@ export class RegisterPlaceComponent implements OnInit {
 
   suggestionSubmit() {
     const value = this.suggestionForm.value;
-    value.schedule.open = value.schedule.open + ':' + value.schedule.openMinute
-    value.schedule.close = value.schedule.close + ':' + value.schedule.closeMinute
+    value.schedule.open = value.schedule.open + ':' + value.schedule.openMinute;
+    value.schedule.close = value.schedule.close + ':' + value.schedule.closeMinute;
     delete value.schedule.openMinute;
     delete value.schedule.closeMinute;
 
     console.log(JSON.stringify(value));
-    console.log(JSON.parse(value));
   }
 
   close() {
-    this.dialogRef.close('Eae pedro');
+    this.dialogRef.close();
   }
 
   getHours() {
-    for (var i = 0; i < 24; i++) {
+    for (let i = 0; i < 24; i++) {
       this.hours.push(i);
     }
   }
 
   getMinutes() {
-    for (var i = 0; i < 60; i++) {
+    for (let i = 0; i < 60; i++) {
       this.minutes.push((i < 10 ? '0' : '') + i);
     }
   }
 
   patch() {
-    const control = <FormArray>this.suggestionForm.get('services');
+    const control = this.suggestionForm.get('services') as FormArray;
     this.fields.forEach(x => {
-      control.push(this.patchValues(x.classification, x.type, x.service))
-    })
+      control.push(this.patchValues(x.classification, x.type, x.service));
+    });
   }
 
   patchValues(classification, type, service) {
@@ -122,7 +121,7 @@ export class RegisterPlaceComponent implements OnInit {
       classification: [classification],
       type: [type],
       service: [service]
-    })
+    });
   }
 
 }
