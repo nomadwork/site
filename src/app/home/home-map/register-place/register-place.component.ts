@@ -93,10 +93,6 @@ export class RegisterPlaceComponent implements OnInit {
     console.log(JSON.stringify(value));
   }
 
-  close() {
-    this.dialogRef.close();
-  }
-
   getHours() {
     for (let i = 0; i < 24; i++) {
       this.hours.push(i);

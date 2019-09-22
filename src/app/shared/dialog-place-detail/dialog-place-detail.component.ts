@@ -25,44 +25,36 @@ export class DialogPlaceDetailComponent implements OnInit {
 
 
   ngOnInit() {
-    this.modalData = this.data;
+    this.modalData = this.data.result;
+    console.log(this.modalData);
   }
 
 
-  getQualityConnect(quality: string) {
+  getQualityConnect(quality: number) {
     switch (quality) {
-      case 'none':
+      case 0:
         return 'Sem conexão';
-      case 'low':
+      case 1:
         return 'Fraca';
-      case 'medium':
+      case 2:
         return 'Média';
-      case 'high':
+      case 3:
         return 'Excelente';
     }
   }
 
-  getQualityNoise(quality: string) {
+  getQualityNoise(quality: number) {
     switch (quality) {
-      case 'none':
-        return 'Silencioso';
-      case 'low':
-        return 'Baixo';
-      case 'medium':
-        return 'Médio';
-      case 'high':
+      case 0:
         return 'Alto';
+      case 1:
+        return 'Médio';
+      case 2:
+        return 'Baixo';
+      case 3:
+        return 'Sem ruído';
     }
 
   }
-
-  hasPlugOn(flag: boolean) {
-    if (flag) {
-      return 'Sim';
-    } else {
-      return 'Não';
-    }
-  }
-
 
 }

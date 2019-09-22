@@ -1,137 +1,136 @@
 <span class="register-title" mat-dialog-title>Cadastro de Estabelecimento</span>
 
 <perfect-scrollbar mat-dialog-content style="height: 60vh">
-  <form class="registerPlace" [formGroup]="suggestionForm" (ngSubmit)="suggestionSubmit()">
-    <div>
-      <h2><i class="material-icons">
+    <form class="registerPlace" [formGroup]="suggestionForm" (ngSubmit)="suggestionSubmit()">
+        <div>
+            <h2><i class="material-icons">
           business
         </i>Nome* :</h2>
-      <input class="input" type="text" formControlName="name" />
-      <app-error-msg [control]="suggestionForm.get('name')" label="Nome">
-      </app-error-msg>
+            <input class="input" type="text" formControlName="name" />
+            <app-error-msg [control]="suggestionForm.get('name')" label="Nome">
+            </app-error-msg>
 
-    </div>
-    <div class="two-fields">
-      <div>
-        <h2><i class="material-icons">
+        </div>
+        <div class="two-fields">
+            <div>
+                <h2><i class="material-icons">
             email
           </i>E-mail:</h2>
-        <input class="input" type="text" formControlName="email" />
-        <app-error-msg [control]="suggestionForm.get('email')" label="E-mail">
-        </app-error-msg>
-      </div>
-      <div>
-        <h2>
-          <i class="material-icons">
+                <input class="input" type="text" formControlName="email" />
+                <app-error-msg [control]="suggestionForm.get('email')" label="E-mail">
+                </app-error-msg>
+            </div>
+            <div>
+                <h2>
+                    <i class="material-icons">
             call
           </i>Telefone:</h2>
-        <input class="input" type="text" formControlName="number" />
-        <app-error-msg [control]="suggestionForm.get('number')" label="Telefone">
-        </app-error-msg>
-      </div>
-    </div>
+                <input class="input" type="text" formControlName="number" />
+                <app-error-msg [control]="suggestionForm.get('number')" label="Telefone">
+                </app-error-msg>
+            </div>
+        </div>
 
-    <div formArrayName="services" *ngFor="let item of fields; let i = index">
-      <div [formGroupName]="i">
-        <h2>{{names[i].name}}:</h2>
-        <div *ngIf="item.service === 0">
-          <div class="range">
-            <i class="material-icons">
+        <div formArrayName="services" *ngFor="let item of fields; let i = index">
+            <div [formGroupName]="i">
+                <h2>{{names[i].name}}:</h2>
+                <div *ngIf="item.service === 0">
+                    <div class="range">
+                        <i class="material-icons">
               {{names[i].iconOff}}
             </i>
-            <mat-slider class="slide-range" min="0" max="3" step="1" formControlName="classification">
-            </mat-slider>
-            <i class="material-icons">
+                        <mat-slider class="slide-range" min="0" max="3" step="1" formControlName="classification">
+                        </mat-slider>
+                        <i class="material-icons">
               {{names[i].iconOn}}
             </i>
-          </div>
-        </div>
-        <div *ngIf="item.service === 1">
-          <div class="range">
-            <i class="material-icons">
+                    </div>
+                </div>
+                <div *ngIf="item.service === 1">
+                    <div class="range">
+                        <i class="material-icons">
               {{names[i].iconOff}}
             </i>
-            <mat-slider class="slide-range" thumbLabel="true" min="0" max="20" step="1"
-              formControlName="classification">
-            </mat-slider>
-            <i class="material-icons">
+                        <mat-slider class="slide-range" thumbLabel="true" min="0" max="20" step="1" formControlName="classification">
+                        </mat-slider>
+                        <i class="material-icons">
               {{names[i].iconOn}}
             </i>
-          </div>
-        </div>
-        <div *ngIf="item.service === 2">
-          <div class="range">
+                    </div>
+                </div>
+                <div *ngIf="item.service === 2">
+                    <div class="range">
 
-            <mat-slide-toggle class="mat-toggle" labelPosition="before" #slide formControlName="classification">
-              <i *ngIf="!slide.checked" style="color:#838383;" class="material-icons">
+                        <mat-slide-toggle class="mat-toggle" labelPosition="before" #slide formControlName="classification">
+                            <i *ngIf="!slide.checked" style="color:#838383;" class="material-icons">
                 {{names[i].iconOff}}
               </i>
-              <i *ngIf="slide.checked" style="color:#03a9f4;" class="material-icons">
+                            <i *ngIf="slide.checked" style="color:#03a9f4;" class="material-icons">
                 {{names[i].iconOn}}
               </i>
-            </mat-slide-toggle>
-          </div>
-        </div>
+                        </mat-slide-toggle>
+                    </div>
+                </div>
 
 
-      </div>
-    </div>
+            </div>
+        </div>
 
-    <div formGroupName="schedule">
-      <div>
-        <h2>Horário de abertura:</h2>
-        <div class="hour-minute">
-          <mat-form-field>
-            <mat-label>Hora</mat-label>
-            <mat-select formControlName="open">
-              <mat-option *ngFor="let h of hours" [value]="h">
-                {{h}}:00
-              </mat-option>
-            </mat-select>
-            <app-error-msg [control]="suggestionForm.get('schedule.open')" label="Hora">
-            </app-error-msg>
-          </mat-form-field> :
-          <mat-form-field>
-            <mat-label>Minuto</mat-label>
-            <mat-select formControlName="openMinute">
-              <mat-option *ngFor="let m of minutes" [value]="m">
-                {{m}}
-              </mat-option>
-            </mat-select>
-            <app-error-msg [control]="suggestionForm.get('schedule.openMinute')" label="Minuto">
-            </app-error-msg>
-          </mat-form-field>
+        <div formGroupName="schedule">
+            <div>
+                <h2>Horário de abertura:</h2>
+                <div class="hour-minute">
+                    <mat-form-field>
+                        <mat-label>Hora</mat-label>
+                        <mat-select formControlName="open">
+                            <mat-option *ngFor="let h of hours" [value]="h">
+                                {{h}}:00
+                            </mat-option>
+                        </mat-select>
+                        <app-error-msg [control]="suggestionForm.get('schedule.open')" label="Hora">
+                        </app-error-msg>
+                    </mat-form-field> :
+                    <mat-form-field>
+                        <mat-label>Minuto</mat-label>
+                        <mat-select formControlName="openMinute">
+                            <mat-option *ngFor="let m of minutes" [value]="m">
+                                {{m}}
+                            </mat-option>
+                        </mat-select>
+                        <app-error-msg [control]="suggestionForm.get('schedule.openMinute')" label="Minuto">
+                        </app-error-msg>
+                    </mat-form-field>
+                </div>
+            </div>
+            <div>
+                <h2>Horário de fechamento:</h2>
+                <div class="hour-minute">
+                    <mat-form-field>
+                        <mat-label>Hora</mat-label>
+                        <mat-select formControlName="close">
+                            <mat-option *ngFor="let h of hours" [value]="h">
+                                {{h}}:00
+                            </mat-option>
+                        </mat-select>
+                        <app-error-msg [control]="suggestionForm.get('schedule.close')" label="Hora">
+                        </app-error-msg>
+                    </mat-form-field> :
+                    <mat-form-field>
+                        <mat-label>Minuto</mat-label>
+                        <mat-select formControlName="closeMinute">
+                            <mat-option *ngFor="let m of minutes" [value]="m">
+                                {{m}}
+                            </mat-option>
+                        </mat-select>
+                        <app-error-msg [control]="suggestionForm.get('schedule.closeMinute')" label="Minuto">
+                        </app-error-msg>
+                    </mat-form-field>
+                </div>
+            </div>
         </div>
-      </div>
-      <div>
-        <h2>Horário de fechamento:</h2>
-        <div class="hour-minute">
-          <mat-form-field>
-            <mat-label>Hora</mat-label>
-            <mat-select formControlName="close">
-              <mat-option *ngFor="let h of hours" [value]="h">
-                {{h}}:00
-              </mat-option>
-            </mat-select>
-            <app-error-msg [control]="suggestionForm.get('schedule.close')" label="Hora">
-            </app-error-msg>
-          </mat-form-field> :
-          <mat-form-field>
-            <mat-label>Minuto</mat-label>
-            <mat-select formControlName="closeMinute">
-              <mat-option *ngFor="let m of minutes" [value]="m">
-                {{m}}
-              </mat-option>
-            </mat-select>
-            <app-error-msg [control]="suggestionForm.get('schedule.closeMinute')" label="Minuto">
-            </app-error-msg>
-          </mat-form-field>
+        <div class="submitButton">
+            <button class="btn btn--danger" mat-dialog-close>Cancelar</button>
+            <button class="btn btn--success" type="submit">Sugerir</button>
         </div>
-      </div>
-    </div>
-    <div class="submitButton">
-      <button class="btn btn--danger" (click)="close()">Cancelar</button>
-      <button class="btn btn--success" type="submit">Sugerir</button>
-    </div>
-  </form>
+    </form>
 </perfect-scrollbar>
