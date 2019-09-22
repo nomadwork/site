@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ViewChild, ElementRef } from '@angular/core';
 import { UserService } from '../services/user.service';
 import User from '../models/user';
 import { LoginService } from '../services/login.service';
@@ -34,6 +34,9 @@ export class LoginComponent implements OnInit {
   formNewUser = false;
   email = '';
   confirmPassword = false;
+
+  @ViewChild("loginEmail", { static: false }) emailField: ElementRef
+
   password = '';
   passwordOne: string;
   passwordTwo: string;
@@ -110,8 +113,9 @@ export class LoginComponent implements OnInit {
   }
 
   goToStepTwo() {
-    this.loading = false;
+    this.emailField.nativeElement.blur();
     this.show = false;
+    this.loading = false;
   }
 
   goStepOne() {

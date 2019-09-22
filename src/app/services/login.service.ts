@@ -19,15 +19,15 @@ export class LoginService {
 
     //Se o usuário tiver logado emit um true aqui;
     this.loggedIn.next(true);
+    this.userService.user = { name: 'Nomad', email: 'nomadwork@gmail.com' }
     if (localStorage.getItem('token')) {
     }
 
     return this.loggedIn.asObservable();
   }
 
-
   markers() {
-    return this.http.get<any>('/api/markers')
+    return this.http.get<any>('/api/markers');
   }
 
   login(email: string, password: string): Observable<any> {

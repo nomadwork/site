@@ -52,7 +52,6 @@ mat-progress-bar{
 }
 
 .father {
-  min-height: 100%;
   background-color: $color-base;
   background: url(http://localhost:3000/files/nomadworkbg-lq.jpg) no-repeat center center fixed;
   -webkit-background-size: cover;
@@ -61,7 +60,6 @@ mat-progress-bar{
   background-size: cover;
   filter: progid:DXImageTransform.Microsoft.AlphaImageLoader(src='.nomadworkbg.jpg', sizingMethod='scale');
   -ms-filter: "progid:DXImageTransform.Microsoft.AlphaImageLoader(src='nomadworkbg.jpg', sizingMethod='scale')";
-  padding: 20px 0px;
 }
 
 * {
@@ -69,9 +67,11 @@ mat-progress-bar{
 }
 
 .align {
-  align-items: center;
-  display: flex;
-  flex-direction: row;
+ 
+    align-items: center;
+    display: flex;
+    flex-direction: row;
+  
 }
 
 $input-placeholder-color: #7e8ba3;
@@ -98,10 +98,20 @@ $grid-width: 100%;
   border-bottom-left-radius: 0px;
   border-bottom-right-radius: 0px;
   position: relative;
+  margin: 20px 0 0px 0px;
+}
+.container {
+  font-size: 18px;
+  font-weight: normal;
+  margin:0px;
+}
+
+.radios{
+  margin: 20px;
 }
 
 h2 {
-  color: $color-base;
+  color: #000;
 }
 
 .input:disabled{
@@ -136,24 +146,10 @@ h2 {
 }
 
 .register {
-  box-shadow: 0 0px 10px rgba(0, 0, 0, 0.78);
-  text-align: left;
-  position: relative;
-  border-radius: 5px;
-  z-index: 1;
-  border-top-left-radius: 0px;
-  border-top-right-radius: 0px;
-  background: $color-primary;
-  overflow: hidden;
-  padding: 4rem 1rem 0rem 1rem;
+  margin: 0 0 20px 0px;
 }
 
-.radios {
-  // text-align: center;
-  display: flex;
-  justify-content: space-around;
-  margin: 0 0 15px 0px;
-}
+
 
 .link-entrar {
   text-align: center;

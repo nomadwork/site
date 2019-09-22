@@ -1,0 +1,16 @@
+perfect-scrollbar > .ps.ps--active-y > .ps__rail-y {
+  background: transparent !important;
+}
+.ps__rail-y{
+  background: transparent !important;
+}
+
+.ps__thumb-y {
+  background: rgb(0, 0, 0) !important;
+}
+.ps__rail-y:hover > .ps__thumb-y {
+  background: rgb(0, 0, 0) !important;
+}
+.ps__rail-y.ps--clicking .ps__thumb-y {
+  background: rgb(0, 0, 0) !important;
+}

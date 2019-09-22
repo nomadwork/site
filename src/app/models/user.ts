@@ -1,7 +1,7 @@
 export default class User {
-    password: string;
+    password?: string;
     email: string;
-    birthdate: Date;
-    gender: string;
+    birthdate?: Date;
+    gender?: string;
     name: string;
 }
