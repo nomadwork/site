@@ -8,17 +8,16 @@ import { SwiperConfigInterface } from 'ngx-swiper-wrapper';
   styleUrls: ['./dialog-place-detail.component.scss']
 })
 export class DialogPlaceDetailComponent implements OnInit {
-  
+
   modalData;
   public config: SwiperConfigInterface = {
     a11y: true,
     direction: 'horizontal',
     slidesPerView: 1,
     keyboard: true,
-    mousewheel: true,
     scrollbar: false,
-    navigation: true,
-    pagination: false
+    navigation: false,
+    pagination: true
   };
 
   constructor(@Inject(MAT_DIALOG_DATA) public data: any) { }
@@ -26,7 +25,7 @@ export class DialogPlaceDetailComponent implements OnInit {
 
   ngOnInit() {
     this.modalData = this.data.result;
-    console.log(this.modalData);
+    console.log(this.data.result);
   }
 
 

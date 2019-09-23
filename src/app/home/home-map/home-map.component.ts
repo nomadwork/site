@@ -5,6 +5,7 @@ import { MatDialog } from '@angular/material/dialog';
 import { RegisterPlaceComponent } from './register-place/register-place.component';
 import { MapService } from '../../services/map.service';
 import { DialogPlaceDetailComponent } from 'src/app/shared/dialog-place-detail/dialog-place-detail.component';
+import { BehaviorSubject } from 'rxjs';
 
 @Component({
   selector: 'app-home-map',
@@ -17,7 +18,9 @@ export class HomeMapComponent implements OnInit {
 
   registerPlace = {};
   iconUrl = 'src/../../../assets/img/my-pin.svg';
+  isLoading$: BehaviorSubject<boolean> = new BehaviorSubject(false);
   map;
+  id;
   geoLocation;
   markers;
   showModal = false;
@@ -51,6 +54,8 @@ export class HomeMapComponent implements OnInit {
     closeButton: false
   };
 
+
+
   options = {
     layers: [
       L.tileLayer('https://{s}.tile.openstreetmap.fr/hot/{z}/{x}/{y}.png',
@@ -64,18 +69,23 @@ export class HomeMapComponent implements OnInit {
   };
 
 
-  ngOnInit() {  }
+  ngOnInit() { }
+
+  modalConfig(data) {
+    return {
+      width: '98%',
+      maxWidth: 550,
+      minHeight: '50vh',
+      maxHeight: '95%',
+      data
+    }
+  }
 
   show() {
 
     const data = this.geoLocation;
 
-    const modal = this.dialog.open(RegisterPlaceComponent, {
-      width: '98%',
-      maxWidth: 550,
-      maxHeight: '95vh',
-      data
-    });
+    const modal = this.dialog.open(RegisterPlaceComponent, this.modalConfig(data));
 
     modal.afterClosed()
       .subscribe(r => {
@@ -118,6 +128,7 @@ export class HomeMapComponent implements OnInit {
     });
   }
 
+
   getMarkers(latlng) {
     this.mapService.markers(latlng).subscribe(data => {
 
@@ -131,10 +142,13 @@ export class HomeMapComponent implements OnInit {
       marker.forEach(x => {
         const nws = L.marker([x.geolocation.latitude, x.geolocation.longitude],
           { icon: this.nwsIcon }).addTo(this.map).on('click', (e: any) => {
-            console.log(e);
+            this.id = x.id;
             this.map.flyTo(e.latlng);
           });
-        nws.bindPopup(`<b '(click)="showThisPlace({{x.id}})' ">${x.name}</b>`, this.customNwsPopup);
+        nws.bindPopup(`<b >${x.name}</b>`, this.customNwsPopup);
+
+
+
       });
 
     });
@@ -150,12 +164,11 @@ export class HomeMapComponent implements OnInit {
   }
 
   showThisPlace(id: number) {
+    this.isLoading$.next(true);
     this.mapService.detailAboutThisPlace(id)
       .subscribe(resultDetail => {
-        this.dialog.open(DialogPlaceDetailComponent, {
-          width: '90%',
-          data: resultDetail
-        });
+        this.dialog.open(DialogPlaceDetailComponent, this.modalConfig(resultDetail));
+        this.isLoading$.next(false);
       }, error => console.log(error));
   }
 

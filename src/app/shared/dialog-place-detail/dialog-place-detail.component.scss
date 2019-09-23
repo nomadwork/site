@@ -1,20 +1,38 @@
-.img-flow {
-    height: 450px;
-    width: 667px;
-    border-radius: 20px;
-}
-
 mat-icon {
-    font-size: 3em;
-    color: #00B8D8;
+  color: #00b8d8;
+  font-size: 26px;
+  margin: 0 10px 0 0;
 }
 
 span {
-    margin-left: 20px;
-    font-size: 1.4em;
+  font-size: 1.1em;
+  font-weight: bold;
+  margin: 0 0 0 5px;
 }
 
-.title {
-    font-size: 2em;
-    color: #00B8D8;
+.infos > div {
+  margin: 10px 0px;
+  display: flex;
+  align-items: center;
+  justify-content: flex-start;
+}
+
+
+.swiper-slide {
+  width: 100%;
+  overflow: hidden !important;
+}
+.text-center {
+  width: 100%;
+  max-width: 600px;
+  background: blue;
+  height: 200px;
+  img {
+    width: 100%;
+    object-fit: contain;
+  }
+}
+
+.mat-dialog-title {
+  margin: 0 !important;
 }

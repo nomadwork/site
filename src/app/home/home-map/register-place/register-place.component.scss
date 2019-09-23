@@ -5,11 +5,10 @@
   width: 100%;
 }
 
-.register-title {
-  font-weight: 900;
-  text-align: center;
-  font-family: "Quicksand", sans-serif;
+.mat-content-dialog {
+  overflow: hidden;
 }
+
 .radios {
   justify-content: center;
 }
@@ -28,7 +27,7 @@
   }
 }
 .mat-toggle{
-  
+
   margin: 10px 0;
 }
 h2 {

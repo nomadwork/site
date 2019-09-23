@@ -1,9 +1,27 @@
 $color-base: #ffffff;
 $color-primary: #03a9f4;
 
-// $color-base: #ffffff;
-// $color-accent: #03A9F4;
-// $color-primary: #000000;
+.swiper-pagination-bullet-first,
+.swiper-pagination-bullet-last {
+  border: 0px !important;
+  margin: 0 !important;
+}
+
+.swiper-pagination-bullet {
+  opacity: 0.5 !important;
+  background: $color-base !important;
+}
+
+.swiper-pagination-bullet.swiper-pagination-bullet-active {
+  background: $color-primary !important;
+}
+.swiper-pagination-bullets {
+  bottom: 0px !important;
+}
+
+.swiper-pagination-handle {
+  display: unset !important;
+}
 
 .btn {
   background: rgba(255, 255, 255, 0.801);
@@ -131,6 +149,13 @@ $color-primary: #03a9f4;
   text-align: left;
 }
 
+.register-title {
+  color: #00b8d8;
+  font-weight: 900;
+  text-align: center;
+  font-family: "Quicksand", sans-serif;
+}
+
 .radios {
   max-width: 350px;
   width: 98%;
@@ -160,7 +185,7 @@ $color-primary: #03a9f4;
   }
   i:nth-child(3) {
     color: #03a9f4;
-    }
+  }
 }
 
 .suggestion-form {

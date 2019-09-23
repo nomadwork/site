@@ -1,8 +1,13 @@
 @import "./assets/styles/reset.scss";
 @import "./assets/styles/style.scss";
 @import "~@angular/material/prebuilt-themes/indigo-pink.css";
-@import '~perfect-scrollbar/css/perfect-scrollbar.css';
-@import '~swiper/dist/css/swiper.min.css';
+@import "~perfect-scrollbar/css/perfect-scrollbar.css";
+@import "~swiper/dist/css/swiper.min.css";
+
 .mat-dialog-container {
-    padding: 5px 24px!important;
+  padding: 5px 24px !important;
+}
+.mat-dialog-content {
+  margin: 0 !important;
+  max-height: 95vh !important;
 }
