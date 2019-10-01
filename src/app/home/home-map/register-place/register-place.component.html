@@ -4,8 +4,8 @@
     <form class="registerPlace" [formGroup]="suggestionForm" (ngSubmit)="suggestionSubmit()">
         <div>
             <h2><i class="material-icons">
-          business
-        </i>Nome* :</h2>
+                    business
+                </i>Nome* :</h2>
             <input class="input" type="text" formControlName="name" />
             <app-error-msg [control]="suggestionForm.get('name')" label="Nome">
             </app-error-msg>
@@ -14,8 +14,8 @@
         <div class="two-fields">
             <div>
                 <h2><i class="material-icons">
-            email
-          </i>E-mail:</h2>
+                        email
+                    </i>E-mail:</h2>
                 <input class="input" type="text" formControlName="email" />
                 <app-error-msg [control]="suggestionForm.get('email')" label="E-mail">
                 </app-error-msg>
@@ -23,55 +23,57 @@
             <div>
                 <h2>
                     <i class="material-icons">
-            call
-          </i>Telefone:</h2>
+                        call
+                    </i>Telefone:</h2>
                 <input class="input" type="text" formControlName="number" />
                 <app-error-msg [control]="suggestionForm.get('number')" label="Telefone">
                 </app-error-msg>
             </div>
         </div>
 
-        <div formArrayName="services" *ngFor="let item of fields; let i = index">
-            <div [formGroupName]="i">
-                <h2>{{names[i].name}}:</h2>
-                <div *ngIf="item.service === 0">
-                    <div class="range">
-                        <i class="material-icons">
-              {{names[i].iconOff}}
-            </i>
-                        <mat-slider class="slide-range" min="0" max="3" step="1" formControlName="classification">
-                        </mat-slider>
-                        <i class="material-icons">
-              {{names[i].iconOn}}
-            </i>
-                    </div>
-                </div>
-                <div *ngIf="item.service === 1">
-                    <div class="range">
-                        <i class="material-icons">
-              {{names[i].iconOff}}
-            </i>
-                        <mat-slider class="slide-range" thumbLabel="true" min="0" max="20" step="1" formControlName="classification">
-                        </mat-slider>
-                        <i class="material-icons">
-              {{names[i].iconOn}}
-            </i>
-                    </div>
-                </div>
-                <div *ngIf="item.service === 2">
-                    <div class="range">
-
-                        <mat-slide-toggle class="mat-toggle" labelPosition="before" #slide formControlName="classification">
-                            <i *ngIf="!slide.checked" style="color:#838383;" class="material-icons">
-                {{names[i].iconOff}}
-              </i>
-                            <i *ngIf="slide.checked" style="color:#03a9f4;" class="material-icons">
-                {{names[i].iconOn}}
-              </i>
-                        </mat-slide-toggle>
-                    </div>
-                </div>
-
+        <div>
+            <h2>Wifi:</h2>
+            <div class="range">
+                <mat-slider class="slide-range" min="0" max="4" step="1" formControlName="wifi">
+                </mat-slider>
+                <i class="material-icons" *ngIf="!suggestionForm.value.wifi; else showWifi" style="color:#838383;">
+                    wifi_off
+                </i>
+                <ng-template #showWifi>
+                    <i class="material-icons" style="color:#03a9f4;">
+                        wifi
+                    </i>
+                </ng-template>
+            </div>
+        </div>
+        <div>
+            <h2>Ruído:</h2>
+            <div class="range">
+                <mat-slider class="slide-range" min="0" max="4" step="1" formControlName="noise">
+                </mat-slider>
+                <i class="material-icons" *ngIf="!suggestionForm.value.noise; else showNoise" style="color:#838383;">
+                    voice_over_off
+                </i>
+                <ng-template #showNoise>
+                    <i class="material-icons" style="color:#03a9f4;">
+                        record_voice_over
+                    </i>
+                </ng-template>
+            </div>
+        </div>
+        <div>
+            <h2>Tomada:</h2>
+            <div class="range">
+                <mat-slider class="slide-range" min="0" max="4" step="1" formControlName="plug">
+                </mat-slider>
+                <i class="material-icons" *ngIf="!suggestionForm.value.plug; else plugOn" style="color:#838383;">
+                    power_off
+                </i>
+                <ng-template #plugOn>
+                    <i class="material-icons" style="color:#03a9f4;">
+                        power
+                    </i>
+                </ng-template>
 
             </div>
         </div>

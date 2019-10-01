@@ -13,4 +13,12 @@ export default class Establishmment {
     noise: Noise;
     plug: Plug;
     schedule: Schedule;
+
+    constructor() {
+        this.noise = new Noise();
+        this.wifi = new Wifi();
+        this.plug = new Plug();
+        this.schedule = new Schedule();
+    }
+
 }
