@@ -3,7 +3,7 @@ import Noise from './noise';
 import Plug from './plug';
 import Schedule from './schedule';
 
-export default class Establishmment {
+export default class Establishment {
     name: string;
     phone: string;
     email: string;

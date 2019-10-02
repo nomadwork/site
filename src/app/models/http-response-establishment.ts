@@ -1,8 +1,8 @@
-import Establishmment from './establishmment';
+import Establishment from './establishment';
 
-export default class HttpResponseEstablishmment {
+export default class HttpResponseEstablishment {
     code?: number;
     message?: string;
-    result?: Establishmment;
+    result?: Establishment;
 
 }

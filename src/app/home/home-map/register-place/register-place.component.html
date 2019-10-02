@@ -33,10 +33,10 @@
 
         <div>
             <h2>Wifi:</h2>
-            <div class="range">
-                <mat-slider class="slide-range" min="0" max="4" step="1" formControlName="wifi">
+            <div class="range" formGroupName="wifi">
+                <mat-slider class="slide-range" min="0" max="4" step="1" formControlName="rate">
                 </mat-slider>
-                <i class="material-icons" *ngIf="!suggestionForm.value.wifi; else showWifi" style="color:#838383;">
+                <i class="material-icons" *ngIf="!suggestionForm.value.wifi.rate; else showWifi" style="color:#838383;">
                     wifi_off
                 </i>
                 <ng-template #showWifi>
@@ -48,10 +48,10 @@
         </div>
         <div>
             <h2>Ruído:</h2>
-            <div class="range">
-                <mat-slider class="slide-range" min="0" max="4" step="1" formControlName="noise">
+            <div class="range"  formGroupName="noise">
+                <mat-slider class="slide-range" min="0" max="4" step="1" formControlName="rate">
                 </mat-slider>
-                <i class="material-icons" *ngIf="!suggestionForm.value.noise; else showNoise" style="color:#838383;">
+                <i class="material-icons" *ngIf="!suggestionForm.value.noise.rate; else showNoise" style="color:#838383;">
                     voice_over_off
                 </i>
                 <ng-template #showNoise>
@@ -63,10 +63,10 @@
         </div>
         <div>
             <h2>Tomada:</h2>
-            <div class="range">
-                <mat-slider class="slide-range" min="0" max="4" step="1" formControlName="plug">
+            <div class="range"  formGroupName="plug">
+                <mat-slider class="slide-range" min="0" max="4" step="1" formControlName="rate">
                 </mat-slider>
-                <i class="material-icons" *ngIf="!suggestionForm.value.plug; else plugOn" style="color:#838383;">
+                <i class="material-icons" *ngIf="!suggestionForm.value.plug.rate; else plugOn" style="color:#838383;">
                     power_off
                 </i>
                 <ng-template #plugOn>
