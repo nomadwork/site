@@ -5,7 +5,7 @@ import Schedule from './schedule';
 
 export default class Establishment {
     name: string;
-    phone: string;
+    phone: number;
     email: string;
     latitude: number;
     longitude: number;

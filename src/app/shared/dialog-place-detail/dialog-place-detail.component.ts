@@ -22,38 +22,8 @@ export class DialogPlaceDetailComponent implements OnInit {
 
   constructor(@Inject(MAT_DIALOG_DATA) public data: any) { }
 
-
   ngOnInit() {
     this.modalData = this.data.result;
-    console.log(this.data.result);
-  }
-
-
-  getQualityConnect(quality: number) {
-    switch (quality) {
-      case 0:
-        return 'Sem conexão';
-      case 1:
-        return 'Fraca';
-      case 2:
-        return 'Média';
-      case 3:
-        return 'Excelente';
-    }
-  }
-
-  getQualityNoise(quality: number) {
-    switch (quality) {
-      case 0:
-        return 'Alto';
-      case 1:
-        return 'Médio';
-      case 2:
-        return 'Baixo';
-      case 3:
-        return 'Sem ruído';
-    }
-
   }
 
 }

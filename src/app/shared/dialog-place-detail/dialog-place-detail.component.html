@@ -1,55 +1,55 @@
 <h1 mat-dialog-title class="register-title">{{ modalData.name }}</h1>
 <perfect-scrollbar mat-dialog-content style="max-height: 75vh">
-  <div>
-    <swiper class="swiper-container" fxFlex="auto" [config]="config">
-      <div *ngFor="let pic of modalData.urlPhoto" class="swiper-slide">
-        <div class="text-center">
-          <img [src]="pic" />
+    <div>
+        <swiper class="swiper-container" fxFlex="auto" [config]="config">
+            <div *ngFor="let pic of modalData.urlPhoto" class="swiper-slide">
+                <div class="text-center">
+                    <img [src]="pic" />
+                </div>
+
+                <!-- <div fxLayout="column" fxLayoutAlign="center center" fxFlexFill></div> -->
+            </div>
+        </swiper>
+    </div>
+    <p>
+        Endereço:<span>{{ modalData.completeAddress }}</span>
+    </p>
+    <div class="infos">
+        <div>
+            <mat-icon>wifi</mat-icon>
+
+            Qualidade da conexão:
+            <span>{{ modalData.wifi.description }}</span>
         </div>
 
-        <!-- <div fxLayout="column" fxLayoutAlign="center center" fxFlexFill></div> -->
-      </div>
-    </swiper>
-  </div>
-  <p>
-    Endereço:<span>{{ modalData.completeAddress }}</span>
-  </p>
-  <div class="infos">
-    <div>
-      <mat-icon>wifi</mat-icon>
+        <div>
+            <mat-icon>hearing</mat-icon>
 
-      Qualidade da conexão:
-      <span>{{ getQualityConnect(modalData.services[0].quality) }}</span>
-    </div>
+            Nível de ruído:
+            <span> {{ modalData.noise.description }} </span>
+        </div>
 
-    <div>
-      <mat-icon>hearing</mat-icon>
+        <div>
+            <mat-icon>flash_on</mat-icon>
+            Tomadas: <span>{{ modalData.plug.description }} </span>
+        </div>
 
-      Nível de ruído:
-      <span> {{ getQualityNoise(modalData.services[2].quality) }} </span>
-    </div>
+        <div>
+            <mat-icon>access_time</mat-icon>
 
-    <div>
-      <mat-icon>flash_on</mat-icon>
-      Quantidade tomada: <span>{{ modalData.services[1].quantity }} </span>
-    </div>
-
-    <div>
-      <mat-icon>access_time</mat-icon>
-
-      Funcionamento:
-      <span>
+            Funcionamento:
+            <span>
         {{ modalData.schedule.open }}PM - {{ modalData.schedule.close }}PM
       </span>
-    </div>
+        </div>
 
-    <div>
-      <mat-icon>phone</mat-icon>
+        <div>
+            <mat-icon>phone</mat-icon>
 
-      Telefone:
-      <span> {{ modalData.phone ? modalData.phone : "----- ----" }}</span>
+            Telefone:
+            <span> {{ modalData.phone ? modalData.phone : "----- ----" }}</span>
+        </div>
     </div>
-  </div>
 </perfect-scrollbar>
 <!-- <mat-dialog-actions align="end">
     <button class="btn btn--danger" mat-dialog-close>Fechar</button>

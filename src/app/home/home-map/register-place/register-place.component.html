@@ -25,8 +25,8 @@
                     <i class="material-icons">
                         call
                     </i>Telefone:</h2>
-                <input class="input" type="text" formControlName="number" />
-                <app-error-msg [control]="suggestionForm.get('number')" label="Telefone">
+                <input class="input" type="text" formControlName="phone" />
+                <app-error-msg [control]="suggestionForm.get('phone')" label="Telefone">
                 </app-error-msg>
             </div>
         </div>
@@ -48,7 +48,7 @@
         </div>
         <div>
             <h2>Ruído:</h2>
-            <div class="range"  formGroupName="noise">
+            <div class="range" formGroupName="noise">
                 <mat-slider class="slide-range" min="0" max="4" step="1" formControlName="rate">
                 </mat-slider>
                 <i class="material-icons" *ngIf="!suggestionForm.value.noise.rate; else showNoise" style="color:#838383;">
@@ -63,7 +63,7 @@
         </div>
         <div>
             <h2>Tomada:</h2>
-            <div class="range"  formGroupName="plug">
+            <div class="range" formGroupName="plug">
                 <mat-slider class="slide-range" min="0" max="4" step="1" formControlName="rate">
                 </mat-slider>
                 <i class="material-icons" *ngIf="!suggestionForm.value.plug.rate; else plugOn" style="color:#838383;">

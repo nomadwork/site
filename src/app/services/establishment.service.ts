@@ -12,8 +12,8 @@ export class EstablishmentService {
 
   constructor(private http: HttpClient) { }
 
-  createEstablishment(establishment: Establishment): Observable<any> {
-    return this.http.post('/api/establishmment', establishment);
+  createEstablishment(establishment: Establishment): Observable<HttpResponseEstablishment> {
+    return this.http.post<HttpResponseEstablishment>('/api/establishmment', establishment);
   }
 
   getEstablishment(id: number): Observable<HttpResponseEstablishment> {

@@ -2,6 +2,8 @@ import { Component, OnInit, Inject } from '@angular/core';
 import { Validators, FormBuilder, FormGroup, FormArray } from '@angular/forms';
 import { MAT_DIALOG_DATA, MatDialogRef } from '@angular/material/dialog';
 import Establishment from 'src/app/models/establishment';
+import { EstablishmentService } from 'src/app/services/establishment.service';
+import { AlertService } from 'ngx-alerts';
 
 @Component({
   selector: 'app-register-place',
@@ -12,7 +14,9 @@ export class RegisterPlaceComponent implements OnInit {
 
   constructor(private formBuilder: FormBuilder,
     @Inject(MAT_DIALOG_DATA) public data: any,
-    public dialogRef: MatDialogRef<RegisterPlaceComponent>) { }
+    public dialogRef: MatDialogRef<RegisterPlaceComponent>,
+    private establishmentService: EstablishmentService,
+    private alertService: AlertService) { }
 
   config;
   hours = [];
@@ -25,7 +29,7 @@ export class RegisterPlaceComponent implements OnInit {
     this.suggestionForm = this.formBuilder.group({
       name: [null, [Validators.required, Validators.minLength(4), Validators.maxLength(100)]],
       email: [null, [Validators.required, Validators.email, Validators.minLength(4), Validators.maxLength(100)]],
-      number: [null, [Validators.required, Validators.minLength(10), Validators.maxLength(11)]],
+      phone: [null, [Validators.required, Validators.minLength(10), Validators.maxLength(11)]],
       wifi: this.formBuilder.group({
         rate: [null, Validators.required],
       }),
@@ -53,7 +57,17 @@ export class RegisterPlaceComponent implements OnInit {
   suggestionSubmit() {
     let establishmment = new Establishment();
     establishmment = this.suggestionForm.value as Establishment;
-    console.log(establishmment);
+
+    this.establishmentService.createEstablishment(establishmment)
+      .subscribe(result => {
+        this.dialogRef.close();
+        this.alertService.success(result.message);
+      }, (error) => {
+        this.alertService.danger('Falha ao sugerir este local');
+        console.log(error);
+      });
+
+
   }
 
 
