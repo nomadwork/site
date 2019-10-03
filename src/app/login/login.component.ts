@@ -35,7 +35,7 @@ export class LoginComponent implements OnInit {
   email = '';
   confirmPassword = false;
 
-  @ViewChild("loginEmail", { static: false }) emailField: ElementRef
+  @ViewChild("loginEmail", { static: false }) emailField: ElementRef;
 
   password = '';
   passwordOne: string;
@@ -48,7 +48,7 @@ export class LoginComponent implements OnInit {
   formRegister: FormGroup;
 
   constructor(private loginService: LoginService, private userService: UserService,
-    private alertService: AlertService, private formBuilder: FormBuilder) { }
+              private alertService: AlertService, private formBuilder: FormBuilder) { }
 
   ngOnInit() {
 

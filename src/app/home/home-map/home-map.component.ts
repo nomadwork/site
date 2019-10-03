@@ -6,6 +6,7 @@ import { RegisterPlaceComponent } from './register-place/register-place.componen
 import { MapService } from '../../services/map.service';
 import { DialogPlaceDetailComponent } from 'src/app/shared/dialog-place-detail/dialog-place-detail.component';
 import { BehaviorSubject } from 'rxjs';
+import { EstablishmentService } from 'src/app/services/establishment.service';
 
 @Component({
   selector: 'app-home-map',
@@ -14,7 +15,8 @@ import { BehaviorSubject } from 'rxjs';
 })
 export class HomeMapComponent implements OnInit {
 
-  constructor(private dialog: MatDialog, private mapService: MapService) { }
+  constructor(private dialog: MatDialog, private mapService: MapService,
+    private establishmentService: EstablishmentService) { }
 
   registerPlace = {};
   iconUrl = 'src/../../../assets/img/my-pin.svg';
@@ -130,28 +132,30 @@ export class HomeMapComponent implements OnInit {
 
 
   getMarkers(latlng) {
-    this.mapService.markers(latlng).subscribe(data => {
 
-      const marker = Array.from(new Set(data.result.map(a => a.id)))
-        .map(id => {
-          return data.result.find(a => a.id === id);
+    this.establishmentService.getEstablishments(latlng.latitude, latlng.longitude)
+      .subscribe(data => {
+
+        const marker = Array.from(new Set(data.result.map(a => a.id)))
+          .map(id => {
+            return data.result.find(a => a.id === id);
+          });
+
+
+        // TODO Jerson deu a ideia de fazer várias funções que não sei eu acho que deveria usar Set ai de baixo
+        marker.forEach(x => {
+          const nws = L.marker([x.geolocation.latitude, x.geolocation.longitude],
+            { icon: this.nwsIcon }).addTo(this.map).on('click', (e: any) => {
+              this.id = x.id;
+              this.map.flyTo(e.latlng);
+            });
+          nws.bindPopup(`<b >${x.name}</b>`, this.customNwsPopup);
+
+
+
         });
 
-
-      // TODO Jerson deu a ideia de fazer várias funções que não sei eu acho que deveria usar Set ai de baixo
-      marker.forEach(x => {
-        const nws = L.marker([x.geolocation.latitude, x.geolocation.longitude],
-          { icon: this.nwsIcon }).addTo(this.map).on('click', (e: any) => {
-            this.id = x.id;
-            this.map.flyTo(e.latlng);
-          });
-        nws.bindPopup(`<b >${x.name}</b>`, this.customNwsPopup);
-
-
-
       });
-
-    });
   }
 
   center() {
