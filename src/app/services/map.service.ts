@@ -16,4 +16,8 @@ export class MapService {
   detailAboutThisPlace(id: number): Observable<any> {
     return this.http.get<any>(`api/establishmment/${id}`);
   }
+
+  searchPlaces(term: any): Observable<any> {
+    return this.http.get<any>(`api/establishmment/v1/${term}`);
+  }
 }

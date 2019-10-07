@@ -49,11 +49,10 @@ $color-primary: #03a9f4;
 }
 
 .input {
-  padding: 3px 0px;
+  padding: 3px 5px;
   outline: none;
-  font-size: 18px !important;
-  border: 0px;
-  border-bottom: 2px solid $color-primary !important;
+  border: 2px solid $color-primary !important;
+  border-radius: 6px;
   width: 100%;
   max-width: 500px;
   background: transparent;
