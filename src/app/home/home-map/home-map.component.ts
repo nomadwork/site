@@ -1,12 +1,12 @@
 import { Component, OnInit } from '@angular/core';
 import * as L from 'leaflet';
-import { FormBuilder } from '@angular/forms';
 import { MatDialog } from '@angular/material/dialog';
 import { RegisterPlaceComponent } from './register-place/register-place.component';
 import { MapService } from '../../services/map.service';
 import { DialogPlaceDetailComponent } from 'src/app/shared/dialog-place-detail/dialog-place-detail.component';
 import { BehaviorSubject } from 'rxjs';
 import { EstablishmentService } from 'src/app/services/establishment.service';
+import { faFacebookSquare } from '@fortawesome/free-brands-svg-icons/faFacebookSquare';
 
 @Component({
   selector: 'app-home-map',
@@ -16,7 +16,7 @@ import { EstablishmentService } from 'src/app/services/establishment.service';
 export class HomeMapComponent implements OnInit {
 
   constructor(private dialog: MatDialog, private mapService: MapService,
-    private establishmentService: EstablishmentService) { }
+              private establishmentService: EstablishmentService) { }
 
   registerPlace = {};
   iconUrl = 'src/../../../assets/img/my-pin.svg';
