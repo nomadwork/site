@@ -50,6 +50,13 @@
             <span> {{ modalData.phone ? modalData.phone : "----- ----" }}</span>
         </div>
     </div>
+
+    <div>
+        <share-button button="whatsapp" text="Whatsapp" [description]="textShared" [url]="nomad" [showText]="true"></share-button>
+        <share-button button="telegram" text="Telegram" [description]="textShared" [url]="nomad" [showText]="true"></share-button>
+        <share-button button="messenger" text="Messenger" [description]="textShared" [url]="nomad" [showText]="true"></share-button>
+    </div>
+
 </perfect-scrollbar>
 <!-- <mat-dialog-actions align="end">
     <button class="btn btn--danger" mat-dialog-close>Fechar</button>

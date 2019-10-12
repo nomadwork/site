@@ -14,6 +14,9 @@ import { DialogPlaceDetailComponent } from '../shared/dialog-place-detail/dialog
 import { SwiperModule } from 'ngx-swiper-wrapper';
 import { SWIPER_CONFIG } from 'ngx-swiper-wrapper';
 import { SwiperConfigInterface } from 'ngx-swiper-wrapper';
+import { ShareButtonModule } from '@ngx-share/button';
+
+import { ShareButtonsModule } from '@ngx-share/buttons';
 
 const DEFAULT_SWIPER_CONFIG: SwiperConfigInterface = {
   direction: 'horizontal',
@@ -22,19 +25,21 @@ const DEFAULT_SWIPER_CONFIG: SwiperConfigInterface = {
 
 
 @NgModule({
-    imports: [
-        SwiperModule,
-        CommonModule, HomeRoutingModule,
-        LeafletModule.forRoot(),
-        FormsModule,
-        ReactiveFormsModule,
-        SharedModule,
-    ],
-    declarations: [HomeComponent, HomeMapComponent, HomeNewComponent, DialogPlaceDetailComponent, RegisterPlaceComponent],
-    entryComponents: [RegisterPlaceComponent, DialogPlaceDetailComponent],
-    providers: [{
-        provide: SWIPER_CONFIG,
-        useValue: DEFAULT_SWIPER_CONFIG
-      }]
+  imports: [
+    SwiperModule,
+    ShareButtonModule,
+    ShareButtonsModule,
+    CommonModule, HomeRoutingModule,
+    LeafletModule.forRoot(),
+    FormsModule,
+    ReactiveFormsModule,
+    SharedModule,
+  ],
+  declarations: [HomeComponent, HomeMapComponent, HomeNewComponent, DialogPlaceDetailComponent, RegisterPlaceComponent],
+  entryComponents: [RegisterPlaceComponent, DialogPlaceDetailComponent],
+  providers: [{
+    provide: SWIPER_CONFIG,
+    useValue: DEFAULT_SWIPER_CONFIG
+  }]
 })
 export class HomeModule { }

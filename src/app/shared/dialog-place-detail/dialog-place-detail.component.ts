@@ -1,6 +1,7 @@
 import { Component, OnInit, Inject } from '@angular/core';
 import { MAT_DIALOG_DATA } from '@angular/material/dialog';
 import { SwiperConfigInterface } from 'ngx-swiper-wrapper';
+import Establishment from 'src/app/models/establishment';
 
 @Component({
   selector: 'app-dialog-place-detail',
@@ -9,7 +10,8 @@ import { SwiperConfigInterface } from 'ngx-swiper-wrapper';
 })
 export class DialogPlaceDetailComponent implements OnInit {
 
-  modalData;
+  modalData: Establishment = new Establishment();
+  textShared;
   public config: SwiperConfigInterface = {
     a11y: true,
     direction: 'horizontal',
@@ -23,7 +25,8 @@ export class DialogPlaceDetailComponent implements OnInit {
   constructor(@Inject(MAT_DIALOG_DATA) public data: any) { }
 
   ngOnInit() {
-    this.modalData = this.data.result;
+    this.modalData = this.data.result as Establishment;
+    this.textShared = `Veja os detalhes do local: ${this.modalData.name} no site ->`;
   }
 
 }

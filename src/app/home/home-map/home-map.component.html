@@ -1,15 +1,11 @@
+
 <div class="loading" *ngIf="isLoading$ | async">
   <mat-spinner> </mat-spinner>
 </div>
 <div class="homemap">
   <div class="ad"></div>
   <div class="map-wrapper">
-    <div
-      class="map"
-      leaflet
-      [leafletOptions]="options"
-      (leafletMapReady)="onMapReady($event)"
-    ></div>
+    <div class="map" leaflet [leafletOptions]="options" (leafletMapReady)="onMapReady($event)"></div>
     <div class="button-wrapper">
       <button class="btn__map" (click)="center()">
         <i class="material-icons">
