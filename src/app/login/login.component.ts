@@ -48,7 +48,7 @@ export class LoginComponent implements OnInit {
   formRegister: FormGroup;
 
   constructor(private loginService: LoginService, private userService: UserService,
-              private alertService: AlertService, private formBuilder: FormBuilder) { }
+    private alertService: AlertService, private formBuilder: FormBuilder) { }
 
   ngOnInit() {
 
@@ -61,8 +61,8 @@ export class LoginComponent implements OnInit {
       date: [null, Validators.required],
       gender: ['female'],
     }, {
-        validator: MustMatch('password', 'passwordRepeat')
-      });
+      validator: MustMatch('password', 'passwordRepeat')
+    });
 
   }
 
@@ -79,10 +79,13 @@ export class LoginComponent implements OnInit {
 
     if (this.regexEmail.test(this.email)) {
       this.loginService.verifyEmail(this.email)
-        .subscribe(() => {
+        .subscribe((data) => {
+          console.log(data)
           this.goToStepTwo();
+          
         }, (error) => {
-          this.alertService.warning(error.error.msg);
+          console.log(error)
+          this.alertService.warning(error.error.message);
           this.loading = false;
         });
     } else {
@@ -98,7 +101,8 @@ export class LoginComponent implements OnInit {
         console.log(result);
         this.loading = false;
       }, (error) => {
-        this.alertService.warning(error.error.msg);
+        console.log(error)
+        this.alertService.warning(error.error.message);
         this.loading = false;
       });
   }

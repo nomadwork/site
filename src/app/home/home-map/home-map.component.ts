@@ -135,7 +135,7 @@ export class HomeMapComponent implements OnInit {
 
     this.establishmentService.getEstablishments(latlng.latitude, latlng.longitude)
       .subscribe(data => {
-
+        console.log(data);
         const marker = Array.from(new Set(data.result.map(a => a.id)))
           .map(id => {
             return data.result.find(a => a.id === id);
@@ -155,7 +155,7 @@ export class HomeMapComponent implements OnInit {
 
         });
 
-      });
+      },e => console.log(e));
   }
 
   center() {

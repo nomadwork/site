@@ -31,16 +31,16 @@ export class LoginService {
   }
 
   login(email: string, password: string): Observable<any> {
-    const passwordEncode = window.btoa(password);
-    return this.http.post<any>('/api/login', { email, passwordEncode })
+    // const passwordEncode = window.btoa(password);
+    return this.http.post<any>('/api/user/login', { email, password })
       .pipe(
         map(result => {
           this.userService.user = result;
-          localStorage.setItem('token', result.token);
+          localStorage.setItem('token', result.result.token.accessToken);
           this.loggedIn.next(true);
           this.router.navigate(['/']);
-          return true;
-        })
+          return result;
+        }, e => console.log(e))
       );
   }
 
@@ -55,7 +55,9 @@ export class LoginService {
   }
 
   verifyEmail(email: string): Observable<boolean> {
-    return this.http.post<boolean>('/api/verify-email/', { email });
+    return this.http.get<boolean>('/api/user/' + email).pipe(map(data => {
+      return data;
+    }))
   }
 
 }
