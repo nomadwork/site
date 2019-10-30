@@ -13,13 +13,12 @@ export class LoginService {
 
   constructor(private http: HttpClient, private router: Router, private userService: UserService) { }
 
-  private loggedIn = new BehaviorSubject<boolean>(true);
+  private loggedIn = new BehaviorSubject<boolean>(false);
 
   get isLoggedIn() {
 
-    //Se o usuário tiver logado emit um true aqui;
-    this.loggedIn.next(true);
-    this.userService.user = { name: 'Nomad', email: 'nomadwork@gmail.com' }
+    // Se o usuário tiver logado emit um true aqui;
+    this.userService.user = { name: 'Nomad', email: 'nomadwork@gmail.com' };
     if (localStorage.getItem('token')) {
     }
 
@@ -44,8 +43,12 @@ export class LoginService {
       );
   }
 
+  set isLogged(flag: boolean) {
+    this.loggedIn.next(flag);
+  }
+
   register(user: User): Observable<any> {
-    return this.http.post<any>('/api/register', user);
+    return this.http.post<any>('/api/user/create', user);
   }
 
   logout() {

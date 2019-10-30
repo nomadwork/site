@@ -6,6 +6,7 @@ import { AlertService } from 'ngx-alerts';
 import { FormGroup, FormBuilder, Validators } from '@angular/forms';
 import { MustMatch } from '../utils/must-match';
 import { trigger, state, style, animate, transition } from '@angular/animations';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-login',
@@ -48,7 +49,7 @@ export class LoginComponent implements OnInit {
   formRegister: FormGroup;
 
   constructor(private loginService: LoginService, private userService: UserService,
-              private alertService: AlertService, private formBuilder: FormBuilder) { }
+              private alertService: AlertService, private router: Router, private formBuilder: FormBuilder) { }
 
   ngOnInit() {
 
@@ -58,11 +59,11 @@ export class LoginComponent implements OnInit {
       email: [null, [Validators.required, Validators.email, Validators.minLength(4), Validators.maxLength(100)]],
       password: [null, [Validators.required, Validators.minLength(10), Validators.maxLength(100)]],
       passwordRepeat: [null, [Validators.required]],
-      date: [null, Validators.required],
+      dateborn: [null, Validators.required],
       gender: ['female'],
     }, {
-        validator: MustMatch('password', 'passwordRepeat')
-      });
+      validator: MustMatch('password', 'passwordRepeat')
+    });
 
   }
 
@@ -145,18 +146,26 @@ export class LoginComponent implements OnInit {
 
     const value = this.formRegister.value;
     value.password = window.btoa(value.password);
+    value.gender = +value.gender;
+
+    if (typeof value.dateborn === 'object') {
+      const dates = value.dateborn.toISOString().split('T')[0].split('-');
+      value.dateborn = `${dates[2]}/${dates[1]}/${dates[0]}`;
+    }
+
     delete value.passwordRepeat;
 
     this.loginService.register(value)
       .subscribe((resultUser) => {
         this.formRegister.reset();
         this.show = false;
-        this.step = true;
-        this.formNewUser = false;
-        this.email = resultUser.email;
+        this.userService.user = resultUser.user;
+        localStorage.setItem('token', resultUser.result.token.accessToken);
+        this.loginService.isLogged = true;
+        this.router.navigate(['/']);
         this.alertService.success('Cadastro realizado com sucesso');
       }, (error: any) => {
-        this.alertService.warning(error.error.msg);
+        this.alertService.warning(error.error.message);
       });
   }
 }
