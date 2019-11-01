@@ -19,6 +19,7 @@ import { LazyLoadImageModule } from 'ng-lazyload-image';
 import { SwiperModule } from 'ngx-swiper-wrapper';
 import { SWIPER_CONFIG } from 'ngx-swiper-wrapper';
 import { SwiperConfigInterface } from 'ngx-swiper-wrapper';
+import { Interceptor } from './auth/interceptor.module';
 
 const DEFAULT_SWIPER_CONFIG: SwiperConfigInterface = {
   direction: 'horizontal',
@@ -37,6 +38,7 @@ const DEFAULT_SWIPER_CONFIG: SwiperConfigInterface = {
     BrowserAnimationsModule,
     FormsModule,
     SharedModule,
+    Interceptor,
     BrowserModule,
     AppRoutingModule,
     HttpClientModule,

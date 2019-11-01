@@ -36,7 +36,7 @@ export class LoginComponent implements OnInit {
   email = '';
   confirmPassword = false;
 
-  @ViewChild("loginEmail", { static: false }) emailField: ElementRef;
+  @ViewChild('loginEmail', { static: false }) emailField: ElementRef;
 
   password = '';
   passwordOne: string;
@@ -64,6 +64,15 @@ export class LoginComponent implements OnInit {
     }, {
       validator: MustMatch('password', 'passwordRepeat')
     });
+
+    const user = localStorage.getItem('user');
+
+    if (user) {
+      this.loginService.isLogged = true;
+      this.userService.user = JSON.parse(user);
+      this.router.navigate(['/']);
+    }
+
 
   }
 
@@ -97,7 +106,7 @@ export class LoginComponent implements OnInit {
   login() {
     this.loading = true;
     this.loginService.login(this.email, this.password)
-      .subscribe(result => {
+      .subscribe(() => {
         this.loading = false;
       }, (error) => {
         if (error.error && error.error.message) {
@@ -163,6 +172,7 @@ export class LoginComponent implements OnInit {
         this.formRegister.reset();
         this.show = false;
         this.userService.user = resultUser.user;
+        localStorage.setItem('user', JSON.stringify(resultUser));
         localStorage.setItem('token', resultUser.result.token.accessToken);
         this.loginService.isLogged = true;
         this.router.navigate(['/']);

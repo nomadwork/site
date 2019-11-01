@@ -35,6 +35,7 @@ export class LoginService {
       .pipe(
         map(resultApi => {
           this.userService.user = resultApi.result.user;
+          localStorage.setItem('user',  JSON.stringify(this.userService.user));
           localStorage.setItem('token', resultApi.result.token.accessToken);
           this.loggedIn.next(true);
           this.router.navigate(['/']);
@@ -53,6 +54,7 @@ export class LoginService {
 
   logout() {
     localStorage.removeItem('token');
+    localStorage.removeItem('user');
     this.loggedIn.next(false);
     this.router.navigate(['/login']);
   }
