@@ -31,19 +31,19 @@ export class RegisterPlaceComponent implements OnInit {
       email: [null, [Validators.required, Validators.email, Validators.minLength(4), Validators.maxLength(100)]],
       phone: [null, [Validators.required, Validators.minLength(10), Validators.maxLength(11)]],
       wifi: this.formBuilder.group({
-        rate: [null, Validators.required],
+        rate: [0, Validators.required],
       }),
       noise: this.formBuilder.group({
-        rate: [null, Validators.required],
+        rate: [0, Validators.required],
       }),
       plug: this.formBuilder.group({
-        rate: [null, Validators.required],
+        rate: [0, Validators.required],
       }),
       schedule: this.formBuilder.group({
-        open: [null, Validators.required],
-        openMinute: [null, Validators.required],
-        close: [null, Validators.required],
-        closeMinute: [null, Validators.required]
+        open: ['00', Validators.required],
+        openMinute: ['00', Validators.required],
+        close: ['00', Validators.required],
+        closeMinute: ['00', Validators.required]
       }),
       latitude: [this.data.coords.latitude],
       longitude: [this.data.coords.longitude]
@@ -55,9 +55,7 @@ export class RegisterPlaceComponent implements OnInit {
   }
 
   suggestionSubmit() {
-    let establishmment = new Establishment();
-    establishmment = this.suggestionForm.value as Establishment;
-
+    const establishmment = this.preparerEstablishment();
     this.establishmentService.createEstablishment(establishmment)
       .subscribe(result => {
         this.dialogRef.close();
@@ -66,7 +64,18 @@ export class RegisterPlaceComponent implements OnInit {
         this.alertService.danger('Falha ao sugerir este local');
         console.log(error);
       });
+  }
 
+  preparerEstablishment(): Establishment {
+    let establishmment;
+    establishmment = this.suggestionForm.value;
+    establishmment.schedule.open = establishmment.schedule.open + ':' + establishmment.schedule.openMinute;
+
+    delete establishmment.schedule.openMinute;
+    establishmment.schedule.close = establishmment.schedule.close + ':' + establishmment.schedule.closeMinute;
+    delete establishmment.schedule.closeMinute;
+
+    return establishmment;
 
   }
 

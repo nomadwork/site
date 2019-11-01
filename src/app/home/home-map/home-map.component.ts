@@ -6,7 +6,7 @@ import { MapService } from '../../services/map.service';
 import { DialogPlaceDetailComponent } from 'src/app/shared/dialog-place-detail/dialog-place-detail.component';
 import { BehaviorSubject } from 'rxjs';
 import { EstablishmentService } from 'src/app/services/establishment.service';
-import { faFacebookSquare } from '@fortawesome/free-brands-svg-icons/faFacebookSquare';
+import { AlertService } from 'ngx-alerts';
 
 @Component({
   selector: 'app-home-map',
@@ -15,7 +15,7 @@ import { faFacebookSquare } from '@fortawesome/free-brands-svg-icons/faFacebookS
 })
 export class HomeMapComponent implements OnInit {
 
-  constructor(private dialog: MatDialog, private mapService: MapService,
+  constructor(private dialog: MatDialog, private mapService: MapService, private alertService: AlertService,
               private establishmentService: EstablishmentService) { }
 
   registerPlace = {};
@@ -168,12 +168,16 @@ export class HomeMapComponent implements OnInit {
   }
 
   showThisPlace(id: number) {
-    this.isLoading$.next(true);
-    this.mapService.detailAboutThisPlace(id)
-      .subscribe(resultDetail => {
-        this.dialog.open(DialogPlaceDetailComponent, this.modalConfig(resultDetail));
-        this.isLoading$.next(false);
-      }, error => console.log(error));
+    if (!id) {
+      this.alertService.info('Nenhum local selecionado');
+    } else {
+      this.isLoading$.next(true);
+      this.mapService.detailAboutThisPlace(id)
+        .subscribe(resultDetail => {
+          this.dialog.open(DialogPlaceDetailComponent, this.modalConfig(resultDetail));
+          this.isLoading$.next(false);
+        }, error => console.log(error));
+    }
   }
 
 }

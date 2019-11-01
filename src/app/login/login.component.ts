@@ -36,7 +36,7 @@ export class LoginComponent implements OnInit {
   email = '';
   confirmPassword = false;
 
-  @ViewChild("loginEmail", { static: false }) emailField: ElementRef;
+  @ViewChild('loginEmail', { static: false }) emailField: ElementRef;
 
   password = '';
   passwordOne: string;
@@ -49,7 +49,7 @@ export class LoginComponent implements OnInit {
   formRegister: FormGroup;
 
   constructor(private loginService: LoginService, private userService: UserService,
-              private alertService: AlertService, private router: Router, private formBuilder: FormBuilder) { }
+    private alertService: AlertService, private router: Router, private formBuilder: FormBuilder) { }
 
   ngOnInit() {
 
@@ -64,6 +64,15 @@ export class LoginComponent implements OnInit {
     }, {
       validator: MustMatch('password', 'passwordRepeat')
     });
+
+    const user = localStorage.getItem('user');
+
+    if (user) {
+      this.loginService.isLogged = true;
+      this.userService.user = JSON.parse(user);
+      this.router.navigate(['/']);
+    }
+
 
   }
 
@@ -80,10 +89,12 @@ export class LoginComponent implements OnInit {
 
     if (this.regexEmail.test(this.email)) {
       this.loginService.verifyEmail(this.email)
-        .subscribe(() => {
-          this.goToStepTwo();
+        .subscribe((resultApi) => {
+          if (resultApi.result) {
+            this.goToStepTwo();
+          }
         }, (error) => {
-          this.alertService.warning(error.error.msg);
+          this.alertService.warning(error.error.message);
           this.loading = false;
         });
     } else {
@@ -95,11 +106,12 @@ export class LoginComponent implements OnInit {
   login() {
     this.loading = true;
     this.loginService.login(this.email, this.password)
-      .subscribe(result => {
-        console.log(result);
+      .subscribe(() => {
         this.loading = false;
       }, (error) => {
-        this.alertService.warning(error.error.msg);
+        if (error.error && error.error.message) {
+          this.alertService.warning(error.error.message);
+        }
         this.loading = false;
       });
   }
@@ -160,6 +172,7 @@ export class LoginComponent implements OnInit {
         this.formRegister.reset();
         this.show = false;
         this.userService.user = resultUser.user;
+        localStorage.setItem('user', JSON.stringify(resultUser));
         localStorage.setItem('token', resultUser.result.token.accessToken);
         this.loginService.isLogged = true;
         this.router.navigate(['/']);

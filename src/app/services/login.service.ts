@@ -29,13 +29,14 @@ export class LoginService {
     return this.http.get<any>('/api/markers');
   }
 
-  login(email: string, password: string): Observable<any> {
-    const passwordEncode = window.btoa(password);
-    return this.http.post<any>('/api/login', { email, passwordEncode })
+  login(email: string, passwordSimple: string): Observable<any> {
+    const password = window.btoa(passwordSimple);
+    return this.http.post<any>('/api/user/login', { email, password })
       .pipe(
-        map(result => {
-          this.userService.user = result;
-          localStorage.setItem('token', result.token);
+        map(resultApi => {
+          this.userService.user = resultApi.result.user;
+          localStorage.setItem('user',  JSON.stringify(this.userService.user));
+          localStorage.setItem('token', resultApi.result.token.accessToken);
           this.loggedIn.next(true);
           this.router.navigate(['/']);
           return true;
@@ -53,12 +54,13 @@ export class LoginService {
 
   logout() {
     localStorage.removeItem('token');
+    localStorage.removeItem('user');
     this.loggedIn.next(false);
     this.router.navigate(['/login']);
   }
 
-  verifyEmail(email: string): Observable<boolean> {
-    return this.http.post<boolean>('/api/verify-email/', { email });
+  verifyEmail(email: string): Observable<any> {
+    return this.http.get<any>(`/api/user/${email}`);
   }
 
 }
