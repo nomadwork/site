@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 import { Router } from '@angular/router';
-import { BehaviorSubject, Observable, of } from 'rxjs';
+import { BehaviorSubject, Observable } from 'rxjs';
 import { map } from 'rxjs/operators';
 import { HttpClient } from '@angular/common/http';
 import { UserService } from './user.service';
@@ -16,12 +16,6 @@ export class LoginService {
   private loggedIn = new BehaviorSubject<boolean>(false);
 
   get isLoggedIn() {
-
-    // Se o usuário tiver logado emit um true aqui;
-    this.userService.user = { name: 'Nomad', email: 'nomadwork@gmail.com' };
-    if (localStorage.getItem('token')) {
-    }
-
     return this.loggedIn.asObservable();
   }
 

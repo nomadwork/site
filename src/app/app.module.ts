@@ -15,11 +15,12 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { AlertModule } from 'ngx-alerts';
 import { LazyLoadImageModule } from 'ng-lazyload-image';
 
-
+import { NgxChartsModule } from '@swimlane/ngx-charts';
 import { SwiperModule } from 'ngx-swiper-wrapper';
 import { SWIPER_CONFIG } from 'ngx-swiper-wrapper';
 import { SwiperConfigInterface } from 'ngx-swiper-wrapper';
 import { Interceptor } from './auth/interceptor.module';
+import { DialogEstablishmentsComponent } from './shared/dialog-establishments/dialog-establishments.component';
 
 const DEFAULT_SWIPER_CONFIG: SwiperConfigInterface = {
   direction: 'horizontal',
@@ -32,10 +33,12 @@ const DEFAULT_SWIPER_CONFIG: SwiperConfigInterface = {
     LoginComponent,
     HeaderComponent,
     AppLayoutComponent,
+    DialogEstablishmentsComponent
   ],
   imports: [
     SwiperModule,
     BrowserAnimationsModule,
+    NgxChartsModule,
     FormsModule,
     SharedModule,
     Interceptor,
@@ -50,6 +53,7 @@ const DEFAULT_SWIPER_CONFIG: SwiperConfigInterface = {
     provide: SWIPER_CONFIG,
     useValue: DEFAULT_SWIPER_CONFIG
   }],
+  entryComponents: [DialogEstablishmentsComponent],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

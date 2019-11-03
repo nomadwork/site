@@ -4,4 +4,6 @@ export default class User {
     birthdate?: Date;
     gender?: string;
     name: string;
+    admin: boolean;
+    establishmments: Array<any> = [];
 }

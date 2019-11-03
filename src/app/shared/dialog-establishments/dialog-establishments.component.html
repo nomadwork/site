@@ -1,0 +1,41 @@
+<h2 mat-dialog-title>Seus estabelecimentos</h2>
+
+<mat-dialog-content class="mat-typography">
+
+    <perfect-scrollbar mat-dialog-content style="height: 75vh" *ngIf="stepOne; else step2">
+        <a *ngFor="let e of establishments" (click)="details(e.id, e.name)"
+            class="pointer list-group-item list-group-item-action">
+            {{ e.name}}
+        </a>
+    </perfect-scrollbar>
+
+    <ng-template #step2>
+        <button (click)="changeStep()" class="btn btn--success">
+            Voltar
+        </button>
+
+        <div class="col-12 text-center">
+            <span class="title-establishment">
+                {{ showName}}
+            </span>
+        </div>
+
+        <mat-tab-group>
+            <mat-tab label="Gêneros">
+                <ngx-charts-bar-vertical [view]="view" [scheme]="colorScheme" [results]="single" [gradient]="gradient"
+                    [xAxis]="showXAxis" [yAxis]="showYAxis" [legend]="showLegend" [showXAxisLabel]="showXAxisLabel"
+                    [showYAxisLabel]="showYAxisLabel" [xAxisLabel]="xAxisLabel" [yAxisLabel]="yAxisLabel">
+                </ngx-charts-bar-vertical>
+            </mat-tab>
+            <mat-tab label="Idades">
+                <ngx-charts-bar-vertical [view]="view" [results]="singleTwo" [gradient]="gradient" [xAxis]="showXAxis"
+                    [yAxis]="showYAxis" [legend]="showLegend" [showXAxisLabel]="showXAxisLabel"
+                    [showYAxisLabel]="showYAxisLabel" [xAxisLabel]="xAxisLabelTwo" [yAxisLabel]="yAxisLabelTwo">
+                </ngx-charts-bar-vertical>
+            </mat-tab>
+        </mat-tab-group>
+
+
+    </ng-template>
+
+</mat-dialog-content>

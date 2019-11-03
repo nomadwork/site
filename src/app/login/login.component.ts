@@ -149,11 +149,6 @@ export class LoginComponent implements OnInit {
     return this.passwordOne !== this.passwordTwo;
   }
 
-  forgetPassword() {
-    //  Implementar esqueci a senha
-  }
-
-  // metodo ao clicar no botão registrar
   registerSubmit() {
 
     const value = this.formRegister.value;
@@ -171,8 +166,8 @@ export class LoginComponent implements OnInit {
       .subscribe((resultUser) => {
         this.formRegister.reset();
         this.show = false;
-        this.userService.user = resultUser.user;
-        localStorage.setItem('user', JSON.stringify(resultUser));
+        this.userService.user = resultUser.result.user;
+        localStorage.setItem('user', JSON.stringify(resultUser.result.user));
         localStorage.setItem('token', resultUser.result.token.accessToken);
         this.loginService.isLogged = true;
         this.router.navigate(['/']);

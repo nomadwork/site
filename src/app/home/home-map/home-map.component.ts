@@ -80,7 +80,7 @@ export class HomeMapComponent implements OnInit {
       minHeight: '50vh',
       maxHeight: '95%',
       data
-    }
+    };
   }
 
   show() {
