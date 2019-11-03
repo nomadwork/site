@@ -26,8 +26,8 @@ import { Router } from '@angular/router';
 })
 export class LoginComponent implements OnInit {
 
-  defaultImage = 'http://localhost:3000/files/nomadworkbg-lq.jpg';
-  image = 'http://localhost:3000/files/nomadworkbg.jpg';
+  defaultImage = '../../assets/img/nomadworkbg-lq2.jpg';
+  image = '../../assets/img/nomadworkbg.jpg';
 
   loading = false;
   show = true;
