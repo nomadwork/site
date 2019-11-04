@@ -72,14 +72,13 @@ export class LoginComponent implements OnInit {
       this.userService.user = JSON.parse(user);
       this.router.navigate(['/']);
     }
-
-
   }
 
   // metodo para animação
   get stateStep() {
     return this.show ? 'show' : 'hide';
   }
+
   toggle() {
     this.show = !this.show;
   }
