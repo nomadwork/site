@@ -11,6 +11,9 @@ $color-primary: #03a9f4;
   background: white;
   width: 70px!important;
   border-top-right-radius: 7px;
+  border-top-left-radius: 7px;
+  left: 50%!important;
+  transform: translate(-50%,0px)!important;
 }
 
 .swiper-pagination-bullet {
@@ -22,6 +25,7 @@ $color-primary: #03a9f4;
 .swiper-pagination-bullet.swiper-pagination-bullet-active {
   background: $color-primary !important;
 }
+
 .swiper-pagination-bullets {
   bottom: 0px !important;
 }

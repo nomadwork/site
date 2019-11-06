@@ -7,8 +7,10 @@ export default class Establishment {
     name: string;
     phone: number;
     email: string;
+    completeAddress: string;
     latitude: number;
     longitude: number;
+    urlPhoto: string;
     wifi: Wifi;
     noise: Noise;
     plug: Plug;
