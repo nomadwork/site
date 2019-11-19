@@ -6,7 +6,7 @@
         "start:mock": "ng serve  --port 4201 --proxy-config proxy.mock.json --host 0.0.0.0 --disable-host-check",
         "start:heroku": "ng serve  --port 4201 --proxy-config proxy.heroku.json --host 0.0.0.0 --disable-host-check",
         "start:api": "ng serve --open --proxy-config proxy.conf.json --host 0.0.0.0 --disable-host-check",
-        "build": "ng build",
+        "build": "ng build --prod",
         "test": "ng test",
         "lint": "ng lint",
         "e2e": "ng e2e"
