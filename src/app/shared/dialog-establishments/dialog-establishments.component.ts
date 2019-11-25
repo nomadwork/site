@@ -46,7 +46,7 @@ export class DialogEstablishmentsComponent implements OnInit {
 
   details(id, name) {
     this.showName = name;
-    this.establishmentService.getDetailsEstablishment(2)
+    this.establishmentService.getDetailsEstablishment(id)
       .subscribe(resultApi => {
         console.log(resultApi);
         const single = resultApi.result.gender;
