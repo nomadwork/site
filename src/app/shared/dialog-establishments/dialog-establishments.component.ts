@@ -35,19 +35,21 @@ export class DialogEstablishmentsComponent implements OnInit {
   };
 
   constructor(@Inject(MAT_DIALOG_DATA) public data: any,
-              private establishmentService: EstablishmentService
-            , public dialogRef: MatDialogRef<DialogEstablishmentsComponent>) {
+    private establishmentService: EstablishmentService
+    , public dialogRef: MatDialogRef<DialogEstablishmentsComponent>) {
   }
 
   ngOnInit() {
     this.establishments = this.data;
+
   }
 
   details(id, name) {
     this.showName = name;
-    this.establishmentService.getDetailsEstablishment(id)
+    this.establishmentService.getDetailsEstablishment(2)
       .subscribe(resultApi => {
-        const single = resultApi.result.sex;
+        console.log(resultApi);
+        const single = resultApi.result.gender;
         const singleTwo = resultApi.result.age;
 
         Object.assign(this, { single });

@@ -7,6 +7,7 @@ import { DialogPlaceDetailComponent } from 'src/app/shared/dialog-place-detail/d
 import { BehaviorSubject } from 'rxjs';
 import { EstablishmentService } from 'src/app/services/establishment.service';
 import { AlertService } from 'ngx-alerts';
+import { TestBed } from '@angular/core/testing';
 
 @Component({
   selector: 'app-home-map',
@@ -16,7 +17,7 @@ import { AlertService } from 'ngx-alerts';
 export class HomeMapComponent implements OnInit {
 
   constructor(private dialog: MatDialog, private mapService: MapService, private alertService: AlertService,
-              private establishmentService: EstablishmentService) { }
+    private establishmentService: EstablishmentService) { }
 
   registerPlace = {};
   iconUrl = 'src/../../../assets/img/my-pin.svg';
@@ -72,6 +73,11 @@ export class HomeMapComponent implements OnInit {
 
 
   ngOnInit() { }
+
+
+  testand() {
+    console.log('teste')
+  }
 
   modalConfig(data) {
     return {
@@ -150,8 +156,6 @@ export class HomeMapComponent implements OnInit {
               this.map.flyTo(e.latlng);
             });
           nws.bindPopup(`<b >${x.name}</b>`, this.customNwsPopup);
-
-
 
         });
 

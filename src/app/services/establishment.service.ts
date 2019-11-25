@@ -25,8 +25,12 @@ export class EstablishmentService {
     return this.http.get<HttpResponseEstablishmentMap>(`/api/establishmment/${latitude},${longitude}`);
   }
 
+  // getDetailsEstablishment(id: number): Observable<any> {
+  //   return this.http.get<any>(`/api/establishmment/details/${id}`);
+  // }
   getDetailsEstablishment(id: number): Observable<any> {
-    return this.http.get<any>(`/api/establishmment/details/${id}`);
+    return this.http.get<any>(`/api/log/establishmments/${id}`);
   }
 
+ 
 }
