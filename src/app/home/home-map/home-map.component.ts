@@ -22,8 +22,10 @@ export class HomeMapComponent implements OnInit {
   registerPlace = {};
   iconUrl = 'src/../../../assets/img/my-pin.svg';
   isLoading$: BehaviorSubject<boolean> = new BehaviorSubject(false);
+  establishmments = [];
   map;
   id;
+  nws;
   geoLocation;
   markers;
   showModal = false;
@@ -136,12 +138,19 @@ export class HomeMapComponent implements OnInit {
     });
   }
 
+  mapSerchFly(event: any) {
+    this.map.flyTo({ lat: event.geolocation.latitude, lng: event.geolocation.longitude }, 17, {
+      animate: true,
+      duration: .5
+    });
+  }
 
   getMarkers(latlng) {
 
     this.establishmentService.getEstablishments(latlng.latitude, latlng.longitude)
       .subscribe(data => {
 
+        this.markers = data;
         const marker = Array.from(new Set(data.result.map(a => a.id)))
           .map(id => {
             return data.result.find(a => a.id === id);
@@ -150,12 +159,12 @@ export class HomeMapComponent implements OnInit {
 
         // TODO Jerson deu a ideia de fazer várias funções que não sei eu acho que deveria usar Set ai de baixo
         marker.forEach(x => {
-          const nws = L.marker([x.geolocation.latitude, x.geolocation.longitude],
+          this.nws = L.marker([x.geolocation.latitude, x.geolocation.longitude],
             { icon: this.nwsIcon }).addTo(this.map).on('click', (e: any) => {
               this.id = x.id;
               this.map.flyTo(e.latlng);
             });
-          nws.bindPopup(`<b >${x.name}</b>`, this.customNwsPopup);
+          this.nws.bindPopup(`<b >${x.name}</b>`, this.customNwsPopup);
 
         });
 
@@ -182,6 +191,29 @@ export class HomeMapComponent implements OnInit {
           this.isLoading$.next(false);
         }, error => console.log(error));
     }
+  }
+
+  placeSearch(e) {
+    this.mapService.searchPlaces(e.target.value).subscribe(data => {
+      this.establishmments = data.result;
+    })
+  }
+
+  selectedEstablismment(e) {
+    this.getMarkers({ latitude: e.geolocation.latitude, longitude: e.geolocation.longitude });
+    this.mapSerchFly(e);
+
+    const searchedPlace = L.marker([e.geolocation.latitude, e.geolocation.longitude],
+      { icon: this.nwsIcon }).addTo(this.map).on('click', (e: any) => {
+        this.id = e.id;
+        this.map.flyTo(e.latlng);
+      });
+    searchedPlace.bindPopup(`<b >${e.name}</b>`, this.customNwsPopup).openPopup();
+
+    this.mapService.detailAboutThisPlace(e.id)
+      .subscribe(resultDetail => {
+        this.dialog.open(DialogPlaceDetailComponent, this.modalConfig(resultDetail));
+      }, error => console.log(error));
   }
 
 }
