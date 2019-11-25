@@ -25,3 +25,21 @@ Run `ng e2e` to execute the end-to-end tests via [Protractor](http://www.protrac
 ## Further help
 
 To get more help on the Angular CLI use `ng help` or go check out the [Angular CLI README](https://github.com/angular/angular-cli/blob/master/README.md).
+
+
+## docker run 
+
+Primeiro buildar o projeto através do comando ng build --prod
+
+Segundo você precisa criar a imagem do container através do comando
+
+docker build -t "nome_do_repositorio_no_docker_hub/nome_do_projeto" -f dockerfile .
+
+depois adicionar a tag do projeto 
+
+docker tag "nome_do_repositorio_no_docker_hub/nome_do_projeto" "nome_do_projeto:versão_do_projeto"
+
+docker push "nome_do_repositorio_no_docker_hub/nome_do_projeto"
+
+depois disso, você pode utilizar sua imagem criada do nomadwork em qualquer ambiente que tenha suporter para containers. 
+
