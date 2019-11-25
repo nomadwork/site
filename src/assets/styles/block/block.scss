@@ -1,225 +1,239 @@
 $color-base: #ffffff;
 $color-primary: #03a9f4;
-
 .swiper-pagination-bullet-first,
 .swiper-pagination-bullet-last {
-  border: 0px !important;
-  margin: 0 !important;
+    border: 0px !important;
+    margin: 0 !important;
 }
 
-.swiper-pagination.swiper-pagination-bullets{
-  background: white;
-  width: 70px!important;
-  border-top-right-radius: 7px;
-  border-top-left-radius: 7px;
-  left: 50%!important;
-  transform: translate(-50%,0px)!important;
+.swiper-pagination.swiper-pagination-bullets {
+    background: white;
+    width: 70px!important;
+    border-top-right-radius: 7px;
+    border-top-left-radius: 7px;
+    left: 50%!important;
+    transform: translate(-50%, 0px)!important;
 }
 
 .swiper-pagination-bullet {
-  opacity: 0.5 !important;
-  background: $color-base !important;
-  box-shadow: 0px 0px 3px rgba(0, 0, 0, 0.952);
+    opacity: 0.5 !important;
+    background: $color-base !important;
+    box-shadow: 0px 0px 3px rgba(0, 0, 0, 0.952);
 }
 
 .swiper-pagination-bullet.swiper-pagination-bullet-active {
-  background: $color-primary !important;
+    background: $color-primary !important;
 }
 
 .swiper-pagination-bullets {
-  bottom: 0px !important;
+    bottom: 0px !important;
 }
 
 .swiper-pagination-handle {
-  display: unset !important;
+    display: unset !important;
 }
 
 .btn {
-  background: rgba(255, 255, 255, 0.801);
-  outline: none;
-  color: black;
-  border-radius: 3px;
-  padding: 5px 20px;
-  font-size: 19px;
-  border: 0px;
-  transition: 0.1s;
-  &:active {
-    background: rgb(226, 226, 226);
-  }
+    background: rgba(255, 255, 255, 0.801);
+    outline: none;
+    color: black;
+    border-radius: 3px;
+    padding: 5px 20px;
+    font-size: 19px;
+    border: 0px;
+    transition: 0.1s;
+    &:active {
+        background: rgb(226, 226, 226);
+    }
 }
 
 .input {
-  padding: 3px 5px;
-  outline: none;
-  border: 2px solid $color-primary !important;
-  border-radius: 6px;
-  width: 100%;
-  max-width: 500px;
-  background: transparent;
+    padding: 3px 0;
+    outline: 0;
+    font-size: 18px!important;
+    border: 0;
+    border-bottom: 2px solid #03a9f4!important;
+    width: 100%;
+    max-width: 500px;
+    background: 0 0;
 }
 
 .nav {
-  background: $color-base;
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  width: 100%;
-  height: 50px;
-  box-shadow: 1px 1px 2px #0000003f;
+    background: $color-base;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    width: 100%;
+    height: 50px;
+    box-shadow: 1px 1px 2px #0000003f;
 }
 
 .camp-validate {
-  width: 100%;
-  display: flex;
-  padding: 5px 0;
-  justify-content: flex-start;
-  align-items: center;
-  color: red;
+    width: 100%;
+    display: flex;
+    padding: 5px 0;
+    justify-content: flex-start;
+    align-items: center;
+    color: red;
 }
 
 .container {
-  position: relative;
-  padding-left: 25px;
-  margin-bottom: 2px;
-  margin: 0px 5px;
-  cursor: pointer;
-  color: #000;
-  font-size: 18px;
-  font-weight: normal;
-  -webkit-user-select: none;
-  -moz-user-select: none;
-  -ms-user-select: none;
-  user-select: none;
+    position: relative;
+    padding-left: 25px;
+    margin-bottom: 2px;
+    margin: 0px 5px;
+    cursor: pointer;
+    color: #000;
+    font-size: 18px;
+    font-weight: normal;
+    -webkit-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    user-select: none;
 }
+
 
 /* Hide the browser's default radio button */
+
 .container input {
-  position: absolute;
-  opacity: 0;
-  cursor: pointer;
+    position: absolute;
+    opacity: 0;
+    cursor: pointer;
 }
+
 
 /* Create a custom radio button */
+
 .checkmark {
-  position: absolute;
-  top: 2.6px;
-  left: 6px;
-  height: 15px;
-  width: 15px;
-  background-color: #ccc;
-  border-radius: 50%;
+    position: absolute;
+    top: 2.6px;
+    left: 6px;
+    height: 15px;
+    width: 15px;
+    background-color: #ccc;
+    border-radius: 50%;
 }
+
 
 /* On mouse-over, add a grey background color */
-.container:hover input ~ .checkmark {
-  background-color: rgb(156, 156, 156);
+
+.container:hover input~.checkmark {
+    background-color: rgb(156, 156, 156);
 }
+
 
 /* When the radio button is checked, add a blue background */
-.container input:checked ~ .checkmark {
-  background-color: $color-primary;
+
+.container input:checked~.checkmark {
+    background-color: $color-primary;
 }
+
 
 /* Create the indicator (the dot/circle - hidden when not checked) */
+
 .checkmark:after {
-  content: "";
-  position: absolute;
-  display: none;
+    content: "";
+    position: absolute;
+    display: none;
 }
+
 
 /* Show the indicator (dot/circle) when checked */
-.container input:checked ~ .checkmark:after {
-  display: block;
+
+.container input:checked~.checkmark:after {
+    display: block;
 }
 
+
 /* Style the indicator (dot/circle) */
+
 .container .checkmark:after {
-  top: 4px;
-  left: 4px;
-  width: 7px;
-  height: 7px;
-  border-radius: 50%;
-  background: white;
+    top: 4px;
+    left: 4px;
+    width: 7px;
+    height: 7px;
+    border-radius: 50%;
+    background: white;
 }
 
 .register {
-  box-shadow: 0 0px 10px rgba(0, 0, 0, 0.78);
-  text-align: left;
-  position: relative;
-  border-radius: 5px;
-  z-index: 1;
-  border-top-left-radius: 0px;
-  border-top-right-radius: 0px;
-  background: $color-base;
-  overflow: hidden;
-  padding: 4rem 1rem 0rem 1rem;
+    box-shadow: 0 0px 10px rgba(0, 0, 0, 0.78);
+    text-align: left;
+    position: relative;
+    border-radius: 5px;
+    z-index: 1;
+    border-top-left-radius: 0px;
+    border-top-right-radius: 0px;
+    background: $color-base;
+    overflow: hidden;
+    padding: 4rem 1rem 0rem 1rem;
 }
 
 .registerPlace {
-  text-align: left;
+    text-align: left;
 }
 
 .register-title {
-  color: #00b8d8;
-  font-weight: 900;
-  text-align: center;
-  font-family: "Quicksand", sans-serif;
+    color: #00b8d8;
+    font-weight: 900;
+    text-align: center;
+    font-family: "Quicksand", sans-serif;
 }
 
 .radios {
-  max-width: 350px;
-  width: 98%;
-  display: flex;
-  flex-wrap: wrap;
-  justify-content: flex-start;
-  margin: 0 auto;
-  margin-bottom: 15px;
+    max-width: 350px;
+    width: 98%;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: flex-start;
+    margin: 0 auto;
+    margin-bottom: 15px;
 }
 
 .range {
-  max-width: 450px;
-  width: 98%;
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  margin: 0 auto;
-  margin-bottom: 15px;
-  .slide-range {
-    width: 100%;
-  }
-  i {
-    padding: 5px;
-  }
-  i:nth-child(1) {
-    color: #838383;
-  }
-  i:nth-child(3) {
-    color: #03a9f4;
-  }
+    max-width: 450px;
+    width: 98%;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin: 0 auto;
+    margin-bottom: 15px;
+    .slide-range {
+        width: 100%;
+    }
+    i {
+        padding: 5px;
+    }
+    i:nth-child(1) {
+        color: #838383;
+    }
+    i:nth-child(3) {
+        color: #03a9f4;
+    }
 }
 
 .suggestion-form {
-  position: absolute;
-  left: 0;
-  top: 0;
-  width: 100%;
-  .ps-content {
-    display: flex !important;
-    align-items: center !important;
-    justify-content: center !important;
-    flex-direction: column !important;
-  }
-  height: calc(100vh - 50px);
-  background: #03a8f442;
-  z-index: 10;
+    position: absolute;
+    left: 0;
+    top: 0;
+    width: 100%;
+    .ps-content {
+        display: flex !important;
+        align-items: center !important;
+        justify-content: center !important;
+        flex-direction: column !important;
+    }
+    height: calc(100vh - 50px);
+    background: #03a8f442;
+    z-index: 10;
 }
 
 .father {
-  .ps-content {
-    min-height: 100vh;
-    display: flex !important;
-    align-items: center !important;
-    justify-content: center !important;
-    flex-direction: row !important;
-  }
+    .ps-content {
+        min-height: 100vh;
+        display: flex !important;
+        align-items: center !important;
+        justify-content: center !important;
+        flex-direction: row !important;
+    }
 }

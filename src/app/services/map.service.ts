@@ -18,6 +18,6 @@ export class MapService {
   }
 
   searchPlaces(term: any): Observable<any> {
-    return this.http.get<any>(`api/establishmment/v1/${term}`);
+    return this.http.get<any>(`api/establishmment/${term}`);
   }
 }
