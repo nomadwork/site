@@ -58,9 +58,10 @@ $color-primary: #03a9f4;
     background: 0 0;
 }
 
-.nav {
+.nav,.nav-mobile {
     background: $color-base;
     display: flex;
+    text-decoration: none;
     align-items: center;
     justify-content: space-between;
     width: 100%;

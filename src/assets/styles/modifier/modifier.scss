@@ -33,3 +33,12 @@ $color-danger: rgb(95, 95, 95);
     }
   }
 }
+.nav-mobile__link {
+  @at-root #{&}--active {
+    &:before {
+      visibility: visible;
+      -webkit-transform: scaleX(1);
+      transform: scaleX(1);
+    }
+  }
+}

@@ -1,17 +1,34 @@
-
 <div class="loading" *ngIf="isLoading$ | async">
   <mat-spinner> </mat-spinner>
 </div>
 <div class="homemap">
-  <div class="ad" style="text-align: center;">
-    <input (keyup.enter)="placeSearch($event)" class="input" style="width:95%;margin: 5px 0 auto;" type="search" name="searchEstablismment">
-    <ul class="establishmment-list">
-      <li *ngFor="let e of establishmments" (click)="selectedEstablismment(e)">
-        {{ e.name }}
-      </li>
-    </ul>
+  <div class="search" style="text-align: center;overflow: hidden;">
+    <input placeholder="Pesquisar Local" (blur)="placeSearch($event)" (keyup.enter)="placeSearch($event)" class="input"
+      style="width:95%;margin: 5px 0 auto;" type="search" name="searchEstablismment">
+    <perfect-scrollbar>
+
+      <ul class="establishmment-list">
+        <li *ngFor="let e of establishmments" (click)="selectedEstablismment(e)">
+          {{ e.name }}
+        </li>
+      </ul>
+
+    </perfect-scrollbar>
   </div>
   <div class="map-wrapper">
+    <div class="search-mobile" style="text-align: center;overflow: hidden;">
+      <input placeholder="Pesquisar Local" (blur)="placeSearch($event)" (keyup.enter)="placeSearch($event)"
+        class="input" style="width:95%;margin: 5px 0 auto;" type="search" name="searchEstablismment">
+      <perfect-scrollbar>
+
+        <ul class="establishmment-list">
+          <li *ngFor="let e of establishmments" (click)="selectedEstablismment(e)">
+            {{ e.name }}
+          </li>
+        </ul>
+
+      </perfect-scrollbar>
+    </div>
     <div class="map" leaflet [leafletOptions]="options" (leafletMapReady)="onMapReady($event)"></div>
     <div class="button-wrapper">
       <button class="btn__map" (click)="center()">
@@ -26,5 +43,6 @@
     </button>
   </div>
 
-  <div class="ad"></div>
+  <div class="ad">
+  </div>
 </div>

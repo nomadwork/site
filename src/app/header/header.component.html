@@ -2,7 +2,7 @@
     <div>
         <a [routerLink]="['']" class="nav__link" routerLinkActive="nav__link--active"
             [routerLinkActiveOptions]="{exact: true}">Mapa</a>
-            <a class="nav__link" *ngIf="user && user.admin" (click)="showEstablishments()"> Estabelecimentos</a>
+        <a class="nav__link" *ngIf="user && user.admin" (click)="showEstablishments()"> Estabelecimentos</a>
     </div>
 
     <div>
@@ -12,3 +12,33 @@
         </a>
     </div>
 </nav>
+
+<div class="nav-mobile">
+
+    <input id="sidebar__trigger" class="sidebar__trigger" type="checkbox" />
+    <label for="sidebar__trigger">
+        <div class="sidebar__button sidebar__button-open">
+            <div class="hamburguer"></div>
+            <div class="hamburguer"></div>
+            <div class="hamburguer"></div>
+        </div>
+    </label>
+
+
+    <ul class="sidebar">
+
+        <a [routerLink]="['']" class="nav-mobile__link" routerLinkActive="nav-mobile__link--active"
+            [routerLinkActiveOptions]="{exact: true}">Mapa</a>
+
+        <a class="nav-mobile__link" *ngIf="user && user.admin" routerLinkActive="nav-mobile__link--active"
+            (click)="showEstablishments()"> Estabelecimentos</a>
+
+        <a class="nav-mobile__link mr-auto" routerLinkActive="nav-mobile__link--active" (click)="logout()">
+            Sair
+        </a>
+
+    </ul>
+
+
+
+</div>

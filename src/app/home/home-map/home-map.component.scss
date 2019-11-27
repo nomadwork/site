@@ -1,105 +1,148 @@
 .map {
-    height: 100%;
-    box-shadow: 0px 0px 15px rgba(0, 0, 0, 0.411);
-    z-index: 1;
-    max-width: 1050px;
+  height: 100%;
+  box-shadow: 0px 0px 15px rgba(0, 0, 0, 0.411);
+  z-index: 1;
+  max-width: 1050px;
 }
 
 .homemap {
-    height: calc(100vh - 50px);
-    position: relative;
-    display: flex;
-    justify-content: space-between;
-    flex-wrap: wrap;
-    align-items: center;
+  height: calc(100vh - 50px);
+  position: relative;
+  display: flex;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  align-items: center;
+}
+
+.ad,
+.search {
+  height: 100%;
+  box-shadow: 0px 0px 15px rgba(0, 0, 0, 0.411);
+  width: 20%;
+  min-width: 250px;
+  display: none;
+}
+.search {
+  display: none;
+}
+
+.search-mobile {
+  position: absolute;
+  top: 10px;
+  left: 50%;
+  transform: translate(-50%, 0);
+  height: 100%;
+  width: 60%;
+  z-index: 99999;
+  display: block;
+  .input {
+    background: white;
+    padding: 10px 5px;
+  }
+  ul {
+    background: white;
+  }
 }
 
 .ad {
-    height: 100%;
-    box-shadow: 0px 0px 15px rgba(0, 0, 0, 0.411);
-    width: 20%;
-    min-width: 200px;
+  background: url(../../../assets/img/tmp/cafeliberal.jpg) no-repeat center;
+  -webkit-background-size: cover;
+  -moz-background-size: cover;
+  -o-background-size: cover;
+  background-size: cover;
 }
-
 .map-wrapper {
-    z-index: 1;
-    height: calc(100vh - 50px);
-    width: 50%;
-    max-width: 1050px;
-    flex-grow: 1;
-    margin: 0 auto;
-    position: relative;
+  z-index: 1;
+  height: calc(100vh - 50px);
+  width: 50%;
+  max-width: 1050px;
+  flex-grow: 1;
+  margin: 0 auto;
+  position: relative;
 }
 
 .button-wrapper {
-    z-index: 2;
-    position: absolute;
-    top: 10px;
-    right: 10px;
-    display: flex;
-    align-items: flex-end;
-    justify-content: center;
-    flex-direction: column;
+  z-index: 2;
+  position: absolute;
+  top: 10px;
+  right: 10px;
+  display: flex;
+  align-items: flex-end;
+  justify-content: center;
+  flex-direction: column;
 }
 
 .btn__map {
-    border: 2px solid #03a9f4;
-    box-shadow: 2px 2px 5px rgba(0, 0, 0, 0.616);
-    background: white;
-    outline: none;
-    padding: 10px;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    border-radius: 50%;
-    &:active {
-        border-radius: 40%;
-    }
+  border: 2px solid #03a9f4;
+  box-shadow: 2px 2px 5px rgba(0, 0, 0, 0.616);
+  background: white;
+  outline: none;
+  padding: 10px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  border-radius: 50%;
+  &:active {
+    border-radius: 40%;
+  }
 }
 
 .btn {
-    padding: 5px;
-    font-size: 14px;
-    font-weight: bolder;
-    position: absolute;
-    z-index: 9;
-    right: 5px;
-    bottom: 20px;
+  padding: 5px;
+  font-size: 14px;
+  font-weight: bolder;
+  position: absolute;
+  z-index: 9;
+  right: 5px;
+  bottom: 20px;
 }
 
 .btn-2 {
-    padding: 5px;
-    font-size: 14px;
-    font-weight: bolder;
-    position: absolute;
-    z-index: 9;
-    right: 10em;
-    bottom: 20px;
+  padding: 5px;
+  font-size: 14px;
+  font-weight: bolder;
+  position: absolute;
+  z-index: 9;
+  right: 10em;
+  bottom: 20px;
 }
 
 .loading {
-    position: absolute;
-    z-index: 9999;
-    height: calc(100vh - 50px);
-    width: 100%;
-    background: rgba(255, 255, 255, 0.397);
-    display: flex;
-    align-items: center;
-    justify-content: center;
+  position: absolute;
+  z-index: 9999;
+  height: calc(100vh - 50px);
+  width: 100%;
+  background: rgba(255, 255, 255, 0.397);
+  display: flex;
+  align-items: center;
+  justify-content: center;
 }
 
 .shadow-btn {
-    box-shadow: 0px 5px 10px #1b1b1b;
+  box-shadow: 0px 5px 10px #1b1b1b;
 }
 
 .establishmment-list {
-    text-align: left;
-    transition: all .2 ease-in-out;
-    li {
-        padding: 5px;
-        margin: 2px 0;
-    }
-    & li:hover {
-        background: #03a8f45d;
-    }
+  text-align: left;
+  transition: all 0.2 ease-in-out;
+  li {
+    padding: 5px;
+    margin: 2px 0;
+  }
+  & li:hover {
+    background: #03a8f45d;
+  }
+}
+
+perfect-scrollbar {
+  padding: 10px 0;
+}
+
+@media (min-width: 700px) {
+  .ad {
+    display: block;
+  }
+  .search {
+    display: block;
+  }
 }

@@ -200,6 +200,7 @@ export class HomeMapComponent implements OnInit {
   }
 
   selectedEstablismment(e) {
+    this.establishmments = [];
     this.getMarkers({ latitude: e.geolocation.latitude, longitude: e.geolocation.longitude });
     this.mapSerchFly(e);
 
