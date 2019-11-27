@@ -195,8 +195,18 @@ export class HomeMapComponent implements OnInit {
 
   placeSearch(e) {
     this.mapService.searchPlaces(e.target.value).subscribe(data => {
+      console.log(data);
       this.establishmments = data.result;
     })
+  }
+
+  bannerAd(id) {
+
+    this.map.flyTo([-8.044724, -34.89951]);
+    this.mapService.detailAboutThisPlace(1)
+      .subscribe(resultDetail => {
+        this.dialog.open(DialogPlaceDetailComponent, this.modalConfig(resultDetail));
+      }, error => console.log(error));
   }
 
   selectedEstablismment(e) {
